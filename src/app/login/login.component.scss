@@ -23,3 +23,11 @@
 .full-width {
   width: 100%;
 }
+
+::ng-deep .mat-mdc-tab .mdc-tab__text-label {
+  color:black !important; 
+}
+
+::ng-deep .mat-mdc-tab.mdc-tab--active .mdc-tab__text-label {
+  color:#c2185b !important;
+}
