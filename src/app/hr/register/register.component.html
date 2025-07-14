@@ -1,1 +1,129 @@
-<p>register works!</p>
+<div mat-dialog-title class="reg-header">
+  <mat-icon fontIcon="person_add"></mat-icon>
+  <span>Add New Employee</span>
+</div>
+
+<mat-dialog-content class="mat-typography">
+  <form
+    [formGroup]="employeeForm"
+    (ngSubmit)="onSubmit()"
+    class="employee-form"
+  >
+    <!-- Full Name + Employee ID -->
+    <div class="row">
+      <mat-form-field appearance="fill" class="half-width">
+        <mat-label>Full Name</mat-label>
+        <input
+          matInput
+          formControlName="fullName"
+          placeholder="John Doe"
+          required
+        />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="half-width">
+        <mat-label>Employee ID</mat-label>
+        <input
+          matInput
+          formControlName="employeeId"
+          placeholder="EMP001"
+          required
+        />
+      </mat-form-field>
+    </div>
+
+    <!-- Email -->
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Email Address</mat-label>
+      <input
+        matInput
+        formControlName="email"
+        type="email"
+        placeholder="john.doe@oaks.com"
+        required
+      />
+    </mat-form-field>
+
+    <!-- Designation + Department -->
+    <div class="row">
+      <mat-form-field appearance="fill" class="half-width">
+        <mat-label>Designation</mat-label>
+        <mat-select formControlName="designation" required>
+          <mat-option value="Developer">Developer</mat-option>
+          <mat-option value="Manager">Manager</mat-option>
+          <mat-option value="HR">HR</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="half-width">
+        <mat-label>Department</mat-label>
+        <mat-select formControlName="department" required>
+          <mat-option value="IT">IT</mat-option>
+          <mat-option value="Sales">Sales</mat-option>
+          <mat-option value="HR">HR</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <!-- Date of Joining + DOB -->
+    <div class="row">
+      <mat-form-field appearance="fill" class="half-width">
+        <mat-label>Date of Joining</mat-label>
+        <input
+          matInput
+          [matDatepicker]="dojPicker"
+          formControlName="dateOfJoining"
+          placeholder="mm/dd/yyyy"
+        />
+        <mat-datepicker-toggle
+          matSuffix
+          [for]="dojPicker"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #dojPicker></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="half-width">
+        <mat-label>Date of Birth</mat-label>
+        <input
+          matInput
+          [matDatepicker]="dobPicker"
+          formControlName="dateOfBirth"
+          placeholder="mm/dd/yyyy"
+        />
+        <mat-datepicker-toggle
+          matSuffix
+          [for]="dobPicker"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #dobPicker></mat-datepicker>
+      </mat-form-field>
+    </div>
+
+    <!-- Password + Generate Button -->
+    <div class="row password-row">
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Password</mat-label>
+        <input
+          matInput
+          type="text"
+          formControlName="password"
+          placeholder="Enter password or generate one"
+        />
+      </mat-form-field>
+      <button
+        mat-stroked-button
+        color="primary"
+        type="button"
+        (click)="generatePassword()"
+      >
+        Generate
+      </button>
+    </div>
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-flat-button color="primary" (click)="onSubmit()">
+    Add Employee
+  </button>
+</mat-dialog-actions>

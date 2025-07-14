@@ -9,6 +9,12 @@ import { MatInputModule } from '@angular/material/input';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatButtonModule } from '@angular/material/button';
 import { RegisterComponent } from '../register/register.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatIconModule } from '@angular/material/icon';
+import { MatOption } from '@angular/material/core';
+import { MatSelectModule } from '@angular/material/select';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [HrDashboardComponent, RegisterComponent],
@@ -23,6 +29,12 @@ import { RegisterComponent } from '../register/register.component';
     MatTabsModule,
     FormsModule,
     MatButtonModule,
+    MatDialogModule,
+    MatIconModule,
+    MatOption,
+    MatSelectModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
   ],
 })
 export class HrDashboadModule {}

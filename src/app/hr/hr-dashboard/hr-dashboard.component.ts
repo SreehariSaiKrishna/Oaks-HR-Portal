@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../../service/auth.service';
 import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { RegisterComponent } from '../register/register.component';
 
 @Component({
   selector: 'app-hr-dashboard',
@@ -8,13 +10,22 @@ import { Router } from '@angular/router';
   styleUrl: './hr-dashboard.component.scss',
 })
 export class HrDashboardComponent {
-  constructor(public authService: AuthService, public router: Router) {}
+  constructor(
+    public authService: AuthService,
+    public router: Router,
+    public dialog: MatDialog
+  ) {}
 
   logout() {
     this.authService.logout();
   }
 
-  register(){
-    this.router.navigate(['/register']);
+  openDialog() {
+    const dialogRef = this.dialog.open(RegisterComponent, {
+      width: '700px', // or '80vw'
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log(`Dialog result: ${result}`);
+    });
   }
 }
