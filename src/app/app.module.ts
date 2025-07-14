@@ -14,8 +14,8 @@ import { environment } from '../environments/environment';
 import { AngularFireModule } from '@angular/fire/compat';
 import { RegisterComponent } from './register/register/register.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HrDashboardComponent } from './hr/dashboard/hr-dashboard/hr-dashboard.component';
-import { DashboardComponent } from './employ/dashboard/dashboard/dashboard.component';
+import { HrDashboardComponent } from './hr/hr-dashboard/hr-dashboard.component';
+import { DashboardComponent } from './employ/dashboard/dashboard.component';
 
 @NgModule({
   declarations: [

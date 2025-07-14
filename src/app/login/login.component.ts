@@ -37,14 +37,26 @@ export class LoginComponent {
     this.authservice
       .login(this.loginForm.value.email, this.loginForm.value.password)
       .then(
-      () => {
+        (userCredential: any) => {
+          // ✅ Save user to localStorage
+          const userData = {
+            email: this.loginForm.value.email,
+            userType: userType,
+            uid:
+              userCredential && userCredential.user
+                ? userCredential.user.uid
+                : null, // optional if using Firebase
+          };
+          localStorage.setItem('user', JSON.stringify(userData));
+
+          // ✅ Navigate based on user type
           if (userType === 'HR') {
             this.router.navigate(['/hr-dashboard']);
           } else {
             this.router.navigate(['/dashboard']);
           }
         },
-        (error) => {
+        (error: any) => {
           console.error('Login failed:', error);
           this.router.navigate(['/login']);
         }
