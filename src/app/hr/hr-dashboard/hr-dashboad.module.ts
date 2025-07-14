@@ -3,13 +3,26 @@ import { CommonModule } from '@angular/common';
 
 import { HrDashboadRoutingModule } from './hr-dashboad-routing.module';
 import { HrDashboardComponent } from './hr-dashboard.component';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatButtonModule } from '@angular/material/button';
+import { RegisterComponent } from '../register/register.component';
 
 @NgModule({
-  declarations: [HrDashboardComponent],
+  declarations: [HrDashboardComponent, RegisterComponent],
   imports: [
     CommonModule,
-    HrDashboadRoutingModule
-  ]
+    HrDashboadRoutingModule,
+    ReactiveFormsModule,
+    MatTabsModule,
+    MatFormFieldModule,
+    FormsModule,
+    MatInputModule,
+    MatTabsModule,
+    FormsModule,
+    MatButtonModule,
+  ],
 })
-export class HrDashboadModule { }
+export class HrDashboadModule {}

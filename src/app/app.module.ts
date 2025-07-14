@@ -33,7 +33,6 @@ import { ReactiveFormsModule } from '@angular/forms';
     FormsModule,
     MatButtonModule,
     AngularFireModule.initializeApp(environment.firebase),
-    // AngularFireAuthModule,
   ],
   bootstrap: [AppComponent],
 })
