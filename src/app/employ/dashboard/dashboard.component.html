@@ -1,5 +1,52 @@
-<div class="dashboard-container">
+<!-- <div class="dashboard-container">
   <h1>Welcome to the Employee Dashboard</h1>
   <p>Your dashboard is under construction.</p>
   <button mat-raised-button color="primary" (click)="logout()">Logout</button>
+</div> -->
+<div class="dashboard-container">
+  <aside class="sidebar">
+    <div class="logo">OAKS <span>HR Portal</span></div>
+    <ul class="menu">
+      <li><i class="icon">👤</i> My Profile</li>
+      <li><i class="icon">📅</i> Company Holidays</li>
+      <li><i class="icon">💵</i> Payslips</li>
+      <li><i class="icon">🛡️</i> Company Policy</li>
+      <li><i class="icon">📄</i> Form 16</li>
+      <li><i class="icon">❓</i> FAQs</li>
+    </ul>
+  </aside>
+
+  <main class="main-content">
+    <div class="header">
+      <h1>Employee Dashboard</h1>
+      <p>Welcome to your OAKS HR Portal. Access your information and company resources.</p>
+    </div>
+
+    <div class="cards">
+      <div class="card">
+        <h3>My Profile</h3>
+        <p class="value">View</p>
+        <p class="desc">View and edit your profile information</p>
+      </div>
+      <div class="card">
+        <h3>Payslips</h3>
+        <p class="value">6</p>
+        <p class="desc">Available payslips to download</p>
+      </div>
+      <div class="card">
+        <h3>Company Holidays</h3>
+        <p class="value">12</p>
+        <p class="desc">Holidays this year</p>
+      </div>
+    </div>
+  </main>
+
+  <div class="user-info">
+    <div class="avatar">JS</div>
+    <div class="details">
+      <p class="name">John Smith</p>
+      <p class="role">Software Developer</p>
+    </div>
+    <div class="logout">🔁</div>
+  </div>
 </div>
