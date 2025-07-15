@@ -37,7 +37,6 @@ export class RegisterComponent {
         )
         .then(() => {
           this.saveEmployeData();
-          console.log('Registration successful');
         })
         .catch((error) => {
           console.error('Error during registration:', error);

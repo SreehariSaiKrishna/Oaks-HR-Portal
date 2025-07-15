@@ -100,7 +100,7 @@
 
     <!-- Password + Generate Button -->
     <div class="row password-row">
-      <mat-form-field appearance="fill" class="full-width">
+      <mat-form-field appearance="fill" class="password-field">
         <mat-label>Password</mat-label>
         <input
           matInput
@@ -114,6 +114,7 @@
         color="primary"
         type="button"
         (click)="generatePassword()"
+        class="generate-button"
       >
         Generate
       </button>

@@ -13,7 +13,11 @@ export class AppComponent {
 
   ngOnInit() {
     if (this.authSvc.isLoggedIn()) {
-      this.router.navigate(['/dashboard']);
+      if (this.authSvc.getUserType() === 'HR') {
+        this.router.navigate(['/hr-dashboard']);
+      } else if (this.authSvc.getUserType() === 'Employee') {
+        this.router.navigate(['/dashboard']);
+      }
     }
   }
 }

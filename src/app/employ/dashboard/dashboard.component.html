@@ -19,7 +19,10 @@
   <main class="main-content">
     <div class="header">
       <h1>Employee Dashboard</h1>
-      <p>Welcome to your OAKS HR Portal. Access your information and company resources.</p>
+      <p>
+        Welcome to your OAKS HR Portal. Access your information and company
+        resources.
+      </p>
     </div>
 
     <div class="cards">
@@ -47,6 +50,12 @@
       <p class="name">Sai Krishna</p>
       <p class="role">Product Associate</p>
     </div>
-    <div class="logout">🔁</div>
+    <div class="logout" (click)="logout()">
+      <mat-icon
+        aria-hidden="false"
+        aria-label="logout"
+        fontIcon="logout"
+      ></mat-icon>
+    </div>
   </div>
 </div>

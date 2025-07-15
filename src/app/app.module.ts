@@ -13,12 +13,10 @@ import { FormsModule } from '@angular/forms';
 import { environment } from '../environments/environment';
 import { AngularFireModule } from '@angular/fire/compat';
 import { ReactiveFormsModule } from '@angular/forms';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    LoginComponent,
-  ],
+  declarations: [AppComponent, LoginComponent],
   imports: [
     CommonModule,
     AppRoutingModule,
@@ -33,6 +31,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     FormsModule,
     MatButtonModule,
     AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule,
   ],
   bootstrap: [AppComponent],
 })
