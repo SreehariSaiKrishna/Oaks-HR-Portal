@@ -1,8 +1,48 @@
-<div class="dashboard-container">
-  <h1>Welcome to the HR Dashboard</h1>
-  <p>Your dashboard is under construction.</p>
-  <button mat-raised-button color="primary" (click)="logout()">Logout</button>
-  <button mat-raised-button color="primary" (click)="openDialog()">
+<div class="dashboard-wrapper">
+  <aside class="sidebar">
+    <div class="logo">OAKS</div>
+    <nav class="sidebar-nav">
+      <a href="#" class="nav-item active">Dashboard</a>
+      <a href="#" class="nav-item">Jobs</a>
+      <a href="#" class="nav-item">Applicants</a>
+      <a href="#" class="nav-item">Onboarding</a>
+      <a href="#" class="nav-item">User Management</a>
+      <a href="#" class="nav-item">Settings</a>
+    </nav>
+  </aside>
+
+  <main class="main-area">
+    <header class="top-header">
+      <input type="text" class="search-bar" placeholder="Search" />
+      <div class="profile-box">
+         <button mat-raised-button color="primary" (click)="openDialog()">
     register a employ
   </button>
-</div>
+         <button mat-raised-button color="primary" (click)="logout()">Logout</button>
+      
+      </div>
+    </header>
+
+    <section class="dashboard-cards">
+      <div class="card">8<br /><span>Active Job Posts</span></div>
+      <div class="card">128<br /><span>New Applicants</span></div>
+      <div class="card">12<br /><span>Phone Calls</span></div>
+      <div class="card">15<br /><span>Assignments</span></div>
+      <div class="card">19<br /><span>Interviews</span></div>
+      <div class="card">7<br /><span>Assessments</span></div>
+      <div class="card">16<br /><span>References</span></div>
+      <div class="card">21<br /><span>Offers</span></div>
+    </section>
+
+    <section class="dashboard-charts">
+      <div class="chart-box">
+        <h3>Job Posts by Department</h3>
+        <div class="chart"></div>
+      </div>
+      <div class="chart-box">
+        <h3>Job Posts by Title</h3>
+        <div class="chart"></div>
+      </div>
+    </section>
+  </main>
+</div>  
