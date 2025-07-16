@@ -15,6 +15,7 @@ import { MatOption } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { SharedModule } from '../../shared/shared.module';
 
 @NgModule({
   declarations: [HrDashboardComponent, RegisterComponent],
@@ -35,6 +36,7 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatSelectModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    SharedModule,
   ],
 })
 export class HrDashboadModule {}
