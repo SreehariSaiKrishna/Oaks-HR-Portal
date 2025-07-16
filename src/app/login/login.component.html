@@ -1,5 +1,11 @@
 <div class="login-container">
-  <div><img src="\assets\Images\Common_logo_Dark_Blue.png" alt="OAKS Logo" class="logo_img" /></div>
+  <div class="header-div">
+    <img
+      src="\assets\Images\Common_logo_Dark_Blue.png"
+      alt="OAKS Logo"
+      class="logo_img"
+    />
+  </div>
   <div class="login-card">
     <h2 class="title">LOGIN</h2>
 
@@ -9,14 +15,37 @@
     </mat-tab-group>
 
     <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
-      <mat-form-field appearance="outline" class="custom-field">
+      <mat-form-field
+        class="custom-field"
+        hideRequiredMarker="false"
+        floatLabel="auto"
+      >
         <mat-label>Email</mat-label>
-        <input matInput type="email" placeholder="Email" formControlName="email" required />
+        <input matInput type="email" formControlName="email" required />
       </mat-form-field>
 
-      <mat-form-field appearance="outline" class="custom-field">
+      <mat-form-field
+        class="custom-field"
+        hideRequiredMarker="false"
+        floatLabel="auto"
+      >
         <mat-label>Password</mat-label>
-        <input matInput type="password" placeholder="Password" formControlName="password" required />
+        <input
+          matInput
+          [type]="hide() ? 'password' : 'text'"
+          formControlName="password"
+          required
+        />
+        <button
+          mat-icon-button
+          matSuffix
+          (click)="clickEvent($event)"
+          [attr.aria-label]="'Hide password'"
+          [attr.aria-pressed]="hide()"
+        >
+          <mat-icon>{{ hide() ? "visibility_off" : "visibility" }}</mat-icon>
+        </button>
+        <input matInput type="password" formControlName="password" required />
       </mat-form-field>
 
       <button mat-raised-button color="primary" class="login-btn" type="submit">

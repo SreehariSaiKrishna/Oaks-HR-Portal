@@ -7,8 +7,14 @@
 }
 
 .logo_img {
-  width: 324px;
-  margin-bottom: 25px;
+  width: 45%;
+  margin-bottom: 24px;
+}
+
+.header-div {
+  align-items: center;
+  display: flex;
+  justify-content: center;
 }
 
 .login-container {
@@ -18,13 +24,12 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-
 }
 
 .login-card {
   background: white;
   border-radius: 16px;
-  padding: 2rem 2.5rem;
+  padding: 32px;
   width: 100%;
   max-width: 400px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
@@ -33,14 +38,13 @@
 .title {
   text-align: center;
   font-weight: 600;
-  font-size: 25px;
-  margin-bottom: 1.5rem;
+  font-size: 24px;
+  margin-bottom: 1rem;
   color: #0795c9;
 }
 
 .custom-tabs {
-  margin-bottom: 1.5rem;
-
+  margin-bottom: 1rem;
 
   ::ng-deep .mat-mdc-tab {
     font-weight: 500;
@@ -63,6 +67,8 @@
 
   ::ng-deep .mat-mdc-text-field-wrapper {
     border-bottom: 1px solid black;
+    background-color: transparent !important;
+    height: 52px !important;
   }
 
   ::ng-deep .mat-mdc-floating-label {
@@ -95,20 +101,26 @@
   padding: 12px;
   font-weight: 600;
   border-radius: 8px;
-  background: linear-gradient( #00a0f3, #374955);
+  background: linear-gradient(#00a0f3, #374955);
   color: white;
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
   transition: all 0.3s ease;
 
   &:hover {
-    background: linear-gradient( #00a0f3, #0795c9);
+    background: linear-gradient(#00a0f3, #0795c9);
   }
+}
+
+.no-error-border.mat-form-field-invalid .mat-form-field-outline,
+.no-error-border.mat-form-field-invalid .mat-form-field-outline-thick {
+  stroke: none !important;
 }
 
 /* Responsive for mobile */
 @media (max-width: 480px) {
   .login-card {
-    padding: 1.5rem;
+    padding: 1rem;
+    max-width: calc(100% - 92px);
   }
 
   .title {
@@ -118,4 +130,13 @@
 
 ::ng-deep .mat-mdc-tab .mdc-tab__text-label {
   color: black !important;
+}
+
+::ng-deep .mat-mdc-tab-group,
+.mat-mdc-tab-nav-bar {
+  --mdc-tab-indicator-active-indicator-color: #0795c9 !important;
+  --mat-tab-header-active-focus-label-text-color: #0795c9 !important;
+  --mat-tab-header-active-hover-label-text-color: #0795c9 !important;
+  --mat-tab-header-active-focus-indicator-color: #0795c9 !important;
+  --mat-tab-header-active-hover-indicator-color: #0795c9 !important;
 }

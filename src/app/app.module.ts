@@ -14,6 +14,7 @@ import { environment } from '../environments/environment';
 import { AngularFireModule } from '@angular/fire/compat';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import {MatIconModule} from '@angular/material/icon';
 
 @NgModule({
   declarations: [AppComponent, LoginComponent],
@@ -27,9 +28,8 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
     MatFormFieldModule,
     FormsModule,
     MatInputModule,
-    MatTabsModule,
-    FormsModule,
     MatButtonModule,
+    MatIconModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
   ],

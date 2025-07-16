@@ -1,12 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../service/auth.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
-
 
 @Component({
   selector: 'app-login',
@@ -16,6 +11,7 @@ import { MatIconModule } from '@angular/material/icon';
 export class LoginComponent {
   loginForm: FormGroup;
   selectedTabIndex = 0;
+  hide = signal(true);
   constructor(
     private authservice: AuthService,
     private router: Router,
@@ -66,5 +62,10 @@ export class LoginComponent {
           this.router.navigate(['/login']);
         }
       );
+  }
+
+  clickEvent(event: MouseEvent) {
+    this.hide.set(!this.hide());
+    event.stopPropagation();
   }
 }
