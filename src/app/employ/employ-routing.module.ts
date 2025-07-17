@@ -7,12 +7,23 @@ import { Form16Component } from '../shared/form16/form16.component';
 import { FaqsComponent } from '../shared/faqs/faqs.component';
 import { CompanyPolicyComponent } from '../shared/company-policy/company-policy.component';
 import { CompanyHolidaysComponent } from '../shared/company-holidays/company-holidays.component';
+import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
   {
     path: '',
     component: EmployComponent,
     children: [
+      {
+        path: '',
+        redirectTo: 'home',
+        pathMatch: 'full',
+      },
+      {
+        path: 'home',
+        component: HomeComponent,
+        canActivate: [authGuard],
+      },
       {
         path: 'profile',
         component: ProfileComponent,

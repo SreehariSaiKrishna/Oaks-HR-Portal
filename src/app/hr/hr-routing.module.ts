@@ -15,6 +15,11 @@ const routes: Routes = [
     component: HrComponent,
     children: [
       {
+        path: '',
+        redirectTo: 'home',
+        pathMatch: 'full',
+      },
+      {
         path: 'home',
         component: HomeComponent,
         canActivate: [authGuard],
