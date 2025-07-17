@@ -1,29 +1,29 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { DashboadRoutingModule } from './dashboad-routing.module';
-import { DashboardComponent } from './dashboard.component';
+import { EmployRoutingModule } from './employ-routing.module';
+import { EmployComponent } from './employ.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
-  declarations: [DashboardComponent],
+  declarations: [EmployComponent],
   imports: [
     CommonModule,
-    DashboadRoutingModule,
+    EmployRoutingModule,
     ReactiveFormsModule,
     MatTabsModule,
     MatFormFieldModule,
-    FormsModule,
     MatInputModule,
-    MatTabsModule,
     FormsModule,
     MatButtonModule,
     MatIconModule,
+    SharedModule
   ],
 })
-export class DashboadModule {}
+export class EmployModule {}

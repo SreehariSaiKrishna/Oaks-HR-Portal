@@ -14,9 +14,9 @@ export class AppComponent {
   ngOnInit() {
     if (this.authSvc.isLoggedIn()) {
       if (this.authSvc.getUserType() === 'HR') {
-        this.router.navigate(['/hr-dashboard']);
+        this.router.navigate(['/hr']);
       } else if (this.authSvc.getUserType() === 'Employee') {
-        this.router.navigate(['/dashboard']);
+        this.router.navigate(['/employ']);
       }
     }
   }

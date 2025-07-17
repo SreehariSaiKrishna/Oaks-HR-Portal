@@ -7,18 +7,18 @@ const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   {
-    path: 'hr-dashboard',
+    path: 'hr',
     loadChildren: () =>
-      import('./hr/hr-dashboard/hr-dashboad.module').then(
-        (m) => m.HrDashboadModule
+      import('./hr/hr.module').then(
+        (m) => m.HrModule
       ),
     canActivate: [authGuard],
   },
   {
-    path: 'dashboard',
+    path: 'employ',
     loadChildren: () =>
-      import('./employ/dashboard/dashboad.module').then(
-        (m) => m.DashboadModule
+      import('./employ/employ.module').then(
+        (m) => m.EmployModule
       ),
     canActivate: [authGuard],
   },

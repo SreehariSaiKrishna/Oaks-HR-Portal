@@ -52,9 +52,9 @@ export class LoginComponent {
 
           // ✅ Navigate based on user type
           if (userType === 'HR') {
-            this.router.navigate(['/hr-dashboard']);
+            this.router.navigate(['/hr']);
           } else {
-            this.router.navigate(['/dashboard']);
+            this.router.navigate(['/employ']);
           }
         },
         (error: any) => {
