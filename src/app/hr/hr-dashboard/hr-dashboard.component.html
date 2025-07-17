@@ -1,48 +1,105 @@
-<div class="dashboard-wrapper">
-  <aside class="sidebar">
-    <div class="logo">OAKS</div>
-    <nav class="sidebar-nav">
-      <a href="#" class="nav-item active">Dashboard</a>
-      <a href="#" class="nav-item">Jobs</a>
-      <a href="#" class="nav-item">Applicants</a>
-      <a href="#" class="nav-item">Onboarding</a>
-      <a href="#" class="nav-item">User Management</a>
-      <a href="#" class="nav-item">Settings</a>
-    </nav>
-  </aside>
+<!-- Top Bar -->
+<header class="topbar">
+  <div class="topbar-actions">
+    <div>
+      <mat-icon (click)="toggleSidebar()" aria-hidden="false" aria-label="company holidays" fontIcon="menu"></mat-icon>
+    </div>
+    <img src="/assets/Images/Common_logo_Dark_Blue.png" class="header-img-style" alt="OAKS Logo" />
+  </div>
 
-  <main class="main-area">
-    <header class="top-header">
-      <input type="text" class="search-bar" placeholder="Search" />
-      <div class="profile-box">
-         <button mat-raised-button color="primary" (click)="openDialog()">
-    register a employ
-  </button>
-         <button mat-raised-button color="primary" (click)="logout()">Logout</button>
-      
+  <div class="topbar-actions">
+    <button class="addemp" (click)="openDialog()">
+      <mat-icon aria-hidden="false" aria-label="Add Person" fontIcon="person_add"></mat-icon>
+      Add Employee
+    </button>
+    <div class="user-profile">
+      <div class="avatar">SJ</div>
+      <div class="user-container">
+        <div class="user-info">
+          Jonnalagadda Sreehari Sai Krishnama Naidu
+        </div>
+        <div class="user-role">Product Associate</div>
       </div>
-    </header>
+    </div>
 
-    <section class="dashboard-cards">
-      <div class="card">8<br /><span>Active Job Posts</span></div>
-      <div class="card">128<br /><span>New Applicants</span></div>
-      <div class="card">12<br /><span>Phone Calls</span></div>
-      <div class="card">15<br /><span>Assignments</span></div>
-      <div class="card">19<br /><span>Interviews</span></div>
-      <div class="card">7<br /><span>Assessments</span></div>
-      <div class="card">16<br /><span>References</span></div>
-      <div class="card">21<br /><span>Offers</span></div>
-    </section>
+  </div>
+</header>
 
-    <section class="dashboard-charts">
-      <div class="chart-box">
-        <h3>Job Posts by Department</h3>
-        <div class="chart"></div>
+<!-- Sidebar -->
+<aside class="sidebar" [class.closed]="isSidebarClosed">
+  <nav class="nav-menu">
+    <a class="nav-link" routerLink="/profile">
+          <mat-icon
+            aria-hidden="false"
+            aria-label="profile"
+            fontIcon="person"
+          ></mat-icon>
+         My Profile</a>
+    <a class="nav-link" routerLink="/holidays">
+          <mat-icon
+            aria-hidden="false"
+            aria-label="company holidays"
+            fontIcon="calendar_today"
+          ></mat-icon>
+        Company Holidays</a>
+    <a class="nav-link" routerLink="/payslips"> 
+          <mat-icon
+            aria-hidden="false"
+            aria-label="payslips"
+            fontIcon="folder_open"
+          ></mat-icon
+        >Payslips</a>
+    <a class="nav-link" routerLink="/policy"> 
+          <mat-icon
+            aria-hidden="false"
+            aria-label="docs"
+            fontIcon="description"
+          ></mat-icon>
+        Company Policy</a>
+    <a class="nav-link" routerLink="/form16">
+          <mat-icon
+            aria-hidden="false"
+            aria-label="form16"
+            fontIcon="article"
+          ></mat-icon>
+        Form 16</a>
+    <a class="nav-link" routerLink="/faqs"><mat-icon
+            aria-hidden="false"
+            aria-label="faqs"
+            fontIcon="question_mark"
+          ></mat-icon
+        >FAQs</a>
+    <a class="nav-link" routerLink="/employees"><mat-icon
+            aria-hidden="false"
+            aria-label="faqs"
+            fontIcon="group"
+          ></mat-icon
+        > Employees Details</a>
+  </nav>
+</aside>
+<div class="main-layout">
+  <!-- Main content -->
+  <div class="main-content">
+    <div class="dashboard-body">
+      <h2>HR Dashboard</h2>
+      <p>Welcome to the OAKS HR Portal. Manage employees and company resources.</p>
+
+      <div class="cards">
+        <div class="card">
+          <h4>My Profile</h4>
+          <h2>Manage</h2>
+          <p>View and edit your profile information</p>
+        </div>
+        <div class="card">
+          <h4>Company Holidays</h4>
+          <h2>12</h2>
+          <p>Holidays this year</p>
+        </div>
+        <div class="card" (click)="openDialog()">
+          <h4>Add Employee</h4>
+          <p>Add new employee to system</p>
+        </div>
       </div>
-      <div class="chart-box">
-        <h3>Job Posts by Title</h3>
-        <div class="chart"></div>
-      </div>
-    </section>
-  </main>
-</div>  
+    </div>
+  </div>
+</div>

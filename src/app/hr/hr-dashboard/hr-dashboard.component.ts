@@ -14,11 +14,7 @@ export class HrDashboardComponent {
     public authService: AuthService,
     public router: Router,
     public dialog: MatDialog
-  ) {}
-
-  logout() {
-    this.authService.logout();
-  }
+  ) { }
 
   openDialog() {
     const dialogRef = this.dialog.open(RegisterComponent, {
@@ -27,5 +23,10 @@ export class HrDashboardComponent {
     dialogRef.afterClosed().subscribe((result) => {
       console.log(`Dialog result: ${result}`);
     });
+  }
+  isSidebarClosed = false;
+
+  toggleSidebar() {
+    this.isSidebarClosed = !this.isSidebarClosed;
   }
 }

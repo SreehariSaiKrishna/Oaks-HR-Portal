@@ -8,6 +8,7 @@ import { CompanyHolidaysComponent } from './company-holidays/company-holidays.co
 import { CompanyPolicyComponent } from './company-policy/company-policy.component';
 import { FaqsComponent } from './faqs/faqs.component';
 import { Form16Component } from './form16/form16.component';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { Form16Component } from './form16/form16.component';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
+    MatIconModule,
   ],
   exports: [
     ProfileComponent,
@@ -31,4 +33,4 @@ import { Form16Component } from './form16/form16.component';
     Form16Component,
   ],
 })
-export class SharedModule {}
+export class SharedModule { }
