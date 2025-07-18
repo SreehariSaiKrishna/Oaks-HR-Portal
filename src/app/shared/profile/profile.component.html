@@ -1,7 +1,28 @@
-<div>{{user?.fullName}}</div>
-<div class="user-role">{{user?.designation}}</div>
-<div>{{user?.email}}</div>
-<div class="logout-button" (click)="logout()">
-    <!-- <mat-icon aria-hidden="false" aria-label="logout" fontIcon="logout"></mat-icon> -->
-     logout
-</div>
+<div class="profile-container">
+    <div class="header">
+        <h2>My Profile</h2>
+        <p>Manage your personal information and settings.</p>
+        <button mat-raised-button color="primary" class="edit-btn">
+            <mat-icon>edit</mat-icon> Edit Profile
+        </button>
+    </div>
+
+    <div class="profile-card">
+        <div class="profile-header">
+
+            <div class="avatar">
+                SK
+            </div>
+            <h1>SAi</h1>
+
+            <div class="user-info">
+            </div>
+
+            <div class="logout-button" (click)="logout()">
+                <!-- <mat-icon aria-hidden="false" aria-label="logout" fontIcon="logout"></mat-icon> -->
+                logout
+            </div>
+            <h1>Name</h1>
+            <h1>Designation</h1>
+            <h1>Department</h1>
+            <h1>Name</h1>

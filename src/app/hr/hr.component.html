@@ -26,7 +26,7 @@
       Add Employee
     </button>
     <div class="user-profile">
-      <div class="avatar">SJ</div>
+      <div class="avatar">S</div>
       <div class="user-container">
         <div class="user-info">{{user?.fullName}}</div>
         <div class="user-role">{{user?.designation}}</div>
@@ -38,6 +38,14 @@
 <!-- Sidebar -->
 <aside class="sidebar" [class.closed]="isSidebarClosed">
   <nav class="nav-menu">
+    <a class="nav-link" routerLink="/hr/profile">
+      <mat-icon
+        aria-hidden="false"
+        aria-label="profile"
+        fontIcon="home"
+      ></mat-icon>
+      Home</a
+    >
     <a class="nav-link" routerLink="/hr/profile">
       <mat-icon
         aria-hidden="false"
