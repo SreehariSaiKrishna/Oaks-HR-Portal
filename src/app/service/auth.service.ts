@@ -96,4 +96,33 @@ export class AuthService {
     }
     return null;
   }
+
+  getUserEmail() {
+    const user = localStorage.getItem('user');
+    if (user) {
+      const userData = JSON.parse(user);
+      return userData.email;
+    }
+    return null;
+  }
+
+  getEmployeeByEmail(email: string): Promise<any> {
+    return this.firestore
+      .collection('employees', (ref) => ref.where('email', '==', email))
+      .get()
+      .toPromise()
+      .then((querySnapshot) => {
+        if (querySnapshot && !querySnapshot.empty) {
+          const employeeData = querySnapshot.docs[0].data();
+          console.log('Employee Data:', employeeData);
+          return employeeData;
+        } else {
+          return null;
+        }
+      })
+      .catch((error) => {
+        console.error('Error fetching employee data:', error);
+        throw error;
+      });
+  }
 }

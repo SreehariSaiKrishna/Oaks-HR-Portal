@@ -11,11 +11,16 @@ import { RegisterComponent } from './register/register.component';
 })
 export class HrComponent {
   isSidebarClosed = false;
+  user: any;
   constructor(
     public authService: AuthService,
     public router: Router,
     public dialog: MatDialog
   ) {}
+
+  ngOnInit() {
+    this.userData();
+  }
 
   openDialog() {
     const dialogRef = this.dialog.open(RegisterComponent, {
@@ -28,5 +33,22 @@ export class HrComponent {
 
   toggleSidebar() {
     this.isSidebarClosed = !this.isSidebarClosed;
+  }
+
+  userData() {
+    const email = this.authService.getUserEmail();
+    console.log(email);
+    this.authService
+      .getEmployeeByEmail(email)
+      .then((data: any) => {
+        if (data) {
+          this.user = data;
+        } else {
+          console.log('No user data found for this email.');
+        }
+      })
+      .catch((error: any) => {
+        console.error('Error fetching user data:', error);
+      });
   }
 }
