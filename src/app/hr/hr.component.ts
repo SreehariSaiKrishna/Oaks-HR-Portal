@@ -25,6 +25,11 @@ export class HrComponent {
       link: '/hr/profile',
     },
     {
+      name: 'Employees Details',
+      icon: 'group',
+      link: '/hr/employees',
+    },
+    {
       name: 'Company Holidays',
       icon: 'calendar_today',
       link: '/hr/holidays',
@@ -48,11 +53,6 @@ export class HrComponent {
       name: 'FAQs',
       icon: 'question_mark',
       link: '/hr/faqs',
-    },
-    {
-      name: 'Employees Details',
-      icon: 'group',
-      link: '/hr/employees',
     },
   ];
 

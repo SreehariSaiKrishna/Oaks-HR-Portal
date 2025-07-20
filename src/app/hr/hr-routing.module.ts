@@ -8,6 +8,7 @@ import { CompanyPolicyComponent } from '../shared/company-policy/company-policy.
 import { FaqsComponent } from '../shared/faqs/faqs.component';
 import { Form16Component } from '../shared/form16/form16.component';
 import { HomeComponent } from './home/home.component';
+import { EmployeesComponent } from './employees/employees.component';
 
 const routes: Routes = [
   {
@@ -27,6 +28,11 @@ const routes: Routes = [
       {
         path: 'profile',
         component: ProfileComponent,
+        canActivate: [authGuard],
+      },
+      {
+        path: 'employees',
+        component: EmployeesComponent,
         canActivate: [authGuard],
       },
       {

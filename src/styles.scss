@@ -1,4 +1,23 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+:root {
+  --primary-color: #1b84da !important;
+  --accent-color: #00a0f3 !important;
+  --text-color: #1f2937 !important;
+  --background-color: #eef0f4 !important;
+}
+
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}

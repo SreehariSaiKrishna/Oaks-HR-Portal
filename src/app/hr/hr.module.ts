@@ -16,9 +16,11 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { SharedModule } from '../shared/shared.module';
 import { HrComponent } from './hr.component';
 import { HrRoutingModule } from './hr-routing.module';
+import { HomeComponent } from './home/home.component';
+import { EmployeesComponent } from './employees/employees.component';
 
 @NgModule({
-  declarations: [HrComponent, RegisterComponent],
+  declarations: [HrComponent, RegisterComponent, HomeComponent, EmployeesComponent],
   imports: [
     CommonModule,
     HrRoutingModule,
