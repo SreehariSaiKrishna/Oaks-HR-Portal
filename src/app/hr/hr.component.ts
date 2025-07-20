@@ -10,8 +10,52 @@ import { RegisterComponent } from './register/register.component';
   styleUrl: './hr.component.scss',
 })
 export class HrComponent {
-  isSidebarClosed = false;
+  isSidebarClosed = true;
   user: any;
+
+  sidebarData = [
+    {
+      name: 'Home',
+      icon: 'home',
+      link: '/hr/home',
+    },
+    {
+      name: 'Profile',
+      icon: 'person',
+      link: '/hr/profile',
+    },
+    {
+      name: 'Company Holidays',
+      icon: 'calendar_today',
+      link: '/hr/holidays',
+    },
+    {
+      name: 'Payslips',
+      icon: 'folder_open',
+      link: '/hr/payslips',
+    },
+    {
+      name: 'Company Policy',
+      icon: 'description',
+      link: '/hr/policy',
+    },
+    {
+      name: 'Form 16',
+      icon: 'article',
+      link: '/hr/form16',
+    },
+    {
+      name: 'FAQs',
+      icon: 'question_mark',
+      link: '/hr/faqs',
+    },
+    {
+      name: 'Employees Details',
+      icon: 'group',
+      link: '/hr/employees',
+    },
+  ];
+
   constructor(
     public authService: AuthService,
     public router: Router,
@@ -20,6 +64,19 @@ export class HrComponent {
 
   ngOnInit() {
     this.userData();
+  }
+
+  ngAfterViewInit() {
+    this.checkSidebarOnResize();
+    window.addEventListener('resize', this.checkSidebarOnResize.bind(this));
+  }
+
+  checkSidebarOnResize() {
+    if (window.innerWidth < 768) {
+      this.isSidebarClosed = false;
+    } else {
+      this.isSidebarClosed = true;
+    }
   }
 
   openDialog() {
@@ -31,8 +88,15 @@ export class HrComponent {
     });
   }
 
-  toggleSidebar() {
-    this.isSidebarClosed = !this.isSidebarClosed;
+  toggleSidebar(btnclick?: string) {
+    if (btnclick === 'sidebar' && window.innerWidth < 768) {
+      console.log('Toggling sidebar', btnclick, this.isSidebarClosed);
+      this.isSidebarClosed = false;
+      return;
+    } else if (btnclick === 'menu') {
+      console.log('Toggling sidebar', this.isSidebarClosed);
+      this.isSidebarClosed = !this.isSidebarClosed;
+    }
   }
 
   userData() {
@@ -50,5 +114,9 @@ export class HrComponent {
       .catch((error: any) => {
         console.error('Error fetching user data:', error);
       });
+  }
+
+  ngOnDestroy() {
+    window.removeEventListener('resize', this.checkSidebarOnResize.bind(this));
   }
 }

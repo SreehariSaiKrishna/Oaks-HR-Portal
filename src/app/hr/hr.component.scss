@@ -93,6 +93,7 @@
   top: 65px;
   transition: transform 0.3s ease;
   height: calc(100% - 65px);
+  z-index: 1000;
 }
 
 .sidebar.closed {
@@ -137,9 +138,25 @@
   width: 160px;
 }
 
-/* Responsive */
+.menu-dis {
+  display: none;
+}
+
 @media (max-width: 768px) {
   .menu-toggle {
     display: inline-block;
+  }
+
+  .main-layout {
+    width: 100%;
+    left: 0px;
+  }
+
+  .menu-dis {
+    display: block;
+  }
+
+  .btn-dis {
+    display: none;
   }
 }

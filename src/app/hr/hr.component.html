@@ -1,9 +1,9 @@
 <!-- Top Bar -->
 <header class="topbar">
   <div class="topbar-actions">
-    <div>
+    <div class="menu-dis">
       <mat-icon
-        (click)="toggleSidebar()"
+        (click)="toggleSidebar('menu')"
         aria-hidden="false"
         aria-label="company_holidays"
         fontIcon="menu"
@@ -16,7 +16,7 @@
     />
   </div>
 
-  <div class="topbar-actions">
+  <div class="topbar-actions btn-dis">
     <button class="addemp" (click)="openDialog()">
       <mat-icon
         aria-hidden="false"
@@ -28,83 +28,36 @@
     <div class="user-profile">
       <div class="avatar">S</div>
       <div class="user-container">
-        <div class="user-info">{{user?.fullName}}</div>
-        <div class="user-role">{{user?.designation}}</div>
+        <div class="user-info">{{ user?.fullName }}</div>
+        <div class="user-role">{{ user?.designation }}</div>
       </div>
     </div>
   </div>
 </header>
 
 <!-- Sidebar -->
-<aside class="sidebar" [class.closed]="isSidebarClosed">
-  <nav class="nav-menu">
-    <a class="nav-link" routerLink="/hr/profile">
+<div
+  class="sidebar"
+  [ngStyle]="{ display: isSidebarClosed ? 'block' : 'none' }"
+>
+  <div class="nav-menu">
+    <div
+      *ngFor="let menu of sidebarData"
+      class="nav-link"
+      routerLink="{{ menu.link }}"
+      (click)="toggleSidebar('sidebar')"
+    >
       <mat-icon
         aria-hidden="false"
-        aria-label="profile"
-        fontIcon="home"
+        [attr.aria-label]="menu.name"
+        fontIcon="{{ menu.icon }}"
       ></mat-icon>
-      Home</a
-    >
-    <a class="nav-link" routerLink="/hr/profile">
-      <mat-icon
-        aria-hidden="false"
-        aria-label="profile"
-        fontIcon="person"
-      ></mat-icon>
-      My Profile</a
-    >
-    <a class="nav-link" routerLink="/hr/holidays">
-      <mat-icon
-        aria-hidden="false"
-        aria-label="company holidays"
-        fontIcon="calendar_today"
-      ></mat-icon>
-      Company Holidays</a
-    >
-    <a class="nav-link" routerLink="/hr/payslips">
-      <mat-icon
-        aria-hidden="false"
-        aria-label="payslips"
-        fontIcon="folder_open"
-      ></mat-icon
-      >Payslips</a
-    >
-    <a class="nav-link" routerLink="/hr/policy">
-      <mat-icon
-        aria-hidden="false"
-        aria-label="docs"
-        fontIcon="description"
-      ></mat-icon>
-      Company Policy</a
-    >
-    <a class="nav-link" routerLink="/hr/form16">
-      <mat-icon
-        aria-hidden="false"
-        aria-label="form16"
-        fontIcon="article"
-      ></mat-icon>
-      Form 16</a
-    >
-    <a class="nav-link" routerLink="/hr/faqs"
-      ><mat-icon
-        aria-hidden="false"
-        aria-label="faqs"
-        fontIcon="question_mark"
-      ></mat-icon
-      >FAQs</a
-    >
-    <a class="nav-link" routerLink="/hr/employees"
-      ><mat-icon
-        aria-hidden="false"
-        aria-label="faqs"
-        fontIcon="group"
-      ></mat-icon>
-      Employees Details</a
-    >
-  </nav>
-</aside>
+      {{ menu.name }}
+    </div>
+  </div>
+</div>
+
+<!-- Main content -->
 <div class="main-layout">
-  <!-- Main content -->
   <router-outlet></router-outlet>
 </div>
