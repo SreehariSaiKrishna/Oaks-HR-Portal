@@ -1,7 +1,9 @@
 <div class="hr-dashboard">
   <!-- Header Section -->
   <header class="dashboard-header">
-    <div class="greeting-header">Hi,Jonnalagadda Sreehari Sai Krishnama Naidu! <span>👋</span></div>
+    <div class="greeting-header">
+      Hi, {{ user?.fullName }}!! <span>👋</span>
+    </div>
     <div class="welcome-msg">
       Welcome to the OAKS HR Portal. Here's your overview for today.
     </div>
@@ -40,15 +42,15 @@
   <section class="dashboard-actions">
     <div class="actions-title">Quick Actions</div>
     <div class="actions-row">
-      <button class="action-btn blue">
+      <button class="action-btn blue" routerLink="/hr/employees">
         <span>Add Employee</span>
         <small>Add new employee to system</small>
       </button>
-      <button class="action-btn purple">
+      <button class="action-btn purple" routerLink="/hr/holidays">
         <span>View Calendar</span>
         <small>Check holidays & events</small>
       </button>
-      <button class="action-btn green">
+      <button class="action-btn green" routerLink="/hr/policy">
         <span>Company Policy</span>
         <small>View Company Policy</small>
       </button>

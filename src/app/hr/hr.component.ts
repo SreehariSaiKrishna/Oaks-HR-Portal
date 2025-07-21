@@ -71,6 +71,19 @@ export class HrComponent {
     window.addEventListener('resize', this.checkSidebarOnResize.bind(this));
   }
 
+  isActive(route: string): boolean {
+    // If the current route includes the page's route
+    if (this.router.url.includes(route)) {
+      return true;
+    }
+
+    // If no pages match, default to first page
+    const matched =
+      this.sidebarData.some((p) => this.router.url.includes(p.link)) ||
+      this.router.url.includes('profile');
+    return !matched && route === this.sidebarData[0].link;
+  }
+
   checkSidebarOnResize() {
     if (window.innerWidth < 768) {
       this.isSidebarClosed = false;

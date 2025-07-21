@@ -26,10 +26,10 @@
       Add Employee
     </button>
     <div class="user-profile">
-      <div class="avatar">S</div>
+      <div class="avatar">{{ user?.fullName?.charAt(0) }}</div>
       <div class="user-container">
         <div class="user-info">{{ user?.fullName }}</div>
-        <div class="user-role">{{ user?.designation }}</div>
+        <div class="user-role">{{ user?.team }}</div>
       </div>
     </div>
   </div>
@@ -43,6 +43,7 @@
   <div class="nav-menu">
     <div
       *ngFor="let menu of sidebarData"
+      [ngClass]="{ 'active-link': isActive(menu.link) }"
       class="nav-link"
       routerLink="{{ menu.link }}"
       (click)="toggleSidebar('sidebar')"
