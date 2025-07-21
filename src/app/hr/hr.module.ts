@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-;
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -18,9 +17,15 @@ import { HrComponent } from './hr.component';
 import { HrRoutingModule } from './hr-routing.module';
 import { HomeComponent } from './home/home.component';
 import { EmployeesComponent } from './employees/employees.component';
+import { MatTableModule } from '@angular/material/table';
 
 @NgModule({
-  declarations: [HrComponent, RegisterComponent, HomeComponent, EmployeesComponent],
+  declarations: [
+    HrComponent,
+    RegisterComponent,
+    HomeComponent,
+    EmployeesComponent,
+  ],
   imports: [
     CommonModule,
     HrRoutingModule,
@@ -37,6 +42,7 @@ import { EmployeesComponent } from './employees/employees.component';
     MatDatepickerModule,
     MatNativeDateModule,
     SharedModule,
+    MatTableModule
   ],
 })
 export class HrModule {}

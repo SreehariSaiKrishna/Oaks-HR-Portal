@@ -124,14 +124,14 @@
 
 /* Layout */
 .main-layout {
-  display: flex;
-  min-height: calc(100% - 65px);
-  top: 65px;
-  flex-direction: column;
-  background-color: #f5f7f9;
-  position: fixed;
   width: calc(100% - 240px);
+  min-height: calc(100% - 65px);
+  background-color: #f5f7f9;
+  flex-direction: column;
+  position: fixed;
+  display: flex;
   left: 240px;
+  top: 65px;
 }
 
 .header-img-style {

@@ -125,4 +125,24 @@ export class AuthService {
         throw error;
       });
   }
+
+  getAllEmployees(){
+    return this.firestore
+      .collection('employees')
+      .get()
+      .toPromise()
+      .then((querySnapshot) => {
+        const employees: any[] = [];
+        if (querySnapshot) {
+          querySnapshot.forEach((doc) => {
+            employees.push({ id: doc.id, ...(doc.data() as object) });
+          });
+        }
+        return employees;
+      })
+      .catch((error) => {
+        console.error('Error fetching employees:', error);
+        throw error;
+      });
+  }
 }
