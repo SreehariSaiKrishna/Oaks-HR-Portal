@@ -27,7 +27,7 @@ export class EmployeesComponent {
 
   displayedDesktopColumns: string[] = [
     'employeeId',
-    'employees',
+    'fullName',
     'designation',
     'email',
     'department',
