@@ -9,6 +9,13 @@ import { CompanyPolicyComponent } from './company-policy/company-policy.componen
 import { FaqsComponent } from './faqs/faqs.component';
 import { Form16Component } from './form16/form16.component';
 import { MatIconModule } from '@angular/material/icon';
+import { AddEventComponent } from './add-event/add-event.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -18,12 +25,19 @@ import { MatIconModule } from '@angular/material/icon';
     CompanyPolicyComponent,
     FaqsComponent,
     Form16Component,
+    AddEventComponent,
   ],
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
     MatIconModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
+    MatButtonModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
   ],
   exports: [
     ProfileComponent,
@@ -31,6 +45,7 @@ import { MatIconModule } from '@angular/material/icon';
     CompanyPolicyComponent,
     FaqsComponent,
     Form16Component,
+    AddEventComponent,
   ],
 })
 export class SharedModule { }

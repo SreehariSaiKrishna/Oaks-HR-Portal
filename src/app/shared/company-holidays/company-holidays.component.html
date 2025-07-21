@@ -1,7 +1,19 @@
 <div class="dashboard-container">
-  <div class="dashboard-header">
-    <h1>Company Holidays</h1>
-    <p>Official holidays for the year {{ currentYear }}</p>
+  <div class="header-title">
+    <div>
+      <div class="title">Company Holidays</div>
+      <p class="subtitle">Official holidays for the year {{ currentYear }}</p>
+    </div>
+    <div>
+      <button class="addemp" (click)="openDialog()">
+        <mat-icon
+          aria-hidden="false"
+          aria-label="Add Person"
+          fontIcon="person_add"
+        ></mat-icon>
+        Add Event
+      </button>
+    </div>
   </div>
 
   <div class="holiday-panel">
@@ -10,7 +22,9 @@
       <span>{{ currentYear }} Holiday Calendar</span>
     </div>
 
-    <p class="panel-subtitle">Total of {{ holidays.length }} holidays this year</p>
+    <p class="panel-subtitle">
+      Total of {{ holidays.length }} holidays this year
+    </p>
 
     <div class="holiday-card" *ngFor="let holiday of holidays">
       <div class="holiday-date">
@@ -20,12 +34,12 @@
       </div>
 
       <div class="holiday-details">
-        <div class="name">{{ holiday.name }}</div>
+        <div class="name">{{ holiday.eventName }}</div>
         <div class="date">{{ formatFullDate(holiday.date) }}</div>
       </div>
 
-      <div class="tag" [ngClass]="holiday.type.toLowerCase()">
-        {{ holiday.type }}
+      <div class="tag" [ngClass]="holiday.eventType.toLowerCase()">
+        {{ holiday.eventType }}
       </div>
     </div>
   </div>

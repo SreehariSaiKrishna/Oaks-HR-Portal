@@ -1,45 +1,43 @@
+import { MatDialog } from '@angular/material/dialog';
 import { Component } from '@angular/core';
+import { AddEventComponent } from '../add-event/add-event.component';
+import { AuthService } from '../../service/auth.service';
 
 @Component({
   selector: 'app-company-holidays',
   templateUrl: './company-holidays.component.html',
-  styleUrls: ['./company-holidays.component.scss']
+  styleUrls: ['./company-holidays.component.scss'],
 })
 export class CompanyHolidaysComponent {
   currentYear: number = new Date().getFullYear();
+  holidays: any[] = [];
 
-  holidays = [
-    {
-      name: "New Year's Day",
-      date: new Date('2024-01-01'),
-      type: 'National'
-    },
-    {
-      name: "Republic Day",
-      date: new Date('2024-01-26'),
-      type: 'National'
-    },
-    {
-      name: "Holi",
-      date: new Date('2024-03-08'),
-      type: 'Festival'
-    },
-    {
-      name: "Good Friday",
-      date: new Date('2024-03-29'),
-      type: 'National'
-    },
-    {
-      name: "Good Friday",
-      date: new Date('2024-03-29'),
-      type: 'National'
-    },
-    {
-      name: "Good Friday",
-      date: new Date('2024-03-29'),
-      type: 'National'
+  constructor(public dialog: MatDialog, public authService: AuthService) {}
+
+  ngOnInit() { this.getHolidays();}
+
+  async getHolidays() {
+    try {
+      const data: any = await this.authService.getCompanyHolidays();
+      this.holidays = data.map((holiday: any) => ({
+        ...holiday,
+      }));
+      console.log('Company holidays fetched:', this.holidays);
+    } catch (error) {
+      console.error('Error fetching company holidays:', error);
+      this.holidays = [];
     }
-  ];
+  }
+
+  openDialog() {
+    const dialogRef = this.dialog.open(AddEventComponent, {
+      // width: '700px', // or '80vw'
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log(`Dialog result: ${result}`);
+      this.getHolidays();
+    });
+  }
 
   formatMonth(date: Date): string {
     return date.toLocaleString('default', { month: 'short' });

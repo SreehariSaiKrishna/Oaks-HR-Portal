@@ -1,0 +1,42 @@
+.event-view-container {
+  padding: 24px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.event-name {
+  font-size: 20px;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 18px;
+  display: flex;
+  justify-content: center;
+}
+
+.event-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 500px;
+  margin: auto;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.addemp {
+  background: linear-gradient(to right, #1b84da, #00a0f3);
+  padding: 8px 12px;
+  border-radius: 8px;
+  align-items: center;
+  color: white;
+  display: flex;
+  column-gap: 16px;
+  border: none;
+  font-size: 16px;
+}

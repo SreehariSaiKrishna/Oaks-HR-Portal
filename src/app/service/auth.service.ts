@@ -126,7 +126,7 @@ export class AuthService {
       });
   }
 
-  getAllEmployees(){
+  getAllEmployees() {
     return this.firestore
       .collection('employees')
       .get()
@@ -142,6 +142,51 @@ export class AuthService {
       })
       .catch((error) => {
         console.error('Error fetching employees:', error);
+        throw error;
+      });
+  }
+
+  //company holiday
+  saveCompanyHoliday(holidayData: any) {
+    return this.firestore
+      .collection('companyHolidays')
+      .add(holidayData)
+      .then(() => {
+        console.log('Company holiday saved:', holidayData);
+      })
+      .catch((error) => {
+        console.error('Error saving company holiday:', error);
+        throw error;
+      });
+  }
+
+  getCompanyHolidays() {
+    return this.firestore
+      .collection('companyHolidays')
+      .get()
+      .toPromise()
+      .then((querySnapshot) => {
+        const holidays: any[] = [];
+        if (querySnapshot) {
+          querySnapshot.forEach((doc: any) => {
+            const data = doc.data();
+            const date = data.date;
+
+            // Convert Firestore timestamp object to JS Date
+            const formattedDate =
+              date && date.seconds ? new Date(date.seconds * 1000) : null;
+
+            holidays.push({
+              id: doc.id,
+              ...data,
+              date: formattedDate, // replace raw timestamp with actual Date object
+            });
+          });
+        }
+        return holidays;
+      })
+      .catch((error) => {
+        console.error('Error fetching company holidays:', error);
         throw error;
       });
   }
