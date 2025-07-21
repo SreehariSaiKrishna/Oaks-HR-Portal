@@ -1,28 +1,69 @@
 <div class="profile-container">
-    <div class="header">
-        <h2>My Profile</h2>
-        <p>Manage your personal information and settings.</p>
-        <button mat-raised-button color="primary" class="edit-btn">
-            <mat-icon>edit</mat-icon> Edit Profile
-        </button>
+  <div class="profile-header">
+    <h2>My Profile</h2>
+    <p>Manage your personal information and settings.</p>
+    <div class="profile-actions">
+      <button class="btn-outline">Export Profile</button>
+      <button class="btn-primary">Edit Profile</button>
     </div>
+  </div>
 
-    <div class="profile-card">
-        <div class="profile-header">
+  <div class="profile-progress">
+    <div class="label">Profile Completion</div>
+    <div class="progress-bar">
+      <div class="progress-fill" style="width: 100%"></div>
+    </div>
+    <div class="completion-status">Your profile is complete!</div>
+  </div>
 
-            <div class="avatar">
-                SK
-            </div>
-            <h1>SAi</h1>
+  <div class="profile-card">
+    <div class="profile-left">
+      <div class="avatar">S</div>
+    </div>
+    <div class="profile-right">
+      <h3>Sarah Johnson</h3>
+      <p class="designation">HR Manager</p>
+      <div class="meta-info">
+        <span><i class="material-icons">business</i> Human Resources</span>
+        <span><i class="material-icons">event</i> Joined 1/15/2020</span>
+        <span><i class="material-icons">badge</i> ID: hr001</span>
+      </div>
+      <p class="bio">
+        Experienced HR professional with over 8 years in talent acquisition and employee engagement.
+        Passionate about creating inclusive workplace cultures.
+      </p>
+      <blockquote>"People first, always."</blockquote>
+    </div>
+  </div>
 
-            <div class="user-info">
-            </div>
+  <div class="profile-tabs">
+    <button class="active">About</button>
+    <button>Contact</button>
+    <button>Professional</button>
+    <button>Skills</button>
+    <button>Achievements</button>
+    <button>Personal</button>
+  </div>
 
-            <div class="logout-button" (click)="logout()">
-                <!-- <mat-icon aria-hidden="false" aria-label="logout" fontIcon="logout"></mat-icon> -->
-                logout
-            </div>
-            <h1>Name</h1>
-            <h1>Designation</h1>
-            <h1>Department</h1>
-            <h1>Name</h1>
+  <div class="basic-info">
+    <h4>Basic Information</h4>
+    <div class="info-grid">
+      <div>
+        <label>Full Name</label>
+        <input type="text" value="Sarah Johnson" readonly />
+      </div>
+      <div>
+        <label>Date of Birth</label>
+        <input type="text" value="20-03-1985" readonly />
+      </div>
+      <div class="full-width">
+        <label>Bio / About Me</label>
+        <textarea rows="3" readonly>Experienced HR professional with over 8 years in talent acquisition and employee engagement. Passionate about creating inclusive workplace cultures.</textarea>
+      </div>
+      <div class="full-width">
+        <label>Personal Motto</label>
+        <input type="text" value="People first, always." readonly />
+      </div>
+    </div>
+  </div>
+</div>

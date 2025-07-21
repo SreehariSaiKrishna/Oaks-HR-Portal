@@ -34,26 +34,26 @@ export class HrComponent {
       icon: 'calendar_today',
       link: '/hr/holidays',
     },
-    {
-      name: 'Payslips',
-      icon: 'folder_open',
-      link: '/hr/payslips',
-    },
+    // {
+    //   name: 'Payslips',
+    //   icon: 'folder_open',
+    //   link: '/hr/payslips',
+    // },
     {
       name: 'Company Policy',
       icon: 'description',
       link: '/hr/policy',
     },
-    {
-      name: 'Form 16',
-      icon: 'article',
-      link: '/hr/form16',
-    },
-    {
-      name: 'FAQs',
-      icon: 'question_mark',
-      link: '/hr/faqs',
-    },
+    // {
+    //   name: 'Form 16',
+    //   icon: 'article',
+    //   link: '/hr/form16',
+    // },
+    // {
+    //   name: 'FAQs',
+    //   icon: 'question_mark',
+    //   link: '/hr/faqs',
+    // },
   ];
 
   constructor(

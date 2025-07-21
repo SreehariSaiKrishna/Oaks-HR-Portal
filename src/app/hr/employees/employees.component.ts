@@ -9,58 +9,37 @@ import { AuthService } from '../../service/auth.service';
   styleUrl: './employees.component.scss',
 })
 export class EmployeesComponent {
-  // employees = [];
-  constructor(public dialog: MatDialog, public authservice: AuthService) {}
+  employees: any[] = [];
+  constructor(public dialog: MatDialog, public authservice: AuthService) { }
 
-  ngOnInit(){
-    // this.authservice.getAllEmployees().then((data: any) => {
-    //   this.employees = data.map((e: any) => {
-    //     return {
-    //       ...e.payload.doc.data(),
-    //       id: e.payload.doc.id,
-    //       status: true,
-    //     };
-    //   });
-    // });
-    // console.log('Employees:', this.employees);
+  ngOnInit() {
+    this.getData();
+  }
+
+  getData() {
+    this.authservice.getAllEmployees()
+      .then((employees: any[]) => {
+        this.employees = employees.map(e => ({
+          ...e,       // already has id and fields
+          status: true
+        }));
+        console.log('Employees:', this.employees);
+      })
+      .catch(err => console.error(err));
+    console.log('Employees:', this.employees);
   }
 
   displayedDesktopColumns: string[] = [
     'employeeId',
-    'fullName',
+    'name',
     'designation',
     'email',
-    'department',
-    // 'dateOfJoining',
-    // 'dateOfBirth',
+    'team',
     'status',
     'moreDetails',
   ];
 
   displayedMobColumns: string[] = ['details', 'action'];
-
-  employees = [
-    {
-      employeeId: 'EMP001',
-      fullName: 'Tucker Bogle',
-      designation: 'Aircraft Engineer',
-      email: 'tucker.bogle@example.com',
-      department: 'Engineering',
-      dateOfJoining: new Date('2020-09-22'),
-      dateOfBirth: new Date('1990-09-22'),
-      active: true,
-    },
-    {
-      employeeId: 'EMP002',
-      fullName: 'Ali Brown',
-      designation: 'Pilot',
-      email: 'ali.brown@example.com',
-      department: 'Flight Operations',
-      dateOfJoining: new Date('2018-10-10'),
-      dateOfBirth: new Date('1988-10-10'),
-      active: false,
-    },
-  ];
 
   toggleStatus(emp: any) {
     emp.active = !emp.active;

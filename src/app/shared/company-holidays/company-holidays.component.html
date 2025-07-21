@@ -1,1 +1,32 @@
-<p>company-holidays works!</p>
+<div class="dashboard-container">
+  <div class="dashboard-header">
+    <h1>Company Holidays</h1>
+    <p>Official holidays for the year {{ currentYear }}</p>
+  </div>
+
+  <div class="holiday-panel">
+    <div class="panel-header">
+      <mat-icon>calendar_today</mat-icon>
+      <span>{{ currentYear }} Holiday Calendar</span>
+    </div>
+
+    <p class="panel-subtitle">Total of {{ holidays.length }} holidays this year</p>
+
+    <div class="holiday-card" *ngFor="let holiday of holidays">
+      <div class="holiday-date">
+        <div class="month">{{ formatMonth(holiday.date) }}</div>
+        <div class="day">{{ formatDay(holiday.date) }}</div>
+        <div class="year">{{ formatYear(holiday.date) }}</div>
+      </div>
+
+      <div class="holiday-details">
+        <div class="name">{{ holiday.name }}</div>
+        <div class="date">{{ formatFullDate(holiday.date) }}</div>
+      </div>
+
+      <div class="tag" [ngClass]="holiday.type.toLowerCase()">
+        {{ holiday.type }}
+      </div>
+    </div>
+  </div>
+</div>

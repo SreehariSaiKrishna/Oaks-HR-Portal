@@ -1,0 +1,117 @@
+.dashboard-container {
+  padding: 2rem;
+  background: #f9fafb;
+  font-family: 'Segoe UI', sans-serif;
+
+  .dashboard-header {
+    h1 {
+      font-size: 28px;
+      font-weight: 700;
+      color: #1f2937;
+      margin-bottom: 0.2rem;
+    }
+
+    p {
+      font-size: 15px;
+      color: #6b7280;
+      margin-bottom: 1.5rem;
+    }
+  }
+
+  .holiday-panel {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+
+    .panel-header {
+      display: flex;
+      align-items: center;
+      font-size: 18px;
+      font-weight: 600;
+      color: #111827;
+      gap: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .panel-subtitle {
+      font-size: 14px;
+      color: #6b7280;
+      margin-bottom: 1.5rem;
+    }
+
+    .holiday-card {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #f9fafb;
+      border: 1px solid #e5e7eb;
+      border-radius: 10px;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+
+      .holiday-date {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 60px;
+
+        .month {
+          font-size: 12px;
+          color: #6b7280;
+        }
+
+        .day {
+          font-size: 22px;
+          font-weight: 700;
+          color: #111827;
+        }
+
+        .year {
+          font-size: 12px;
+          color: #9ca3af;
+        }
+      }
+
+      .holiday-details {
+        flex: 1;
+        padding-left: 1rem;
+
+        .name {
+          font-size: 16px;
+          font-weight: 600;
+          color: #111827;
+        }
+
+        .date {
+          font-size: 14px;
+          color: #6b7280;
+        }
+      }
+
+      .tag {
+        font-size: 13px;
+        font-weight: 500;
+        padding: 4px 12px;
+        border-radius: 999px;
+        text-transform: capitalize;
+
+        &.national {
+          background: #e0f2ff;
+          color: #0078d7;
+        }
+
+        &.festival {
+          background: #fff4e5;
+          color: #d97706;
+        }
+
+        &.optional {
+          background: #f0fdf4;
+          color: #059669;
+        }
+      }
+    }
+  }
+}

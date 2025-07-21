@@ -1,25 +1,61 @@
-<div class="main-container">
-  <div class="dashboard-body">
-    <h2>HR Dashboard</h2>
-    <p>
-      Welcome to the OAKS HR Portal. Manage employees and company resources.
-    </p>
-
-    <div class="cards">
-      <div class="card">
-        <h4>My Profile</h4>
-        <h2>Manage</h2>
-        <p>View and edit your profile information</p>
-      </div>
-      <div class="card">
-        <h4>Company Holidays</h4>
-        <h2>12</h2>
-        <p>Holidays this year</p>
-      </div>
-      <div class="card" (click)="openDialog()">
-        <h4>Add Employee</h4>
-        <p>Add new employee to system</p>
-      </div>
+<div class="hr-dashboard">
+  <!-- Header Section -->
+  <header class="dashboard-header">
+    <div class="greeting-header">Hi,Jonnalagadda Sreehari Sai Krishnama Naidu! <span>👋</span></div>
+    <div class="welcome-msg">
+      Welcome to the OAKS HR Portal. Here's your overview for today.
     </div>
-  </div>
+  </header>
+
+  <!-- Metric Cards -->
+  <section class="dashboard-metrics">
+    <div class="metric-card">
+      <div class="metric-title">Total Employees</div>
+      <div class="metric-value">2</div>
+      <div class="metric-desc">Current headcount</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-title">Holidays</div>
+      <div class="metric-value">0</div>
+      <div class="metric-desc">This month</div>
+    </div>
+    <!-- <div class="metric-card">
+      <div class="metric-title">Pending Approvals</div>
+      <div class="metric-value">3</div>
+      <div class="metric-desc">Awaiting review</div>
+    </div> -->
+    <div class="metric-card">
+      <div class="metric-title">Birthdays</div>
+      <div class="metric-value">0</div>
+      <div class="metric-desc">This month</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-title">Events</div>
+      <div class="metric-value">0</div>
+      <div class="metric-desc">This month</div>
+    </div>
+  </section>
+
+  <!-- Quick Actions -->
+  <section class="dashboard-actions">
+    <div class="actions-title">Quick Actions</div>
+    <div class="actions-row">
+      <button class="action-btn blue">
+        <span>Add Employee</span>
+        <small>Add new employee to system</small>
+      </button>
+      <button class="action-btn purple">
+        <span>View Calendar</span>
+        <small>Check holidays & events</small>
+      </button>
+      <button class="action-btn green">
+        <span>Company Policy</span>
+        <small>View Company Policy</small>
+      </button>
+      <!-- <button class="action-btn yellow">
+        <span>Generate Report</span>
+        <small>Create HR reports</small>
+      </button> -->
+    </div>
+  </section>
 </div>

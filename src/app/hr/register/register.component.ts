@@ -12,10 +12,10 @@ export class RegisterComponent {
 
   constructor(private fb: FormBuilder, public authSvc: AuthService) {
     this.employeeForm = this.fb.group({
-      fullName: ['', Validators.required],
+      name: ['', Validators.required],
       employeeId: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      designation: ['', Validators.required],
+      team: ['', Validators.required],
       department: ['', Validators.required],
       dateOfJoining: [''],
       dateOfBirth: [''],

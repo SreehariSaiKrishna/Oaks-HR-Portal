@@ -7,6 +7,7 @@
   align-items: center;
   justify-content: space-between;
   padding: 16px;
+  box-shadow: 50px 50px lightblue;
 }
 
 .topbar-actions {
@@ -73,6 +74,11 @@
   font-weight: 600;
 }
 
+.user-role {
+  color: #6b7280;
+  font-size: 12px;
+}
+
 .avatar {
   background: #00a0f3;
   color: white;
@@ -128,7 +134,7 @@
   min-height: calc(100% - 65px);
   background-color: #f5f7f9;
   flex-direction: column;
-  position: fixed;
+  position: relative;
   display: flex;
   left: 240px;
   top: 65px;
