@@ -1,7 +1,6 @@
 .dashboard-container {
-  padding: 2rem;
+  padding: 32px;
   background: #f9fafb;
-  font-family: "Segoe UI", sans-serif;
 
   .holiday-panel {
     background: #ffffff;
@@ -12,15 +11,15 @@
     .panel-header {
       display: flex;
       align-items: center;
-      font-size: 18px;
-      font-weight: 600;
-      color: #111827;
+      font-size: 20px;
+      font-weight: Bold;
+      color: #374955;
       gap: 0.5rem;
       margin-bottom: 0.5rem;
     }
 
     .panel-subtitle {
-      font-size: 14px;
+      font-size: 16px;
       color: #6b7280;
       margin-bottom: 1.5rem;
     }
@@ -41,21 +40,22 @@
         flex-direction: column;
         align-items: center;
         width: 60px;
+        color: #374955;
 
         .month {
-          font-size: 12px;
+          font-size: 13px;
           color: #6b7280;
         }
 
         .day {
           font-size: 22px;
           font-weight: 700;
-          color: #111827;
+          color: #374955;
         }
 
         .year {
           font-size: 12px;
-          color: #9ca3af;
+          color: #6b7280;
         }
       }
 
@@ -64,9 +64,9 @@
         padding-left: 1rem;
 
         .name {
-          font-size: 16px;
+          font-size: 18px;
           font-weight: 600;
-          color: #111827;
+          color: #374955;
         }
 
         .date {
@@ -76,30 +76,31 @@
       }
 
       .tag {
-        font-size: 13px;
+        font-size: 16px;
         font-weight: 500;
         padding: 4px 12px;
-        border-radius: 999px;
+        //border-radius: 999px 150px 999px 150px;
+        border-radius: 250px;
         text-transform: capitalize;
 
         &.national {
-          background: #e0f2ff;
-          color: #0078d7;
+          background: #4A90E2;
+          color: white;
         }
 
         &.festival {
-          background: #fff4e5;
-          color: #d97706;
+          background: #FFD93D;
+          color: white;
         }
 
         &.birthday {
-          background: #f0fdf4;
-          color: #059669;
+          background: #50C878;
+          color: white;
         }
 
         &.other {
-          background: #f0fdf4;
-          color: #d9c706;
+          background: #FF6B6B;
+          color: White;
         } 
       }
     }
@@ -107,23 +108,24 @@
 }
 
 .title {
-  font-size: 28px;
-  font-weight: 700;
-  color: #1f2937;
-  margin-bottom: 0.2rem;
+  font-size: 24px;
+  color: #374955;
+  font-weight: 600;
+  //margin-bottom: 10px;
 }
 
-.subtitle {
-  font-size: 15px;
-  color: #6b7280;
-  margin-bottom: 1.5rem;
-}
+// .subtitle {
+//   font-size: 16px;
+//   color: #6b7280;
+//   margin-bottom: 1.5rem;
+//   margin-top: 10px;
+// }
 
 .header-title {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 8px;
+  margin-bottom: 24px;
 }
 
 .addemp {

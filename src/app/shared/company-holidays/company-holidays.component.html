@@ -1,15 +1,12 @@
 <div class="dashboard-container">
   <div class="header-title">
-    <div>
       <div class="title">Company Holidays</div>
-      <p class="subtitle">Official holidays for the year {{ currentYear }}</p>
-    </div>
     <div>
       <button class="addemp" (click)="openDialog()">
         <mat-icon
           aria-hidden="false"
           aria-label="Add Person"
-          fontIcon="person_add"
+          fontIcon="event"
         ></mat-icon>
         Add Event
       </button>
@@ -18,7 +15,7 @@
 
   <div class="holiday-panel">
     <div class="panel-header">
-      <mat-icon>calendar_today</mat-icon>
+      <mat-icon>calendar_month</mat-icon>
       <span>{{ currentYear }} Holiday Calendar</span>
     </div>
 

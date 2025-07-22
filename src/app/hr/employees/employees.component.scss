@@ -1,5 +1,5 @@
 .employee-container {
-  margin: 24px;
+  margin: 32px;
 }
 
 .addemp {
@@ -23,7 +23,8 @@
 
 .emp-title {
   font-size: 24px;
-  color: #1f2937;
+  color:#374955;
+  font-weight: 600;
 }
 
 table {
@@ -50,7 +51,9 @@ table {
 .mat-mdc-header-row,
  .mat-mdc-header-cell {
   background: #eef0f4 !important;
-  color:#1f2937 !important;
+  color:#374955 !important;
+  font-weight: 600;
+  font-size: 16px;
 }
 
 @media (max-width: 1020px) {
