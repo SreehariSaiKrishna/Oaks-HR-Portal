@@ -94,7 +94,8 @@ export class HrComponent {
 
   openDialog() {
     const dialogRef = this.dialog.open(RegisterComponent, {
-      width: '700px', // or '80vw'
+      width: '600px', // or '80vw'
+      panelClass: 'register-dialog',
     });
     dialogRef.afterClosed().subscribe((result) => {
       console.log(`Dialog result: ${result}`);

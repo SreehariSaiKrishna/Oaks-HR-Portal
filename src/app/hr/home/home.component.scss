@@ -15,6 +15,12 @@
   margin-bottom: 24px;
 }
 
+.current-date {
+  font-size: 15px;
+  color: #e6f4f1;
+  margin-bottom: 8px;
+}
+
 .header-main {
   display: flex;
   justify-content: space-between;
@@ -38,7 +44,7 @@
 
 .welcome-msg {
   color: #e6f4f1;
-  font-size: 16px;
+  font-size: 15px;
   //opacity: 0.7;
 }
 

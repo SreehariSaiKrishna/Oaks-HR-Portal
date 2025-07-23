@@ -9,6 +9,7 @@ import { AuthService } from '../../service/auth.service';
   styleUrl: './home.component.scss',
 })
 export class HomeComponent {
+  date: Date = new Date();
   user: any;
   constructor(public dialog: MatDialog, public authService: AuthService) {}
 

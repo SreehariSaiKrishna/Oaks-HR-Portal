@@ -1,8 +1,21 @@
+.registration-container {
+  padding: 28px 24px;
+  background: #eef0f4;
+}
+
 .reg-header {
   display: flex;
-  gap: 12px;
+  column-gap: 12px;
   align-items: center;
   font-size: 24px;
+  font-weight: bold;
+  color: #374955;
+}
+
+.sub-heading {
+  font-size: 14px;
+  color: #6b7280;
+  margin-top: 8px;
 }
 
 .employee-form {
@@ -27,4 +40,8 @@
 
 .password-row {
   align-items: center;
+}
+
+.mat-mdc-dialog-container-with-actions .mat-mdc-dialog-content {
+  padding: 0px !important;
 }

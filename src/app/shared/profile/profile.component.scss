@@ -1,201 +1,187 @@
-.profile-container {
+.profile-wrapper {
   padding: 2rem;
-  font-family: "Segoe UI", sans-serif;
+  font-family: 'Segoe UI', sans-serif;
   color: #374955;
 
   .profile-header {
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
+    align-items: center;
     flex-wrap: wrap;
 
     h2 {
-      font-size: 2rem;
-      margin-bottom: 0.2rem;
+      font-size: 1.8rem;
+      color: #1a1a1a;
     }
 
     p {
       color: #9baebc;
-      margin-bottom: 1rem;
+      font-size: 0.95rem;
     }
 
-    .profile-actions {
+    .edit-btn {
+      background: #00a0f3;
+      color: #fff;
+      border: none;
+      padding: 0.6rem 1.2rem;
+      border-radius: 10px;
       display: flex;
+      align-items: center;
       gap: 0.5rem;
-
-      button {
-        padding: 0.5rem 1rem;
-        border-radius: 8px;
-        font-size: 0.875rem;
-        cursor: pointer;
-        border: none;
-
-        &.btn-outline {
-          border: 1px solid #00a0f3;
-          color: #00a0f3;
-          background: transparent;
-        }
-
-        &.btn-primary {
-          background: #00a0f3;
-          color: white;
-        }
-      }
-    }
-  }
-
-  .profile-progress {
-    margin-top: 1rem;
-    background: #f1f5f9;
-    padding: 1rem;
-    border-radius: 10px;
-
-    .label {
-      font-weight: 600;
-      margin-bottom: 0.5rem;
-    }
-
-    .progress-bar {
-      height: 10px;
-      background: #dce6ec;
-      border-radius: 20px;
-      overflow: hidden;
-
-      .progress-fill {
-        height: 100%;
-        background: #00a0f3;
-      }
-    }
-
-    .completion-status {
-      margin-top: 0.5rem;
-      font-size: 0.85rem;
-      color: #00a0f3;
+      cursor: pointer;
+      font-weight: 500;
+      box-shadow: 0 4px 10px rgba(0, 160, 243, 0.3);
     }
   }
 
   .profile-card {
-    display: flex;
-    gap: 1rem;
     background: #fff;
-    padding: 1.5rem;
-    margin-top: 1rem;
-    border-radius: 12px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.04);
+    border-radius: 16px;
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.05);
+    padding: 2rem;
+    margin-top: 1.5rem;
 
-    .profile-left .avatar {
-      width: 60px;
-      height: 60px;
-      background: #0795c9;
-      color: white;
+    .avatar-section {
       display: flex;
       align-items: center;
-      justify-content: center;
-      font-weight: bold;
-      border-radius: 50%;
-      font-size: 1.2rem;
-    }
+      gap: 1rem;
+      margin-bottom: 2rem;
 
-    .profile-right {
-      flex: 1;
-
-      h3 {
-        margin: 0;
-        font-size: 1.25rem;
+      .avatar {
+        width: 80px;
+        height: 80px;
+        background: #0795c9;
+        border-radius: 50%;
+        color: #fff;
+        font-weight: bold;
+        font-size: 1.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 10px rgba(7, 149, 201, 0.3);
       }
 
-      .designation {
-        color: #9baebc;
-        margin: 0.2rem 0 0.8rem;
-      }
+      .user-details {
+        h3 {
+          margin: 0;
+          font-size: 1.5rem;
+        }
 
-      .meta-info span {
-        display: inline-block;
-        margin-right: 1.2rem;
-        font-size: 0.85rem;
-        color: #6b7b8f;
+        .position {
+          color: #00a0f3;
+          margin: 2px 0;
+          font-weight: 500;
+        }
 
-        i {
-          vertical-align: middle;
-          margin-right: 4px;
-          font-size: 1rem;
+        .team {
+          color: #6b7b8f;
         }
       }
+    }
 
-      .bio {
-        margin-top: 0.5rem;
-      }
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
 
-      blockquote {
-        margin-top: 1rem;
-        font-style: italic;
-        color: #0795c9;
-        background: #f0f8ff;
-        padding: 0.5rem 1rem;
-        border-left: 4px solid #00a0f3;
+      .info-box {
+        background: #f5faff;
+        border-radius: 10px;
+        padding: 1rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.3rem;
+
+        i {
+          font-size: 1.2rem;
+          color: #00a0f3;
+        }
+
+        .label {
+          font-size: 0.85rem;
+          color: #9baebc;
+        }
+
+        strong {
+          font-weight: 600;
+          font-size: 0.95rem;
+        }
       }
     }
   }
 
-  .profile-tabs {
+  .tabs {
     display: flex;
+    justify-content: center;
     gap: 1rem;
-    margin-top: 1.5rem;
+    margin-top: 2rem;
     flex-wrap: wrap;
 
-    button {
-      background: transparent;
+    .tab {
+      background: #f0f4f8;
+      padding: 0.6rem 1.2rem;
       border: none;
-      font-weight: 500;
-      padding: 0.5rem 1rem;
+      border-radius: 20px;
       cursor: pointer;
-      border-radius: 8px;
+      font-weight: 500;
       color: #374955;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
 
       &.active {
         background: #e6f7ff;
         color: #00a0f3;
         font-weight: 600;
       }
-
-      &:hover {
-        background: #f4f9fb;
-      }
     }
   }
 
-  .basic-info {
+  .work-info-card {
     margin-top: 2rem;
+    background: #fff;
+    border-radius: 16px;
+    padding: 2rem;
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.05);
 
     h4 {
-      font-size: 1.2rem;
-      margin-bottom: 1rem;
+      margin-bottom: 1.5rem;
+      font-size: 1.3rem;
     }
 
-    .info-grid {
+    .form-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1rem;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.2rem;
 
-      label {
-        font-size: 0.85rem;
-        color: #6b7b8f;
-        margin-bottom: 0.3rem;
-        display: block;
-      }
+      .form-group {
+        display: flex;
+        flex-direction: column;
 
-      input,
-      textarea {
-        width: 100%;
-        padding: 0.6rem;
-        border: 1px solid #cfd8dc;
-        border-radius: 8px;
-        background-color: #f7f9fa;
-        font-size: 0.9rem;
-      }
+        label {
+          font-size: 0.85rem;
+          margin-bottom: 0.4rem;
+          color: #6b7b8f;
 
-      .full-width {
-        grid-column: span 2;
+          i {
+            font-size: 1rem;
+            margin-right: 4px;
+            vertical-align: middle;
+          }
+
+          .required {
+            color: red;
+          }
+        }
+
+        input {
+          padding: 0.6rem;
+          border-radius: 10px;
+          border: 1px solid #cfd8dc;
+          background: #f7f9fc;
+          font-size: 0.95rem;
+          color: #374955;
+        }
       }
     }
   }
@@ -204,22 +190,16 @@
     .profile-header {
       flex-direction: column;
       align-items: flex-start;
-
-      .profile-actions {
-        margin-top: 1rem;
-      }
+      gap: 1rem;
     }
 
-    .profile-card {
+    .avatar-section {
       flex-direction: column;
+      align-items: flex-start;
     }
 
-    .info-grid {
-      grid-template-columns: 1fr !important;
-
-      .full-width {
-        grid-column: span 1;
-      }
+    .tabs {
+      justify-content: flex-start;
     }
   }
 }

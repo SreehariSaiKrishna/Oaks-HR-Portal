@@ -14,6 +14,12 @@
   font-size: 16px;
 }
 
+.mdc-data-table__table {
+  --border-radius: 203px;
+  box-shadow: none !important;
+  background-color: #eeeef0;
+}
+
 .header {
   display: flex;
   justify-content: space-between;
@@ -23,7 +29,7 @@
 
 .emp-title {
   font-size: 24px;
-  color:#374955;
+  color: #374955;
   font-weight: 600;
 }
 
@@ -38,10 +44,35 @@ table {
 
 .employee-mobile {
   display: none;
+  overflow: hidden;
+  border-radius: 14px;
 }
 
 .employee-desktop {
   display: block;
+  overflow: hidden;
+  border-radius: 16px;
+}
+
+.mat-mdc-row.mdc-data-table__row.cdk-row:hover {
+  background: #9baebc;
+  color: white;
+}
+
+.active-employee-count {
+  font-size: 17px;
+  color: #374955;
+  margin-bottom: 16px;
+  padding:0% 12px;
+  font-weight: 500;
+}
+
+.employee-table {
+  margin-top: 16px;
+  background: #fff;
+  padding: 18px;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.04);
 }
 
 .marg {
@@ -49,16 +80,17 @@ table {
 }
 
 .mat-mdc-header-row,
- .mat-mdc-header-cell {
-  background: #eef0f4 !important;
-  color:#374955 !important;
+.mat-mdc-header-cell {
+  background: #c0c6d2 !important;
+  color: #374955 !important;
   font-weight: 600;
   font-size: 16px;
 }
 
 @media (max-width: 1020px) {
   .employee-desktop {
-    display: none;
+    //display: none;
+    color: black;
   }
 
   .employee-mobile {
