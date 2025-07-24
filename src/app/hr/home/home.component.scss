@@ -78,37 +78,44 @@
 }
 
 .metric-card {
-  background: #fff;
+  background: #ffffff;
   border-radius: 12px;
   padding: 1.4rem 1.2rem;
   box-shadow: 0 3px 13px 0 rgba(30, 50, 100, 0.04);
   border: 1.2px solid #e6eaf2;
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  flex-direction: row;
   width: 200px;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.metric-data {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
 .metric-title {
-  font-size: 1.05rem;
-  font-weight: 500;
+  font-size: 14px;
   color: #64748b;
-  margin-bottom: 0.4rem;
 }
 
 .metric-value {
-  font-size: 2.6rem;
-  font-weight: 700;
+  font-size: 32px;
   color: #22305a;
-  margin-bottom: 0.5rem;
-  margin-top: 0.3rem;
 }
 
 .metric-desc {
-  font-size: 0.97rem;
+  font-size: 14px;
   color: #7b8ba7;
-  //margin-bottom: 0.5rem;
-  margin-top: 0.3rem;
+}
+
+.metric-icon {
+  display: flex;
+  align-items: center;
+  border-radius: 50%;
+  padding: 6px;
 }
 
 /* Actions */

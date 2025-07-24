@@ -4,7 +4,7 @@
     <div class="greeting-header">
       Hi, {{ user?.fullName }}!! <span>👋</span>
     </div>
-    <div class="current-date">{{ date | date: 'fullDate' }}</div>
+    <div class="current-date">{{ date | date : "fullDate" }}</div>
     <div class="welcome-msg">
       Welcome to the OAKS. Here's your overview for today.
     </div>
@@ -12,30 +12,31 @@
 
   <!-- Metric Cards -->
   <section class="dashboard-metrics">
-    <div class="metric-card">
-      <div class="metric-title">Total Employees</div>
-      <div class="metric-value">2</div>
-      <div class="metric-desc">Current headcount</div>
-    </div>
-    <div class="metric-card">
-      <div class="metric-title">Holidays</div>
-      <div class="metric-value">0</div>
-      <div class="metric-desc">This month</div>
-    </div>
-    <!-- <div class="metric-card">
-      <div class="metric-title">Pending Approvals</div>
-      <div class="metric-value">3</div>
-      <div class="metric-desc">Awaiting review</div>
-    </div> -->
-    <div class="metric-card">
-      <div class="metric-title">Birthdays</div>
-      <div class="metric-value">0</div>
-      <div class="metric-desc">This month</div>
-    </div>
-    <div class="metric-card">
-      <div class="metric-title">Events</div>
-      <div class="metric-value">0</div>
-      <div class="metric-desc">This month</div>
+    <div class="metric-card" *ngFor="let data of matrics">
+      <div class="metric-data">
+        <div class="metric-title">{{ data.title }}</div>
+        <div class="metric-value">
+          {{
+            data.title === "Holidays"
+              ? holidays
+              : data.title === "Birthdays"
+              ? birthdays
+              : events
+          }}
+        </div>
+        <div class="metric-desc">{{ data.desc }}</div>
+      </div>
+      <div
+        class="metric-icon"
+        [ngStyle]="{ 'background-color': data.background }"
+      >
+        <mat-icon
+          [ngStyle]="{ color: data.color }"
+          aria-hidden="false"
+          aria-label="company_holidays"
+          fontIcon="{{ data.icon }}"
+        ></mat-icon>
+      </div>
     </div>
   </section>
 
