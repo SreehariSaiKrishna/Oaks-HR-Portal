@@ -1,8 +1,17 @@
-import { isPlatformBrowser } from '@angular/common';
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Router } from '@angular/router';
+import {
+  Storage,
+  ref,
+  uploadBytes,
+  getDownloadURL,
+  listAll,
+  getMetadata,
+  deleteObject,
+} from '@angular/fire/storage';
+import { UtilityService } from './utility.service';
 
 @Injectable({
   providedIn: 'root',
@@ -11,7 +20,9 @@ export class AuthService {
   constructor(
     private fireauth: AngularFireAuth,
     private router: Router,
-    private firestore: AngularFirestore
+    private firestore: AngularFirestore,
+    private storage: Storage,
+    public utilityService: UtilityService
   ) {}
 
   //login
@@ -188,6 +199,69 @@ export class AuthService {
       .catch((error) => {
         console.error('Error fetching company holidays:', error);
         throw error;
+      });
+  }
+
+  async uploadPdf(file: File, path: string) {
+    try {
+      this.checkIfPdfNameExists(file);
+      // Check if the file already exists in the storage
+      const fileRef = ref(this.storage, path);
+      const snapshot = await uploadBytes(fileRef, file);
+      const downloadURL = await getDownloadURL(snapshot.ref);
+      return downloadURL;
+    } catch (err) {
+      this.utilityService.openSnackBar('Upload failed');
+      return null;
+    }
+  }
+
+  async checkIfPdfNameExists(file: File) {
+    try {
+      const listResult = await listAll(ref(this.storage, 'companyDocuments'));
+      const duplicate = listResult.items.find(
+        (item) => item.name === file.name
+      );
+      if (duplicate) {
+        this.utilityService.openSnackBar(
+          `Duplicate file name found: ${file.name}`
+        );
+      }
+    } catch (err) {
+      this.utilityService.openSnackBar(
+        `Error checking for duplicates: ${file.name}`
+      );
+    }
+  }
+
+  async getStoredPdfs() {
+    const pdfs: any[] = [];
+    const pdfsRef = ref(this.storage, 'companyDocuments');
+    const listResult = await listAll(pdfsRef);
+    for (const item of listResult.items) {
+      const url = await getDownloadURL(item);
+      const metadata = await getMetadata(item);
+      pdfs.push({
+        name: item.name,
+        url: url,
+        size: metadata.size,
+        createdDate: metadata.timeCreated,
+        updatedDate: metadata.updated,
+      });
+    }
+    return pdfs;
+  }
+
+  delectPolicyDocument(fileName: string) {
+    const filePath = `companyDocuments/${fileName}`;
+    const fileRef = ref(this.storage, filePath);
+    return deleteObject(fileRef)
+      .then(() => {
+        this.utilityService.openSnackBar('Document deleted successfully');
+      })
+      .catch((error) => {
+        console.error('Error deleting document:', error);
+        this.utilityService.openSnackBar('Failed to delete document');
       });
   }
 }
