@@ -33,6 +33,7 @@ export class AuthService {
         this.router.navigate(['/employ']);
       },
       (error) => {
+        this.utilityService.openSnackBar('Login failed');
         console.error('Login failed:', error);
         this.router.navigate(['/login']);
       }
@@ -47,6 +48,7 @@ export class AuthService {
       },
       (error) => {
         console.error('Registration failed:', error);
+        this.utilityService.openSnackBar('Registration failed');
       }
     );
   }
@@ -60,23 +62,22 @@ export class AuthService {
       },
       (err) => {
         console.error('Logout failed:', err);
+        this.utilityService.openSnackBar('Logout failed');
       }
     );
   }
 
   saveEmployeeData(employeeData: any) {
     return this.firestore
-      .collection(
-        'employees',
-        (ref: any) => ref.where('email', '==', employeeData.email) // ✅ use '==', not '==='
+      .collection('employees', (ref: any) =>
+        ref.where('email', '==', employeeData.email)
       )
       .get()
       .toPromise()
       .then((querySnapshot: any) => {
         if (!querySnapshot.empty) {
-          console.log(
-            'Employee with this email already exists:',
-            employeeData.email
+          this.utilityService.openSnackBar(
+            'Employee with this email already exists'
           );
           return Promise.reject('Employee already exists');
         } else {
@@ -84,11 +85,12 @@ export class AuthService {
             .collection('employees')
             .add(employeeData)
             .then(() => {
-              console.log('Employee data saved:', employeeData);
+              // console.log('Employee data saved:', employeeData);
             });
         }
       })
       .catch((error: any) => {
+        this.utilityService.openSnackBar('Error saving employee data');
         console.error('Error saving employee data:', error);
         throw error;
       });
@@ -125,13 +127,13 @@ export class AuthService {
       .then((querySnapshot) => {
         if (querySnapshot && !querySnapshot.empty) {
           const employeeData = querySnapshot.docs[0].data();
-          console.log('Employee Data:', employeeData);
           return employeeData;
         } else {
           return null;
         }
       })
       .catch((error) => {
+        this.utilityService.openSnackBar('Error fetching employee data');
         console.error('Error fetching employee data:', error);
         throw error;
       });
@@ -152,12 +154,12 @@ export class AuthService {
         return employees;
       })
       .catch((error) => {
+        this.utilityService.openSnackBar('Error fetching employees');
         console.error('Error fetching employees:', error);
         throw error;
       });
   }
 
-  //company holiday
   saveCompanyHoliday(holidayData: any) {
     return this.firestore
       .collection('companyHolidays')
@@ -166,6 +168,7 @@ export class AuthService {
         console.log('Company holiday saved:', holidayData);
       })
       .catch((error) => {
+        this.utilityService.openSnackBar('Error saving company holiday');
         console.error('Error saving company holiday:', error);
         throw error;
       });
@@ -197,6 +200,7 @@ export class AuthService {
         return holidays;
       })
       .catch((error) => {
+        this.utilityService.openSnackBar('Error fetching company holidays');
         console.error('Error fetching company holidays:', error);
         throw error;
       });
@@ -211,6 +215,7 @@ export class AuthService {
       const downloadURL = await getDownloadURL(snapshot.ref);
       return downloadURL;
     } catch (err) {
+      this.utilityService.openSnackBar('Upload failed');
       this.utilityService.openSnackBar('Upload failed');
       return null;
     }

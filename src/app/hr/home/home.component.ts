@@ -75,7 +75,6 @@ export class HomeComponent {
       .getAllEmployees()
       .then((data: any) => {
         this.employeesLength = data.length;
-        console.log(data);
       })
       .catch((error: any) => {
         console.error('Error fetching employee data:', error);
@@ -87,7 +86,6 @@ export class HomeComponent {
       .getCompanyHolidays()
       .then((data: any) => {
         for (const event of data) {
-          console.log(event.eventType);
           if (event.eventType === 'Other') {
             this.events++;
           } else if (event.eventType === 'Birthday') {
@@ -97,7 +95,6 @@ export class HomeComponent {
           }
           this.cdr.detectChanges();
         }
-        console.log(this.holidays, this.birthdays, this.events, data);
       })
       .catch((error: any) => {
         console.error('Error fetching events:', error);
@@ -115,7 +112,6 @@ export class HomeComponent {
 
   userData() {
     const email = this.authService.getUserEmail();
-    console.log(email);
     this.authService
       .getEmployeeByEmail(email)
       .then((data: any) => {

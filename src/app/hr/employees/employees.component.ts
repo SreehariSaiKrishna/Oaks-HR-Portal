@@ -10,23 +10,22 @@ import { AuthService } from '../../service/auth.service';
 })
 export class EmployeesComponent {
   employees: any[] = [];
-  constructor(public dialog: MatDialog, public authservice: AuthService) { }
+  constructor(public dialog: MatDialog, public authservice: AuthService) {}
 
   ngOnInit() {
     this.getData();
   }
 
   getData() {
-    this.authservice.getAllEmployees()
+    this.authservice
+      .getAllEmployees()
       .then((employees: any[]) => {
-        this.employees = employees.map(e => ({
-          ...e,       // already has id and fields
-          status: true
+        this.employees = employees.map((e) => ({
+          ...e,
+          status: true,
         }));
-        console.log('Employees:', this.employees);
       })
-      .catch(err => console.error(err));
-    console.log('Employees:', this.employees);
+      .catch((err) => console.error(err));
   }
 
   displayedDesktopColumns: string[] = [
