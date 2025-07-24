@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../service/auth.service';
 import { UtilityService } from '../../service/utility.service';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-add-event',
@@ -14,7 +15,8 @@ export class AddEventComponent {
   constructor(
     private fb: FormBuilder,
     public authService: AuthService,
-    public utility: UtilityService
+    public utility: UtilityService,
+    private dialogRef: MatDialogRef<AddEventComponent>
   ) {
     this.eventForm = this.fb.group({
       date: ['', Validators.required],
@@ -24,25 +26,23 @@ export class AddEventComponent {
   }
 
   onSubmit() {
+    this.dialogRef.close(this.eventForm.value);
     if (this.eventForm.valid) {
       this.authService
         .saveCompanyHoliday(this.eventForm.value)
         .then(() => {
-          console.log('Event saved successfully');
           this.eventForm.reset();
           this.utility.openSnackBar('Event saved successfully');
-          // send the close event to the parent component
         })
         .catch((error) => {
           this.utility.openSnackBar('Event saving event');
           console.error('Error saving event:', error);
         });
-      // Optionally, you can log the form data or perform additional actions
-      console.log('Form Data:', this.eventForm.value);
     }
   }
 
   onCancel() {
+    this.dialogRef.close();
     this.eventForm.reset();
   }
 }
