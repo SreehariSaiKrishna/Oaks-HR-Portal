@@ -1,72 +1,88 @@
 <div class="profile-wrapper">
   <div class="profile-header">
-    <div>
-      <h2>My Profile</h2>
-      <p>Manage your personal and professional information</p>
+    <div class="title">My Profile
+      <div class="subtitle">Manage your personal and professional information</div>
     </div>
+      <!-- <div class="subtitle">Manage your personal and professional information</div> -->
+    <div>
     <button class="edit-btn">
-      <i class="material-icons">edit</i> Edit Profile
-    </button>
+      <mat-icon aria-hidden="false" aria-label="Add Person" fontIcon="edit"></mat-icon>
+                Edit Your Profile
+            </button>
+  </div>
   </div>
 
   <div class="profile-card">
     <div class="avatar-section">
-      <div class="avatar">SJ</div>
+      <div class="avatar">S</div>
       <div class="user-details">
-        <h3>Sarah Johnson</h3>
-        <p class="position">HR Manager</p>
-        <p class="team">Human Resources</p>
+        <div class="name">Sreehari Sai krishnama Naidu Jonnalagadda</div>
+        <p class="position">Product Associate</p>
       </div>
     </div>
 
     <div class="info-grid">
       <div class="info-box">
         <i class="material-icons">group</i>
+        <!-- <mat-icon aria-hidden="false" aria-label="Add Person" fontIcon="group"></mat-icon> -->
         <span class="label">Team</span>
-        <strong>Human Resources</strong>
+        <div class="designation">Human Resources</div>
       </div>
       <div class="info-box">
         <i class="material-icons">event</i>
-        <span class="label">Joined</span>
-        <strong>Jan 15, 2020</strong>
+        <!-- <mat-icon aria-hidden="false" aria-label="Add Person" fontIcon="calendar_month"></mat-icon> -->
+        <span class="label">DOJ</span>
+        <div class="designation">Aug/02/2024</div>
       </div>
       <div class="info-box">
         <i class="material-icons">email</i>
+        <!-- <mat-icon aria-hidden="false" aria-label="Add Person" fontIcon="mail"></mat-icon> -->
         <span class="label">Email</span>
-        <strong>mmmm</strong>
+        <div class="designation">sreeharisaiaoaks.guru</div>
       </div>
       <div class="info-box">
         <i class="material-icons">badge</i>
+        <!-- <mat-icon aria-hidden="false" aria-label="Add Person" fontIcon="badge"></mat-icon> -->
         <span class="label">Employee ID</span>
-        <strong>hr001</strong>
+        <div class="designation">OVI021</div>
+      </div>
+      <div class="info-box">
+        <i class="material-icons">badge</i>
+        <!-- <mat-icon aria-hidden="false" aria-label="Add Person" fontIcon="badge"></mat-icon> -->
+        <span class="label">Reporting Manager</span>
+        <div class="designation">Gireesh Sabbu</div>
+      </div>
+      <div class="info-box">
+        <i class="material-icons">badge</i>
+        <!-- <mat-icon aria-hidden="false" aria-label="Add Person" fontIcon="badge"></mat-icon> -->
+        <span class="label">Reporting Manager email</span>
+        <div class="designation">saigireeshsabbuaoaks.guru</div>
       </div>
     </div>
   </div>
 
-  <div class="tabs">
-    <button class="tab active"><i class="material-icons">person</i> Personal Information</button>
-    <button class="tab"><i class="material-icons">work</i> Work Information</button>
-    <button class="tab"><i class="material-icons">favorite</i> Other Details</button>
-  </div>
+  <!-- <div class="tabs">
+    <button class="tab active"><i class="material-icons">work</i> Personal Information</button>
+  </div> -->
 
   <div class="work-info-card">
-    <h4>Work Information</h4>
+    <div class="work">Personal Information</div>
     <div class="form-grid">
       <div class="form-group">
-        <label>Designation <span class="required">*</span></label>
-        <input type="text" value="HR Manager" readonly />
+        <label>Address <span class="required">*</span></label>
+        <input type="text" value="Vijayawada" readonly />
       </div>
       <div class="form-group">
-        <label>Date of Joining <span class="required">*</span></label>
+        <label>Date of Birth <span class="required">*</span></label>
         <input type="text" value="January 15th, 2020" readonly />
       </div>
       <div class="form-group">
-        <label><i class="material-icons">supervisor_account</i> Manager Name</label>
-        <input type="text" value="CEO" readonly />
+        <label><i class="material-icons">supervisor_account</i>Blood Group</label>
+        <input type="text" value="AB+" readonly />
       </div>
       <div class="form-group">
-        <label><i class="material-icons">groups</i> Team</label>
-        <input type="text" value="Human Resources" readonly />
+        <label><i class="material-icons">groups</i>Hobbies</label>
+        <input type="text" value="Playing cricket, Traveling" readonly />
       </div>
     </div>
   </div>
