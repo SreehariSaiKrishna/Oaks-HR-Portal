@@ -2,6 +2,9 @@ import { MatDialog } from '@angular/material/dialog';
 import { Component } from '@angular/core';
 import { AddEventComponent } from '../add-event/add-event.component';
 import { AuthService } from '../../service/auth.service';
+import { UtilityService } from '../../service/utility.service';
+import { CLIENT_RENEG_LIMIT } from 'tls';
+import { Console } from 'console';
 
 @Component({
   selector: 'app-company-holidays',
@@ -11,10 +14,11 @@ import { AuthService } from '../../service/auth.service';
 export class CompanyHolidaysComponent {
   currentYear: number = new Date().getFullYear();
   holidays: any[] = [];
+  holidaysCount: number = 0;
 
-  constructor(public dialog: MatDialog, public authService: AuthService) {}
+  constructor(public dialog: MatDialog, public authService: AuthService, public utilityService: UtilityService) { }
 
-  ngOnInit() { this.getHolidays();}
+  ngOnInit() { this.getHolidays(); }
 
   async getHolidays() {
     try {
@@ -22,8 +26,15 @@ export class CompanyHolidaysComponent {
       this.holidays = data.map((holiday: any) => ({
         ...holiday,
       }));
-      console.log('Company holidays fetched:', this.holidays);
+      this.holidaysCount = 0;
+      for (const holiday of this.holidays) {
+        if (holiday.eventType === 'Festival' || holiday.eventType === 'National') {
+          this.holidaysCount++;
+        }
+      }
+
     } catch (error) {
+      this.utilityService.openSnackBar('Error fetching company holidays');
       console.error('Error fetching company holidays:', error);
       this.holidays = [];
     }

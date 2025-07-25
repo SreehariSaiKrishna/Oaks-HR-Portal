@@ -1,13 +1,9 @@
 <div class="dashboard-container">
   <div class="header-title">
-      <div class="title">Company Holidays</div>
+    <div class="title">Company Holidays</div>
     <div>
       <button class="addemp" (click)="openDialog()">
-        <mat-icon
-          aria-hidden="false"
-          aria-label="Add Person"
-          fontIcon="add_card"
-        ></mat-icon>
+        <mat-icon aria-hidden="false" aria-label="Add Person" fontIcon="add_card"></mat-icon>
         Add Event
       </button>
     </div>
@@ -20,7 +16,7 @@
     </div>
 
     <p class="panel-subtitle">
-      Total of {{ holidays.length }} holidays this year
+      Total of {{ holidaysCount }} holidays this year
     </p>
 
     <div class="holiday-card" *ngFor="let holiday of holidays">

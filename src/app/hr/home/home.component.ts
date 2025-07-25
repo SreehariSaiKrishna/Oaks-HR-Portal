@@ -15,38 +15,39 @@ export class HomeComponent {
   holidays = 0;
   birthdays = 0;
   events = 0;
+  thisMonth: string = this.date.toLocaleString('default', { month: 'long' });
   matrics = [
     {
       title: 'Employees',
       value: this.employeesLength,
       desc: 'Current headcount',
       icon: 'people',
-      color: '#22305a',
-      background: '#f0f4f8',
+      color: '#64a9ff',
+      background: '#eaf3ff ',
     },
     {
       title: 'Holidays',
       value: this.holidays,
       desc: 'Company holidays',
-      icon: 'holiday_village',
-      color: '#22305a',
-      background: '#f0f4f8',
+      icon: 'card_travel',
+      color: '#74f2c8',
+      background: '#edfdf8',
     },
     {
       title: 'Birthdays',
       value: this.birthdays,
-      desc: 'Upcoming birthdays',
+      desc: `${this.thisMonth} celebrants`,
       icon: 'cake',
-      color: '#22305a',
-      background: '#f0f4f8',
+      color: '#f2d782',
+      background: '#fcf7e6',
     },
     {
       title: 'Events',
       value: this.events,
       desc: 'Upcoming events',
       icon: 'event',
-      color: '#22305a',
-      background: '#f0f4f8',
+      color: '#9d6cf1',
+      background: '#f1ebfd',
     },
     // {
     //   title: 'Pending Approvals',
@@ -62,7 +63,7 @@ export class HomeComponent {
     public dialog: MatDialog,
     public authService: AuthService,
     public cdr: ChangeDetectorRef
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.userData();
@@ -89,7 +90,10 @@ export class HomeComponent {
           if (event.eventType === 'Other') {
             this.events++;
           } else if (event.eventType === 'Birthday') {
-            this.birthdays++;
+            const eventDate = new Date(event.date);
+            if (eventDate.getMonth() === this.date.getMonth()) {
+              this.birthdays++;
+            }
           } else {
             this.holidays++;
           }

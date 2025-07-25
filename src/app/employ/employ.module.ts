@@ -10,9 +10,10 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { SharedModule } from '../shared/shared.module';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
-  declarations: [EmployComponent],
+  declarations: [EmployComponent, HomeComponent],
   imports: [
     CommonModule,
     EmployRoutingModule,
@@ -23,7 +24,7 @@ import { SharedModule } from '../shared/shared.module';
     FormsModule,
     MatButtonModule,
     MatIconModule,
-    SharedModule
+    SharedModule,
   ],
 })
-export class EmployModule {}
+export class EmployModule { }

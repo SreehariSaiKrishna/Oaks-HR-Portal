@@ -26,7 +26,7 @@ export class CompanyPolicyComponent {
         name: pdf.name,
         description: 'Company Policy Document',
         link: pdf.url,
-        size: (pdf.size / (1024 * 1024)).toFixed(2) + 'MB',
+        size: (pdf.size / (1024 * 1024)).toFixed(1) + 'MB',
         createdDate: new Date(pdf.createdDate).toISOString().split('T')[0],
         updaedDate: new Date(pdf.updatedDate).toISOString().split('T')[0],
       }));
@@ -41,7 +41,7 @@ export class CompanyPolicyComponent {
     const file = (event.target as HTMLInputElement).files?.[0];
     if (!file) return;
 
-    const MAX_SIZE_MB = 5;
+    const MAX_SIZE_MB = 1;
     const maxSize = MAX_SIZE_MB * 1024 * 1024;
 
     if (file.type !== 'application/pdf') {

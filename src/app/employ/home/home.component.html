@@ -1,1 +1,65 @@
-<p>home works!</p>
+<div class="hr-dashboard">
+  <!-- Header Section -->
+  <header class="dashboard-header">
+    <div class="greeting-header">
+      Hi, {{ user?.fullName }}!! <span>👋</span>
+    </div>
+    <div class="current-date">{{ date | date : "fullDate" }}</div>
+    <div class="welcome-msg">
+      Welcome to the OAKS. Here's your overview for today.
+    </div>
+  </header>
+
+  <!-- Metric Cards -->
+  <section class="dashboard-metrics">
+    <div class="metric-card" *ngFor="let data of matrics">
+      <div class="metric-data">
+        <div class="metric-title">{{ data.title }}</div>
+        <div class="metric-value">
+          {{
+            data.title === "Holidays"
+              ? holidays
+              : data.title === "Birthdays"
+              ? birthdays
+              : events
+          }}
+        </div>
+        <div class="metric-desc">{{ data.desc }}</div>
+      </div>
+      <div
+        class="metric-icon"
+        [ngStyle]="{ 'background-color': data.background }"
+      >
+        <mat-icon
+          [ngStyle]="{ color: data.color }"
+          aria-hidden="false"
+          aria-label="company_holidays"
+          fontIcon="{{ data.icon }}"
+        ></mat-icon>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quick Actions -->
+  <section class="dashboard-actions">
+    <div class="actions-title">Quick Actions</div>
+    <div class="actions-row">
+      <!-- <button class="action-btn blue" routerLink="/hr/employees">
+        <span>Add Employee</span>
+        <small>Add new employee to system</small>
+      </button> -->
+      <button class="action-btn purple" routerLink="/hr/holidays">
+        <span>View Calendar</span>
+        <small>Check holidays & events</small>
+      </button>
+      <button class="action-btn green" routerLink="/hr/policy">
+        <span>Company Policy</span>
+        <small>View Company Policy</small>
+      </button>
+      <!-- <button class="action-btn yellow">
+        <span>Generate Report</span>
+        <small>Create HR reports</small>
+      </button> -->
+    </div>
+  </section>
+</div>

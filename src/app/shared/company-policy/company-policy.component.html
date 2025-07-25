@@ -1,22 +1,23 @@
 <div class="company-policy">
-    <div class="Companypolicy-title">
-        <div class="title">Company Policy</div>
-        <div>
-            <button class="addemp">
-                <mat-icon aria-hidden="false" aria-label="Add Person" fontIcon="add_notes"></mat-icon>
-                Add Document
-            </button>
-        </div>
+  <div class="Companypolicy-title">
+    <div class="title">Company Policy</div>
+    <div>
+      <button class="addemp" (click)="triggerFileUpload()">
+        <mat-icon aria-hidden="false" aria-label="Add Person" fontIcon="add_notes"></mat-icon>
+        Add Document
+      </button>
+      <input type="file" #fileInput style="display: none" (change)="addDocument($event)" accept="application/pdf" />
     </div>
+  </div>
 
-    <div class="policy-panel">
-        <div class="policy-header">
-            <mat-icon>file_copy</mat-icon>
-            <span>Policy Documents</span>
-        </div>
-        <p class="policy-subtitle">
-            Access and download company policies and guidelines.
-        </p>
+  <div class="policy-panel">
+    <div class="policy-header">
+      <mat-icon>file_copy</mat-icon>
+      <span>Policy Documents</span>
+    </div>
+    <p class="policy-subtitle">
+      Access and download company policies and guidelines.
+    </p>
 
 
     <div class="policy-grid">
@@ -26,22 +27,13 @@
         <div class="updated">Last Updated: {{ doc.createdDate }}</div>
         <div class="actions">
           <button aria-label="View Joining Policy">
-            <mat-icon
-              aria-hidden="false"
-              aria-label="Add Person"
-              fontIcon="visibility"
-              (click)="viewDocument(doc.link)"
-            ></mat-icon>
+            <mat-icon aria-hidden="false" aria-label="Add Person" fontIcon="visibility"
+              (click)="viewDocument(doc.link)"></mat-icon>
           </button>
           <button aria-label="Download Joining Policy">
-            <mat-icon
-              aria-hidden="false"
-              aria-label="Add Person"
-              fontIcon="download"
-              (click)="downloadDocument(doc.link)"
-            ></mat-icon>
+            <mat-icon aria-hidden="false" aria-label="Add Person" fontIcon="delete"
+              (click)="delectDoc(doc.name)"></mat-icon>
           </button>
-          <!-- (click)="delectDoc(doc.name)" -->
         </div>
       </div>
     </div>
