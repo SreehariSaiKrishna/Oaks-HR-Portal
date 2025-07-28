@@ -3,85 +3,151 @@
     <mat-icon fontIcon="person_add"></mat-icon>
     <span>Add New Employee</span>
   </div>
-  <div class="sub-heading">Enter the details for the new employee.All fields marked with * are requried.</div>
+  <div class="sub-heading">
+    Enter the details for the new employee.All fields marked with * are
+    requried.
+  </div>
 
-  <mat-dialog-content class="mat-typography">
-    <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()" class="employee-form">
-      <!-- Full Name + Employee ID -->
-      <div class="row">
-        <mat-form-field appearance="fill" class="full-width">
-          <mat-label>Full Name</mat-label>
-          <input matInput formControlName="name" placeholder="Oaks" required />
-        </mat-form-field>
-        <mat-form-field appearance="fill" class="half-width">
-          <mat-label>Employee ID</mat-label>
-          <input matInput formControlName="employeeId" placeholder="OAKS001" required />
-        </mat-form-field>
-      </div>
-
-      <!-- Email -->
-      <mat-form-field appearance="fill" class="full-width">
-        <mat-label>Email Address</mat-label>
-        <input matInput formControlName="email" type="email" placeholder="oaksemail@oaks.guru" required />
+  <form
+    [formGroup]="employeeForm"
+    (ngSubmit)="onSubmit()"
+    class="employee-form"
+  >
+    <!-- Full Name + Employee ID -->
+    <div class="row">
+      <mat-form-field appearance="fill" class="half-width">
+        <mat-label>Full Name</mat-label>
+        <input matInput formControlName="name" placeholder="Oaks" required />
       </mat-form-field>
+      <mat-form-field appearance="fill" class="half-width">
+        <mat-label>Employee ID</mat-label>
+        <input
+          matInput
+          formControlName="employeeId"
+          placeholder="OAKS001"
+          required
+        />
+      </mat-form-field>
+    </div>
 
-      <!-- Designation + Department -->
-      <div class="row">
-        <mat-form-field appearance="fill" class="half-width">
-          <mat-label>Designation</mat-label>
-          <input matInput formControlName="department" type="text" placeholder="Software Engineer" required />
-          <!-- <mat-select formControlName="designation" required>
-            <mat-option value="Developer">Developer</mat-option>
-            <mat-option value="Manager">Manager</mat-option>
-            <mat-option value="HR">HR</mat-option> -->
-          <!-- </mat-select> -->
-        </mat-form-field>
+    <!-- Email + Designation -->
+    <div class="row">
+      <mat-form-field appearance="fill" class="half-width">
+        <mat-label>Email Address</mat-label>
+        <input
+          matInput
+          formControlName="email"
+          type="email"
+          placeholder="oaksemail@oaks.guru"
+          required
+        />
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="half-width">
+        <mat-label>Designation</mat-label>
+        <input
+          matInput
+          formControlName="designation"
+          type="text"
+          placeholder="Software Engineer"
+          required
+        />
+        <!-- <mat-select formControlName="designation" required>
+             <mat-option value="Developer">Developer</mat-option>
+             <mat-option value="Manager">Manager</mat-option>
+             <mat-option value="HR">HR</mat-option> -->
+        <!-- </mat-select> -->
+      </mat-form-field>
+    </div>
 
-        <mat-form-field appearance="fill" class="half-width">
-          <mat-label>Team</mat-label>
-          <input matInput formControlName="team" type="text" placeholder="Development" required />
-          <!-- <mat-select formControlName="department" required> -->
-            <!-- <mat-option value="IT">IT</mat-option>
+    <!-- Team + Reporting Manager -->
+    <div class="row">
+      <mat-form-field appearance="fill" class="half-width">
+        <mat-label>Team</mat-label>
+        <input
+          matInput
+          formControlName="team"
+          type="text"
+          placeholder="Development"
+          required
+        />
+        <!-- <mat-select formControlName="department" required> -->
+        <!-- <mat-option value="IT">IT</mat-option>
             <mat-option value="Sales">Sales</mat-option>
             <mat-option value="HR">HR</mat-option>
           </mat-select> -->
-        </mat-form-field>
-      </div>
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="half-width">
+        <mat-label>Reporting Manager</mat-label>
+        <input
+          matInput
+          formControlName="reportingManager"
+          type="text"
+          placeholder="Reporting Manager"
+          required
+        />
+      </mat-form-field>
+    </div>
 
-      <!-- Date of Joining + DOB -->
-      <div class="row">
-        <mat-form-field appearance="fill" class="half-width">
-          <mat-label>Date of Joining</mat-label>
-          <input matInput [matDatepicker]="dojPicker" formControlName="dateOfJoining" placeholder="mm/dd/yyyy" />
-          <mat-datepicker-toggle matSuffix [for]="dojPicker"></mat-datepicker-toggle>
-          <mat-datepicker #dojPicker></mat-datepicker>
-        </mat-form-field>
+    <!-- Manager Email + Date of Joining -->
+    <div class="row">
+      <mat-form-field appearance="fill" class="half-width">
+        <mat-label>Manager Email</mat-label>
+        <input
+          matInput
+          formControlName="managerEmail"
+          type="text"
+          placeholder="Manager Email"
+          required
+        />
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="half-width">
+        <mat-label>Date of Joining</mat-label>
+        <input
+          matInput
+          [matDatepicker]="dojPicker"
+          formControlName="doj"
+          placeholder="mm/dd/yyyy"
+        />
+        <mat-datepicker-toggle
+          matSuffix
+          [for]="dojPicker"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #dojPicker></mat-datepicker>
+      </mat-form-field>
+    </div>
 
-        <mat-form-field appearance="fill" class="half-width">
-          <mat-label>Date of Birth</mat-label>
-          <input matInput [matDatepicker]="dobPicker" formControlName="dateOfBirth" placeholder="mm/dd/yyyy" />
-          <mat-datepicker-toggle matSuffix [for]="dobPicker"></mat-datepicker-toggle>
-          <mat-datepicker #dobPicker></mat-datepicker>
-        </mat-form-field>
-      </div>
-</form>
-      <!-- Password + Generate Button -->
-      <!-- <div class="row password-row">
-        <mat-form-field appearance="fill" class="password-field">
-          <mat-label>Password</mat-label>
-          <input matInput type="text" formControlName="password" placeholder="Enter password or generate one" />
-        </mat-form-field>
-        <button mat-stroked-button color="primary" type="button" (click)="generatePassword()" class="generate-button">
-          Generate
-        </button>
-      </div>
-    
-  </mat-dialog-content> -->
-<!-- 
-  <mat-dialog-actions align="end"> -->
+    <!-- Password + Generate Button -->
+    <!-- <div class="row password-row">
+      <mat-form-field appearance="fill" class="password-field">
+        <mat-label>Password</mat-label>
+        <input
+          matInput
+          type="text"
+          formControlName="password"
+          placeholder="Enter password or generate one"
+        />
+      </mat-form-field>
+      <button
+        mat-stroked-button
+        color="primary"
+        type="button"
+        (click)="generatePassword()"
+        class="generate-button"
+      >
+        Generate
+      </button>
+    </div> -->
+  </form>
+
+  <mat-dialog-actions align="end">
     <button mat-button mat-dialog-close>Cancel</button>
-    <button mat-flat-button color="primary" (click)="onSubmit()">
+    <button
+      mat-flat-button
+      color="primary"
+      [disabled]="!employeeForm.valid"
+      (click)="onSubmit()"
+    >
       Add Employee
     </button>
-  <!-- </mat-dialog-actions> -->
-<!-- </div> -->
+  </mat-dialog-actions>
+</div>

@@ -22,10 +22,11 @@ export class RegisterComponent {
       name: ['', Validators.required],
       employeeId: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
+      designation: ['', Validators.required],
       team: ['', Validators.required],
-      department: ['', Validators.required],
-      dateOfJoining: [''],
-      dateOfBirth: [''],
+      reportingManager: ['', Validators.required],
+      managerEmail: ['', [Validators.required, Validators.email]],
+      doj: [''],
       password: ['123456'],
     });
   }
