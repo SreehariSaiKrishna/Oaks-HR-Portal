@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { RegisterComponent } from '../register/register.component';
 import { MatDialog } from '@angular/material/dialog';
 import { AuthService } from '../../service/auth.service';
+import { EmpMoreDetailsComponent } from '../emp-more-details/emp-more-details.component';
 
 @Component({
   selector: 'app-employees',
@@ -10,7 +11,7 @@ import { AuthService } from '../../service/auth.service';
 })
 export class EmployeesComponent {
   employees: any[] = [];
-  constructor(public dialog: MatDialog, public authservice: AuthService) {}
+  constructor(public dialog: MatDialog, public authservice: AuthService) { }
 
   ngOnInit() {
     this.getData();
@@ -28,18 +29,6 @@ export class EmployeesComponent {
       .catch((err) => console.error(err));
   }
 
-  displayedDesktopColumns: string[] = [
-    'employeeId',
-    'name',
-    'designation',
-    'email',
-    'team',
-    'status',
-    'moreDetails',
-  ];
-
-  displayedMobColumns: string[] = ['details', 'action'];
-
   toggleStatus(emp: any) {
     emp.active = !emp.active;
   }
@@ -47,6 +36,16 @@ export class EmployeesComponent {
   openDialog() {
     const dialogRef = this.dialog.open(RegisterComponent, {
       width: '700px', // or '80vw'
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
+
+  openMoreDetailsDialog(email: string) {
+    const dialogRef = this.dialog.open(EmpMoreDetailsComponent, {
+      width: '700px', // or '80vw'
+      data: { email }
     });
     dialogRef.afterClosed().subscribe((result) => {
       console.log(`Dialog result: ${result}`);

@@ -1,121 +1,71 @@
 <div class="employee-container">
   <div class="header">
-    <div class="emp-title">Employees</div>
-    <button class="addemp" (click)="openDialog()">
-      <mat-icon
-        aria-hidden="false"
-        aria-label="Add Person"
-        fontIcon="person_add"
-      ></mat-icon>
-      Add Employee
-    </button>
+    <div class="emp-title">Employee Details</div>
+    <div>
+      <button class="addemp" (click)="openDialog()">
+        <mat-icon aria-hidden="false" aria-label="Add Person" fontIcon="person_add"></mat-icon>
+        Add Employee
+      </button>
+    </div>
   </div>
-
-  <div class="employee-table">
-    <div class="active-employee-count">
+  <div class="policy-panel">
+    <div class="policy-header">
+      <mat-icon>groups_3</mat-icon>
+      <span>Employees</span>
+    </div>
+    <p class="policy-subtitle">
       Active Employee Count: {{ employees.length }}
-    </div>
-    <div class="employee-desktop">
-      <table mat-table [dataSource]="employees">
-        <!-- Columns -->
-
-        <ng-container matColumnDef="employeeId">
-          <th mat-header-cell *matHeaderCellDef>EMPID</th>
-          <td mat-cell *matCellDef="let emp">{{ emp.employeeId }}</td>
-        </ng-container>
-
-        <ng-container matColumnDef="name">
-          <th mat-header-cell *matHeaderCellDef>Name</th>
-          <td mat-cell *matCellDef="let emp">{{ emp.name }}</td>
-        </ng-container>
-
-        <ng-container matColumnDef="designation">
-          <th mat-header-cell *matHeaderCellDef>Designation</th>
-          <td mat-cell *matCellDef="let emp">{{ emp.designation }}</td>
-        </ng-container>
-
-        <ng-container matColumnDef="email">
-          <th mat-header-cell *matHeaderCellDef>Email</th>
-          <td mat-cell *matCellDef="let emp">{{ emp.email }}</td>
-        </ng-container>
-
-        <ng-container matColumnDef="team">
-          <th mat-header-cell *matHeaderCellDef>Team</th>
-          <td mat-cell *matCellDef="let emp">{{ emp.team }}</td>
-        </ng-container>
-
-        <ng-container matColumnDef="status">
-          <th mat-header-cell *matHeaderCellDef>Status</th>
-          <td mat-cell *matCellDef="let emp">
-            <button
-              mat-button
-              color="{{ emp.active ? 'warn' : 'success' }}"
-              (click)="toggleStatus(emp)"
-            >
-              {{ emp.active ? "Inactive" : "Active" }}
-            </button>
-          </td>
-        </ng-container>
-
-        <ng-container matColumnDef="moreDetails">
-          <th mat-header-cell *matHeaderCellDef>More Details</th>
-          <td mat-cell *matCellDef="let emp">
-            <button mat-button (click)="moreDetails(emp)">...</button>
-          </td>
-        </ng-container>
-
-        <!-- Header and Row definitions -->
-        <tr mat-header-row *matHeaderRowDef="displayedDesktopColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedDesktopColumns"></tr>
-      </table>
-    </div>
-
-    <div class="employee-mobile">
-      <table
-        mat-table
-        [dataSource]="employees"
-        class="mat-elevation-z8 full-width-table"
-      >
-        <!-- Employee Details Column -->
-        <ng-container matColumnDef="details">
-          <th mat-header-cell *matHeaderCellDef>Employee Details</th>
-          <td mat-cell *matCellDef="let emp">
-            <div class="marg"><strong>ID:</strong> {{ emp.employeeId }}</div>
-            <div class="marg"><strong>Name:</strong> {{ emp.name }}</div>
-            <div class="marg">
-              <strong>Designation:</strong> {{ emp.designation }}
+    </p>
+    <div class="employee-list">
+      <div class="employee-card" *ngFor="let employee of employees">
+        <div class="card-header">
+          <div class="employee-info">
+            <div class="avatar">
+              <span>{{ employee?.name?.charAt(0) }}</span>
             </div>
-            <div class="marg"><strong>Email:</strong> {{ emp.email }}</div>
-            <div class="marg"><strong>Team:</strong> {{ emp.team }}</div>
-            <div class="marg">
-              <strong>Joining Date:</strong>
-              {{ emp.dateOfJoining?.seconds * 1000 | date : "MMMM d, y" }}
+            <div class="name-title">
+              <div class="name">{{ employee?.name }}</div>
+              <div class="title">{{ employee?.designation }}</div>
             </div>
-            <div class="marg">
-              <strong>Birth Date:</strong>
-              {{ emp.dateOfBirth?.seconds * 1000 | date : "MMMM d, y" }}
-            </div>
-          </td>
-        </ng-container>
+          </div>
+        </div>
 
-        <!-- Action Column -->
-        <ng-container matColumnDef="action">
-          <th mat-header-cell *matHeaderCellDef>Action</th>
-          <td mat-cell *matCellDef="let emp">
-            <button
-              mat-button
-              color="{{ emp.active ? 'warn' : 'success' }}"
-              (click)="toggleStatus(emp)"
-            >
-              {{ emp.active ? "Inactive" : "Active" }}
-            </button>
-          </td>
-        </ng-container>
+        <div class="card-body">
+          <div class="info-item">
+            <span class="icon">
+              <mat-icon aria-hidden="false" aria-label="company_holidays" fontIcon="badge"></mat-icon>
+            </span>
+            <span class="text">{{ employee.employeeId }}</span>
+          </div>
 
-        <!-- Row and Header definitions -->
-        <tr mat-header-row *matHeaderRowDef="displayedMobColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedMobColumns"></tr>
-      </table>
+          <div class="info-item">
+            <span class="icon">
+              <mat-icon aria-hidden="false" aria-label="company_holidays" fontIcon="group"></mat-icon>
+            </span>
+            <span class="text">{{ employee?.team }}</span>
+          </div>
+
+          <div class="info-item">
+            <span class="icon"><mat-icon aria-hidden="false" aria-label="company_holidays" fontIcon="mail"></mat-icon>
+            </span>
+            <span class="text">{{ employee?.email }}</span>
+          </div>
+
+          <div class="info-item">
+            <span class="icon"><mat-icon aria-hidden="false" aria-label="company_holidays" fontIcon="event"></mat-icon>
+            </span>
+            <span class="text">{{ employee?.doj?.seconds * 1000 | date : "MMMM d, y" }}</span>
+          </div>
+        </div>
+
+        <div class="card-footer">
+          <span class="employee-id" [ngStyle]="{ color: employee?.active ? 'red' : 'green' }"
+            (click)="toggleStatus(employee)">
+            {{ employee?.active ? "Inactive" : "Active" }}
+          </span>
+          <button class="more-footer-btn" (click)="openMoreDetailsDialog(employee?.email)">More</button>
+        </div>
+      </div>
     </div>
   </div>
 </div>

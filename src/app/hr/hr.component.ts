@@ -120,6 +120,7 @@ export class HrComponent {
       .getEmployeeByEmail(email)
       .then((data: any) => {
         if (data) {
+          console.log('User data fetched:', data);
           this.user = data;
         } else {
           console.log('No user data found for this email.');
