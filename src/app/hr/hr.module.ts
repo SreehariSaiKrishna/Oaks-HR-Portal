@@ -18,6 +18,7 @@ import { HrRoutingModule } from './hr-routing.module';
 import { HomeComponent } from './home/home.component';
 import { EmployeesComponent } from './employees/employees.component';
 import { MatTableModule } from '@angular/material/table';
+import { EmpMoreDetailsComponent } from './emp-more-details/emp-more-details.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { MatTableModule } from '@angular/material/table';
     RegisterComponent,
     HomeComponent,
     EmployeesComponent,
+    EmpMoreDetailsComponent,
   ],
   imports: [
     CommonModule,
@@ -42,7 +44,7 @@ import { MatTableModule } from '@angular/material/table';
     MatDatepickerModule,
     MatNativeDateModule,
     SharedModule,
-    MatTableModule
+    MatTableModule,
   ],
 })
 export class HrModule {}

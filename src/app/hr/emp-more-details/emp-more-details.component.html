@@ -1,0 +1,63 @@
+<div class="employee-details" *ngIf="user">
+  <div class="emp-title">Employee Details</div>
+  <div class="details-header">
+    <div class="avatar">{{ user?.name?.charAt(0) | uppercase }}</div>
+    <div class="name-title">
+      <div>
+        <span *ngIf="!isEditMode">{{ user?.name }}</span>
+        <input *ngIf="isEditMode" [(ngModel)]="user.name" />
+      </div>
+      <div>
+        <span *ngIf="!isEditMode">{{ user?.designation }}</span>
+        <input *ngIf="isEditMode" [(ngModel)]="user.designation" />
+      </div>
+    </div>
+  </div>
+  <div class="edit-controls">
+    <button *ngIf="!isEditMode" (click)="toggleEditMode()">Edit</button>
+    <div *ngIf="isEditMode" class="edit-actions">
+      <button (click)="saveChanges()">Save</button>
+      <button (click)="cancelEdit()">Cancel</button>
+    </div>
+  </div>
+
+  <div class="details-body">
+    <div class="detail-item">
+      <label>Employee ID</label>
+      <span *ngIf="!isEditMode">{{ user?.employeeId }}</span>
+      <input *ngIf="isEditMode" [(ngModel)]="user.employeeId" />
+    </div>
+    <div class="detail-item">
+      <label>Email</label>
+      <span *ngIf="!isEditMode">{{ user?.email }}</span>
+      <input *ngIf="isEditMode" [(ngModel)]="user.email" />
+    </div>
+    <div class="detail-item">
+      <label>Designation</label>
+      <span *ngIf="!isEditMode">{{ user?.designation }}</span>
+      <input *ngIf="isEditMode" [(ngModel)]="user.designation" />
+    </div>
+    <div class="detail-item">
+      <label>Team</label>
+      <span *ngIf="!isEditMode">{{ user?.team }}</span>
+      <input *ngIf="isEditMode" [(ngModel)]="user.team" />
+    </div>
+    <div class="detail-item">
+      <label>Reporting Manager</label>
+      <span *ngIf="!isEditMode">{{ user?.reportingManager }}</span>
+      <input *ngIf="isEditMode" [(ngModel)]="user.reportingManager" />
+    </div>
+    <div class="detail-item">
+      <label>Manager Email</label>
+      <span *ngIf="!isEditMode">{{ user?.managerEmail }}</span>
+      <input *ngIf="isEditMode" [(ngModel)]="user.managerEmail" />
+    </div>
+    <div class="detail-item">
+      <label>Date of Joining</label>
+      <span *ngIf="!isEditMode">
+        {{ user?.doj | date: 'yyyy-MM-dd' }}
+      </span>
+      <input *ngIf="isEditMode" type="date" [(ngModel)]="user.doj" />
+    </div>
+  </div>
+</div>

@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { AuthService } from '../service/auth.service';
-// import { RegisterComponent } from './register/register.component';
 
 @Component({
   selector: 'app-hr',
@@ -91,16 +90,6 @@ export class HrComponent {
       this.isSidebarClosed = true;
     }
   }
-
-  // openDialog() {
-  //   const dialogRef = this.dialog.open(RegisterComponent, {
-  //     width: '600px', // or '80vw'
-  //     panelClass: 'register-dialog',
-  //   });
-  //   dialogRef.afterClosed().subscribe((result) => {
-  //     console.log(`Dialog result: ${result}`);
-  //   });
-  // }
 
   toggleSidebar(btnclick?: string) {
     if (btnclick === 'sidebar' && window.innerWidth < 768) {

@@ -139,6 +139,37 @@ export class AuthService {
       });
   }
 
+  editEmployeDetails(email: string, updatedData: any) {
+    return this.firestore
+      .collection('employees', (ref) => ref.where('email', '==', email))
+      .get()
+      .toPromise()
+      .then((querySnapshot) => {
+        if (querySnapshot && !querySnapshot.empty) {
+          const docId = querySnapshot.docs[0].id;
+          return this.firestore
+            .collection('employees')
+            .doc(docId)
+            .update(updatedData)
+            .then(() => {
+              this.utilityService.openSnackBar(
+                'Employee details updated successfully'
+              );
+            });
+        } else {
+          this.utilityService.openSnackBar(
+            'No employee found with the given email'
+          );
+          return Promise.reject('No employee found');
+        }
+      })
+      .catch((error) => {
+        this.utilityService.openSnackBar('Error updating employee details');
+        console.error('Error updating employee details:', error);
+        throw error;
+      });
+  }
+
   getAllEmployees() {
     return this.firestore
       .collection('employees')

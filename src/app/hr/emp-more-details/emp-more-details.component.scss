@@ -1,0 +1,164 @@
+.employee-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.emp-title {
+  font-size: 22px;
+  color: #374955;
+  font-weight: 600;
+  padding: 24px;
+  display: flex;
+  padding-bottom: 0px !important;
+  justify-content: center;
+  align-items: center;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  background: #1b84da;
+  color: white;
+  font-weight: bold;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.name-title .name {
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.title {
+  font-size: 14px;
+  color: gray;
+}
+
+.info-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 4px 0;
+}
+
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.employee-id {
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.more-footer-btn {
+  background: transparent;
+  border: 1px solid #ccc;
+  padding: 4px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.employee-details {
+  border-radius: 12px;
+}
+
+.details-header {
+  padding: 12px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+  background: aliceblue;
+  margin: 14px 24px;
+  border-radius: 8px;
+}
+
+.details-header .avatar {
+  width: 36px;
+  height: 36px;
+  font-size: 24px;
+}
+
+.name-title {
+  margin-left: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.edit-controls {
+  display: flex;
+  justify-content: flex-end;
+  padding: 0px 24px;
+}
+
+.edit-controls button {
+  background-color: #1b84da;
+  color: #fff;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.edit-actions button {
+  margin-right: 8px;
+}
+
+/* Optional: smooth styling */
+.details-body::-webkit-scrollbar {
+  width: 6px;
+}
+
+.details-body::-webkit-scrollbar-thumb {
+  background: #c0c0c0;
+  border-radius: 4px;
+}
+
+.details-body {
+  max-height: 240px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px 24px;
+  margin: 16px 24px;
+  background: aliceblue;
+  border-radius: 8px;
+}
+
+.detail-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.detail-item label {
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.detail-item input {
+  padding: 6px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+@media (max-width: 600px) {
+  .employee-card {
+    width: 100%;
+  }
+
+  .details-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .edit-controls {
+    margin-top: 10px;
+  }
+}

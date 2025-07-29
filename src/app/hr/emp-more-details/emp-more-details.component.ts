@@ -1,17 +1,24 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { AuthService } from '../../service/auth.service';
+import { UtilityService } from '../../service/utility.service';
+import { Timestamp } from 'firebase/firestore';
 
 @Component({
   selector: 'app-emp-more-details',
   templateUrl: './emp-more-details.component.html',
-  styleUrl: './emp-more-details.component.scss'
+  styleUrl: './emp-more-details.component.scss',
 })
 export class EmpMoreDetailsComponent {
-  //i am getting the email from the employees component and passing it to this component
   email!: string;
   user!: any;
-  constructor(@Inject(MAT_DIALOG_DATA) public data: { email: string }, public authService: AuthService) {
+  orginalData!: any;
+  isEditMode = false;
+  constructor(
+    @Inject(MAT_DIALOG_DATA) public data: { email: string },
+    public authService: AuthService,
+    public utilityService: UtilityService
+  ) {
     this.email = data.email;
   }
   ngOnInit() {
@@ -24,15 +31,38 @@ export class EmpMoreDetailsComponent {
     this.authService
       .getEmployeeByEmail(email)
       .then((data: any) => {
-        if (data) {
-          this.user = data;
-          console.log('User data fetched successfully:', this.user);
-        } else {
-          console.log('No user data found for this email.');
+        this.user = data;
+        if (this.user.doj?.seconds) {
+          this.user.doj = new Date(this.user.doj.seconds * 1000);
         }
+        this.orginalData = { ...data };
       })
       .catch((error: any) => {
+        this.utilityService.openSnackBar('Error fetching user data');
         console.error('Error fetching user data:', error);
       });
+  }
+
+  toggleEditMode() {
+    this.isEditMode = !this.isEditMode;
+  }
+
+  cancelEdit() {
+    this.user = this.orginalData;
+    this.isEditMode = false;
+  }
+
+  saveChanges() {
+    this.authService
+      .editEmployeDetails(this.email, this.user)
+      .then(() => {
+        this.utilityService.openSnackBar('Changes saved successfully');
+        this.userData(); // Refresh user data after saving changes
+      })
+      .catch((error: any) => {
+        console.error('Error saving changes:', error);
+        this.utilityService.openSnackBar('Error saving changes');
+      });
+    this.isEditMode = false;
   }
 }

@@ -44,7 +44,8 @@ export class EmployeesComponent {
 
   openMoreDetailsDialog(email: string) {
     const dialogRef = this.dialog.open(EmpMoreDetailsComponent, {
-      width: '700px', // or '80vw'
+      width: '480px',
+      height: '480px',
       data: { email }
     });
     dialogRef.afterClosed().subscribe((result) => {

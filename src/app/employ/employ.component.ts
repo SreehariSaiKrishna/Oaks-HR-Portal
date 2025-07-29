@@ -86,16 +86,6 @@ export class EmployComponent {
     }
   }
 
-  // openDialog() {
-  //   const dialogRef = this.dialog.open(RegisterComponent, {
-  //     width: '600px', // or '80vw'
-  //     panelClass: 'register-dialog',
-  //   });
-  //   dialogRef.afterClosed().subscribe((result) => {
-  //     console.log(`Dialog result: ${result}`);
-  //   });
-  // }
-
   toggleSidebar(btnclick?: string) {
     if (btnclick === 'sidebar' && window.innerWidth < 768) {
       console.log('Toggling sidebar', btnclick, this.isSidebarClosed);

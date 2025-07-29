@@ -103,6 +103,7 @@ table {
   flex-wrap: wrap;
   align-items: center;
   gap: 24px;
+  justify-content: space-around;
 }
 
 // Responsive
@@ -129,7 +130,6 @@ table {
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
 }
 
-
 .employee-card {
   background: #f5f7f9;
   border-radius: 12px;
@@ -140,7 +140,7 @@ table {
   width: 100%;
 
   &:hover {
-        box-shadow: 0 0 15px #0084ff55;
+    box-shadow: 0 0 15px #0084ff55;
   }
 
   .card-header {
