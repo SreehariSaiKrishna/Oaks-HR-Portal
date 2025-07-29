@@ -18,10 +18,10 @@
       Add Employee
     </button> -->
     <div class="user-profile">
-      <div class="avatar">{{ user?.fullName?.charAt(0) }}</div>
+      <div class="avatar">{{ user?.name?.charAt(0) | uppercase }}</div>
       <div class="user-container">
-        <div class="user-info">{{ user?.fullName }}</div>
-        <div class="user-role">{{ user?.team }}</div>
+        <div class="user-info">{{ user?.name }}</div>
+        <div class="user-role">{{ user?.designation }}</div>
       </div>
     </div>
   </div>

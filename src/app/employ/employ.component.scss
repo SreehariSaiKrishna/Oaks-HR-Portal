@@ -51,6 +51,7 @@
   display: flex;
   align-items: center;
   column-gap: 8px;
+  margin-right: 14px;
 }
 
 .user-container {
@@ -67,7 +68,7 @@
 .user-info {
   color: #374955;
   white-space: nowrap;
-  width: 28ch;
+  max-width: 28ch;
   overflow: hidden;
   text-overflow: ellipsis;
   font-size: 14px;

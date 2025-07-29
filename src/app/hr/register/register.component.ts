@@ -57,7 +57,13 @@ export class RegisterComponent {
   }
 
   saveEmployeData() {
-    const employeeData = this.employeeForm.value;
+    const employeeData = {
+      ...this.employeeForm.value,
+      name:
+        this.employeeForm.value.name.charAt(0).toUpperCase() +
+        this.employeeForm.value.name.slice(1).toLowerCase(),
+    };
+
     if (employeeData) {
       this.authSvc.saveEmployeeData(employeeData).then(
         () => {
