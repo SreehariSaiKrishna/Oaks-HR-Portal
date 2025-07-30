@@ -10,7 +10,7 @@
   font-weight: 600;
   padding: 24px;
   display: flex;
-  padding-bottom: 0px !important;
+  padding-bottom: 1px !important;
   justify-content: center;
   align-items: center;
 }
@@ -18,7 +18,7 @@
 .avatar {
   width: 40px;
   height: 40px;
-  background: #1b84da;
+  background: linear-gradient(to right, #1b84da, #00a0f3);
   color: white;
   font-weight: bold;
   border-radius: 50%;
@@ -73,14 +73,14 @@
   justify-content: flex-start;
   align-items: center;
   flex-wrap: wrap;
-  background: aliceblue;
+  background: #f5f7f9;
   margin: 14px 24px;
   border-radius: 8px;
 }
 
 .details-header .avatar {
-  width: 36px;
-  height: 36px;
+  width: 50px;
+  height: 50px;
   font-size: 24px;
 }
 
@@ -89,6 +89,7 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
+  width: 75%;
 }
 
 .edit-controls {
@@ -97,13 +98,58 @@
   padding: 0px 24px;
 }
 
+.detail-item {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  label {
+    font-size: 14px;
+    font-weight: 500;
+    color: #5c6c7b;
+    margin-bottom: 6px;
+  }
+
+  input,
+  span {
+    padding: 6px 12px;
+    border-radius: 8px;
+    background-color: #f7fafd;
+    border: 1px solid #e0e6ed;
+    font-size: 14px;
+    color: #2b3e4f;
+    outline: none;
+    width: 95%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  input {
+    &:focus {
+      border-color: #00a0f3;
+      background-color: #ffffff;
+    }
+  }
+}
+
+
 .edit-controls button {
-  background-color: #1b84da;
+  background: linear-gradient(to right, #1b84da, #00a0f3);
   color: #fff;
   border: none;
   padding: 6px 12px;
   border-radius: 6px;
   cursor: pointer;
+  font-size: 12px;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .edit-actions button {
@@ -128,7 +174,7 @@
   gap: 12px;
   padding: 16px 24px;
   margin: 16px 24px;
-  background: aliceblue;
+  background: #f5f7f9;
   border-radius: 8px;
 }
 
@@ -142,11 +188,11 @@
   margin-bottom: 4px;
 }
 
-.detail-item input {
-  padding: 6px;
-  border-radius: 4px;
-  border: 1px solid #ccc;
-}
+// .detail-item input {
+//   padding: 6px 12px;
+//   border-radius: 8px;
+//   border: 1px solid #ccc;
+// }
 
 @media (max-width: 600px) {
   .employee-card {

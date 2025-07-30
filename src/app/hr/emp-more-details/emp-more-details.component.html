@@ -3,18 +3,24 @@
   <div class="details-header">
     <div class="avatar">{{ user?.name?.charAt(0) | uppercase }}</div>
     <div class="name-title">
-      <div>
+      <div class="detail-item">
+        <label>Name</label>
         <span *ngIf="!isEditMode">{{ user?.name }}</span>
         <input *ngIf="isEditMode" [(ngModel)]="user.name" />
       </div>
-      <div>
+      <div class="detail-item">
+        <label>Designation</label>
         <span *ngIf="!isEditMode">{{ user?.designation }}</span>
         <input *ngIf="isEditMode" [(ngModel)]="user.designation" />
       </div>
     </div>
   </div>
   <div class="edit-controls">
-    <button *ngIf="!isEditMode" (click)="toggleEditMode()">Edit</button>
+    <button *ngIf="!isEditMode" (click)="toggleEditMode()"><mat-icon
+          aria-hidden="false"
+          aria-label="Add Person"
+          fontIcon="edit"
+        ></mat-icon>Edit</button>
     <div *ngIf="isEditMode" class="edit-actions">
       <button (click)="saveChanges()">Save</button>
       <button (click)="cancelEdit()">Cancel</button>
@@ -32,11 +38,11 @@
       <span *ngIf="!isEditMode">{{ user?.email }}</span>
       <input *ngIf="isEditMode" [(ngModel)]="user.email" />
     </div>
-    <div class="detail-item">
+    <!-- <div class="detail-item">
       <label>Designation</label>
       <span *ngIf="!isEditMode">{{ user?.designation }}</span>
       <input *ngIf="isEditMode" [(ngModel)]="user.designation" />
-    </div>
+    </div> -->
     <div class="detail-item">
       <label>Team</label>
       <span *ngIf="!isEditMode">{{ user?.team }}</span>
@@ -58,6 +64,46 @@
         {{ user?.doj | date: 'yyyy-MM-dd' }}
       </span>
       <input *ngIf="isEditMode" type="date" [(ngModel)]="user.doj" />
+    </div>
+    <div class="detail-item">
+      <label>Present Address</label>
+      <span *ngIf="!isEditMode">{{ user?.presentAddress }}</span>
+      <input *ngIf="isEditMode" [(ngModel)]="user.presentAddress" />
+    </div>
+    <div class="detail-item">
+      <label>Permanent Address</label>
+      <span *ngIf="!isEditMode">{{ user?.permanentAddress }}</span>
+      <input *ngIf="isEditMode" [(ngModel)]="user.permanentAddress" />
+    </div>
+    <div class="detail-item">
+      <label>DOB</label>
+      <span *ngIf="!isEditMode">{{ user?.dob | date: 'yyyy-MM-dd' }}</span>
+      <input *ngIf="isEditMode" type="date" [(ngModel)]="user.dob" />
+    </div>
+    <div class="detail-item">
+      <label>Blood Group</label>
+      <span *ngIf="!isEditMode">{{ user?.bloodGroup }}</span>
+      <input *ngIf="isEditMode" [(ngModel)]="user.bloodGroup" />
+    </div>
+    <div class="detail-item">
+      <label>Contact No</label>
+      <span *ngIf="!isEditMode">{{ user?.contactNo }}</span>
+      <input *ngIf="isEditMode" [(ngModel)]="user.contactNo" />
+    </div>
+    <div class="detail-item">
+      <label>Aadhaar card No</label>
+      <span *ngIf="!isEditMode">{{ user?.aadhaarCardNo }}</span>
+      <input *ngIf="isEditMode" [(ngModel)]="user.aadhaarCardNo" />
+    </div>
+    <div class="detail-item">
+      <label>Pan card no</label>
+      <span *ngIf="!isEditMode">{{ user?.panCardNo }}</span>
+      <input *ngIf="isEditMode" [(ngModel)]="user.panCardNo" />
+    </div>
+    <div class="detail-item">
+      <label>Hobbies</label>
+      <span *ngIf="!isEditMode">{{ user?.hobbies }}</span>
+      <input *ngIf="isEditMode" [(ngModel)]="user.hobbies" />
     </div>
   </div>
 </div>

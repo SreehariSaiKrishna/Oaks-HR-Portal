@@ -44,8 +44,9 @@ export class EmployeesComponent {
 
   openMoreDetailsDialog(email: string) {
     const dialogRef = this.dialog.open(EmpMoreDetailsComponent, {
-      width: '480px',
-      height: '480px',
+      width: '800px',
+      height: '580px',
+      panelClass: 'custom-dialog-container',
       data: { email }
     });
     dialogRef.afterClosed().subscribe((result) => {

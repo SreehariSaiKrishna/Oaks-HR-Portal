@@ -27,9 +27,8 @@ export class EmpMoreDetailsComponent {
   }
 
   userData() {
-    const email = this.authService.getUserEmail();
     this.authService
-      .getEmployeeByEmail(email)
+      .getEmployeeByEmail(this.email)
       .then((data: any) => {
         this.user = data;
         if (this.user.doj?.seconds) {

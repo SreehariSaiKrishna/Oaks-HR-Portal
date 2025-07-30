@@ -21,3 +21,9 @@ body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
+
+::ng-deep .custom-dialog-container .mat-dialog-container {
+  border-radius: 100px;
+  padding: 20px;
+  overflow: hidden;
+}
