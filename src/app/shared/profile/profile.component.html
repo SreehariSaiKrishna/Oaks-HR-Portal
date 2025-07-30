@@ -30,7 +30,7 @@
         <!-- <mat-icon aria-hidden="false" aria-label="Add Person" fontIcon="calendar_month"></mat-icon> -->
         <span class="label">DOJ</span>
         <div class="designation">
-          {{ user?.dateOfJoining?.seconds * 1000 | date : "MMMM d, y" }}
+          {{ user?.doj }}
         </div>
       </div>
       <div class="info-box">
@@ -49,19 +49,21 @@
         <i class="material-icons">badge</i>
         <!-- <mat-icon aria-hidden="false" aria-label="Add Person" fontIcon="badge"></mat-icon> -->
         <span class="label">Reporting Manager</span>
-        <div class="designation">Gireesh Sabbu</div>
+        <div class="designation">{{ user?.reportingManager }}</div>
       </div>
       <div class="info-box">
         <i class="material-icons">badge</i>
         <!-- <mat-icon aria-hidden="false" aria-label="Add Person" fontIcon="badge"></mat-icon> -->
         <span class="label">Reporting Manager email</span>
-        <div class="designation">saigireeshsabbuaoaks.guru</div>
+        <div class="designation">{{ user?.managerEmail }}</div>
       </div>
       <div class="info-box">
         <i class="material-icons">work_history</i>
         <!-- <mat-icon aria-hidden="false" aria-label="Add Person" fontIcon="badge"></mat-icon> -->
-         <span class="label">Tenure</span>
-         <div class="designation">1 Year,1 Month,1 Day</div>
+        <span class="label">Tenure</span>
+        <div class="designation">
+          {{ years }} Years, {{ months }} Months, {{ days }} Days
+        </div>
       </div>
     </div>
   </div>
@@ -74,57 +76,83 @@
     <div class="work">
       Personal Information
       <div>
-        <button class="edit-btn">
+        <!-- Edit Button -->
+        <button class="edit-btn" (click)="toggleEdit()">
           <mat-icon
             aria-hidden="false"
-            aria-label="Add Person"
+            aria-label="Edit"
             fontIcon="edit"
           ></mat-icon>
-          Edit
+          {{ isEditMode ? "Save" : "Edit" }}
         </button>
       </div>
     </div>
 
-    <div class="form-grid">
+    <div class="form-grid" *ngIf="user">
       <div class="form-group">
-        <label><i class="material-icons">home</i>Present Address <span class="required">*</span></label>
-        <input type="text" value="Vijayawada" readonly />
-      </div>
-      <div class="form-group">
-        <label><i class="material-icons">house</i>Permanent Address <span class="required">*</span></label>
-        <input type="text" value="Vijayawada" readonly />
+        <label
+          ><i class="material-icons">home</i>Present Address
+          <span class="required">*</span></label
+        >
+        <input
+          type="text"
+          [(ngModel)]="user.presentAddress"
+          [readonly]="!isEditMode"
+        />
       </div>
       <div class="form-group">
         <label
-          ><i class="material-icons">call</i>Contact No</label
+          ><i class="material-icons">house</i>Permanent Address
+          <span class="required">*</span></label
         >
-        <input type="text" value="123456789" readonly />
+        <input
+          type="text"
+          [(ngModel)]="user.permanentAddress"
+          [readonly]="!isEditMode"
+        />
       </div>
       <div class="form-group">
-        <label><i class="material-icons">cake</i>Date of Birth <span class="required">*</span></label>
+        <label><i class="material-icons">call</i>Contact No</label>
+        <input
+          type="text"
+          [(ngModel)]="user.Contact"
+          [readonly]="!isEditMode"
+        />
+      </div>
+      <div class="form-group">
+        <label
+          ><i class="material-icons">cake</i>Date of Birth
+          <span class="required">*</span></label
+        >
         <input type="text" value="January 15th, 2020" readonly />
       </div>
       <div class="form-group">
-        <label
-          ><i class="material-icons">bloodtype</i>Blood Group</label
-        >
-        <input type="text" value="AB+" readonly />
+        <label><i class="material-icons">bloodtype</i>Blood Group</label>
+        <input
+          type="text"
+          [(ngModel)]="user.bloodGroup"
+          [readonly]="!isEditMode"
+        />
       </div>
       <div class="form-group">
-        <label
-          ><i class="material-icons">topic</i>Addhaar card No</label
-        >
-        <input type="text" value="1234-5678-9012" readonly />
+        <label><i class="material-icons">topic</i>Addhaar card No</label>
+        <input
+          type="text"
+          [(ngModel)]="user.addhaar"
+          [readonly]="!isEditMode"
+        />
       </div>
       <div class="form-group">
-        <label
-          ><i class="material-icons">topic</i>Pan card No</label
-        >
-        <input type="text" value="ABCDE1234F" readonly />
+        <label><i class="material-icons">topic</i>Pan card No</label>
+        <input type="text" [(ngModel)]="user.pan" [readonly]="!isEditMode" />
       </div>
       <div class="form-group">
         <label><i class="material-icons">interests</i>Hobbies</label>
-        <input type="text" value="Playing cricket, Traveling" readonly />
+        <input
+          type="text"
+          [(ngModel)]="user.hobbies"
+          [readonly]="!isEditMode"
+        />
       </div>
     </div>
   </div>
