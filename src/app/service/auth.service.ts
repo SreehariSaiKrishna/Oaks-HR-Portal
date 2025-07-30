@@ -191,7 +191,7 @@ export class AuthService {
       });
   }
 
-  saveCompanyHoliday(holidayData: any) {
+  addCompanyHoliday(holidayData: any) {
     return this.firestore
       .collection('companyHolidays')
       .add(holidayData)
@@ -233,6 +233,24 @@ export class AuthService {
       .catch((error) => {
         this.utilityService.openSnackBar('Error fetching company holidays');
         console.error('Error fetching company holidays:', error);
+        throw error;
+      });
+  }
+
+  delectCompanyHoliday(id: string) {
+    //delect company holiday
+    return this.firestore
+      .collection('companyHolidays')
+      .doc(id)
+      .delete()
+      .then(() => {
+        this.utilityService.openSnackBar(
+          'Company holiday deleted successfully'
+        );
+      })
+      .catch((error) => {
+        this.utilityService.openSnackBar('Failed to delete company holiday');
+        console.error('Error deleting company holiday:', error);
         throw error;
       });
   }

@@ -29,7 +29,7 @@ export class AddEventComponent {
     this.dialogRef.close(this.eventForm.value);
     if (this.eventForm.valid) {
       this.authService
-        .saveCompanyHoliday(this.eventForm.value)
+        .addCompanyHoliday(this.eventForm.value)
         .then(() => {
           this.eventForm.reset();
           this.utility.openSnackBar('Event saved successfully');

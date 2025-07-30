@@ -1,109 +1,97 @@
+.panel-header {
+  display: flex;
+  align-items: center;
+  font-size: 20px;
+  font-weight: Bold;
+  color: #374955;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.panel-subtitle {
+  font-size: 16px;
+  color: #6b7280;
+  margin-bottom: 1.5rem;
+}
+
 .dashboard-container {
   padding: 32px;
   background: #f9fafb;
+}
 
-  .holiday-panel {
-    background: #ffffff;
-    border-radius: 12px;
-    padding: 1.5rem;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+.holiday-panel {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+}
 
-    .panel-header {
-      display: flex;
-      align-items: center;
-      font-size: 20px;
-      font-weight: Bold;
-      color: #374955;
-      gap: 0.5rem;
-      margin-bottom: 0.5rem;
-    }
+.holiday-date {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 60px;
+  color: #374955;
+}
 
-    .panel-subtitle {
-      font-size: 16px;
-      color: #6b7280;
-      margin-bottom: 1.5rem;
-    }
+.month {
+  font-size: 13px;
+  color: #6b7280;
+}
 
-    .holiday-card {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background: #f9fafb;
-      border: 1px solid #e5e7eb;
-      border-radius: 10px;
-      padding: 1rem;
-      margin-bottom: 1rem;
-      flex-wrap: wrap;
+.day {
+  font-size: 22px;
+  font-weight: 700;
+  color: #374955;
+}
 
-      .holiday-date {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        width: 60px;
-        color: #374955;
+.year {
+  font-size: 12px;
+  color: #6b7280;
+}
 
-        .month {
-          font-size: 13px;
-          color: #6b7280;
-        }
+.holiday-details {
+  flex: 1;
+  padding-left: 1rem;
+}
 
-        .day {
-          font-size: 22px;
-          font-weight: 700;
-          color: #374955;
-        }
+.name {
+  font-size: 18px;
+  font-weight: 600;
+  color: #374955;
+}
 
-        .year {
-          font-size: 12px;
-          color: #6b7280;
-        }
-      }
+.date {
+  font-size: 14px;
+  color: #6b7280;
+}
 
-      .holiday-details {
-        flex: 1;
-        padding-left: 1rem;
+.tag {
+  font-size: 16px;
+  font-weight: 500;
+  padding: 4px 12px;
+  //border-radius: 999px 150px 999px 150px;
+  border-radius: 250px;
+  text-transform: capitalize;
 
-        .name {
-          font-size: 18px;
-          font-weight: 600;
-          color: #374955;
-        }
+  &.national {
+    background: #4a90e2;
+    color: white;
+  }
 
-        .date {
-          font-size: 14px;
-          color: #6b7280;
-        }
-      }
+  &.festival {
+    background: #ffd93d;
+    color: white;
+  }
 
-      .tag {
-        font-size: 16px;
-        font-weight: 500;
-        padding: 4px 12px;
-        //border-radius: 999px 150px 999px 150px;
-        border-radius: 250px;
-        text-transform: capitalize;
+  &.birthday {
+    background: #50c878;
+    color: white;
+  }
 
-        &.national {
-          background: #4A90E2;
-          color: white;
-        }
-
-        &.festival {
-          background: #FFD93D;
-          color: white;
-        }
-
-        &.birthday {
-          background: #50C878;
-          color: white;
-        }
-
-        &.other {
-          background: #FF6B6B;
-          color: White;
-        } 
-      }
-    }
+  &.other {
+    background: #ff6b6b;
+    color: White;
   }
 }
 
@@ -114,12 +102,22 @@
   //margin-bottom: 10px;
 }
 
-// .subtitle {
-//   font-size: 16px;
-//   color: #6b7280;
-//   margin-bottom: 1.5rem;
-//   margin-top: 10px;
-// }
+.holiday-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+  position: relative;
+  background: #fff;
+  margin-bottom: 1rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: box-shadow 0.3s ease;
+}
 
 .header-title {
   display: flex;
@@ -138,4 +136,26 @@
   column-gap: 16px;
   border: none;
   font-size: 16px;
+}
+
+.delete-icon {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  background-color: #f44336;
+  color: white;
+  border-radius: 50%;
+  padding: 1px;
+  cursor: pointer;
+  display: flex;
+  display: none;
+  z-index: 1;
+}
+
+.holiday-card:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.holiday-card:hover .delete-icon {
+  display: block;
 }

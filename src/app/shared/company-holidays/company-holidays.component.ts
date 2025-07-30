@@ -16,23 +16,32 @@ export class CompanyHolidaysComponent {
   holidays: any[] = [];
   holidaysCount: number = 0;
 
-  constructor(public dialog: MatDialog, public authService: AuthService, public utilityService: UtilityService) { }
+  constructor(
+    public dialog: MatDialog,
+    public authService: AuthService,
+    public utilityService: UtilityService
+  ) {}
 
-  ngOnInit() { this.getHolidays(); }
+  ngOnInit() {
+    this.getHolidays();
+  }
 
   async getHolidays() {
     try {
-      const data: any = await this.authService.getCompanyHolidays();
+      const data = await this.authService.getCompanyHolidays();
+      console.log(data);
       this.holidays = data.map((holiday: any) => ({
         ...holiday,
       }));
       this.holidaysCount = 0;
       for (const holiday of this.holidays) {
-        if (holiday.eventType === 'Festival' || holiday.eventType === 'National') {
+        if (
+          holiday.eventType === 'Festival' ||
+          holiday.eventType === 'National'
+        ) {
           this.holidaysCount++;
         }
       }
-
     } catch (error) {
       this.utilityService.openSnackBar('Error fetching company holidays');
       console.error('Error fetching company holidays:', error);
@@ -64,5 +73,18 @@ export class CompanyHolidaysComponent {
 
   formatFullDate(date: Date): string {
     return date.toDateString();
+  }
+
+  deleteHoliday(docId: string) {
+    this.authService
+      .delectCompanyHoliday(docId)
+      .then(() => {
+        this.getHolidays();
+      })
+      .catch((error) => {
+        this.utilityService.openSnackBar('Failed to delete company holiday');
+        console.error('Error deleting company holiday:', error);
+        throw error;
+      });
   }
 }

@@ -3,7 +3,11 @@
     <div class="title">Company Holidays</div>
     <div>
       <button class="addemp" (click)="openDialog()">
-        <mat-icon aria-hidden="false" aria-label="Add Person" fontIcon="add_card"></mat-icon>
+        <mat-icon
+          aria-hidden="false"
+          aria-label="Add Person"
+          fontIcon="add_card"
+        ></mat-icon>
         Add Event
       </button>
     </div>
@@ -20,6 +24,10 @@
     </p>
 
     <div class="holiday-card" *ngFor="let holiday of holidays">
+      <div class="delete-icon" (click)="deleteHoliday(holiday.id)">
+        <mat-icon>delete</mat-icon>
+      </div>
+
       <div class="holiday-date">
         <div class="month">{{ formatMonth(holiday.date) }}</div>
         <div class="day">{{ formatDay(holiday.date) }}</div>
