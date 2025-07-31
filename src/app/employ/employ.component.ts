@@ -105,6 +105,7 @@ export class EmployComponent {
       .then((data: any) => {
         if (data) {
           this.user = data;
+          console.log('User data fetched successfully:', this.user);
         } else {
           console.log('No user data found for this email.');
         }

@@ -3,11 +3,7 @@
     <div class="emp-title">Employee Details</div>
     <div>
       <button class="addemp" (click)="openDialog()">
-        <mat-icon
-          aria-hidden="false"
-          aria-label="Add Person"
-          fontIcon="person_add"
-        ></mat-icon>
+        <mat-icon aria-hidden="false" aria-label="Add Person" fontIcon="person_add"></mat-icon>
         Add Employee
       </button>
     </div>
@@ -35,63 +31,39 @@
         <div class="card-body">
           <div class="info-item">
             <span class="icon">
-              <mat-icon
-                aria-hidden="false"
-                aria-label="company_holidays"
-                fontIcon="badge"
-              ></mat-icon>
+              <mat-icon aria-hidden="false" aria-label="company_holidays" fontIcon="badge"></mat-icon>
             </span>
             <span class="text">{{ employee.employeeId }}</span>
           </div>
 
           <div class="info-item">
             <span class="icon">
-              <mat-icon
-                aria-hidden="false"
-                aria-label="company_holidays"
-                fontIcon="group"
-              ></mat-icon>
+              <mat-icon aria-hidden="false" aria-label="company_holidays" fontIcon="group"></mat-icon>
             </span>
             <span class="text">{{ employee?.team }}</span>
           </div>
 
           <div class="info-item">
-            <span class="icon"
-              ><mat-icon
-                aria-hidden="false"
-                aria-label="company_holidays"
-                fontIcon="mail"
-              ></mat-icon>
+            <span class="icon"><mat-icon aria-hidden="false" aria-label="company_holidays" fontIcon="mail"></mat-icon>
             </span>
             <span class="text">{{ employee?.email }}</span>
           </div>
 
           <div class="info-item">
-            <span class="icon"
-              ><mat-icon
-                aria-hidden="false"
-                aria-label="company_holidays"
-                fontIcon="event"
-              ></mat-icon>
+            <span class="icon"><mat-icon aria-hidden="false" aria-label="company_holidays" fontIcon="event"></mat-icon>
             </span>
             <span class="text">{{
-              employee?.doj?.seconds * 1000 | date : "MMMM d, y"
-            }}</span>
+              employee?.doj
+              }}</span>
           </div>
         </div>
 
         <div class="card-footer">
-          <span
-            class="employee-id"
-            [ngStyle]="{ color: employee?.active ? 'red' : 'green' }"
-            (click)="toggleStatus(employee)"
-          >
+          <span class="employee-id" [ngStyle]="{ color: employee?.active ? 'red' : 'green' }"
+            (click)="toggleStatus(employee)">
             {{ employee?.active ? "Inactive" : "Active" }}
           </span>
-          <button
-            class="more-footer-btn"
-            (click)="openMoreDetailsDialog(employee?.email)"
-          >
+          <button class="more-footer-btn" (click)="openMoreDetailsDialog(employee?.email)">
             More
           </button>
         </div>

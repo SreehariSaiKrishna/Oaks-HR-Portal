@@ -31,7 +31,7 @@ export class LoginComponent {
     const userType = this.selectedTabIndex === 0 ? 'HR' : 'Employee';
     console.log(`User Type: ${userType}`, this.loginForm.value);
 
-    if (userType === 'HR' && this.loginForm.value.email !== 'sai@gmail.com') {
+    if (userType === 'HR' && this.loginForm.value.email !== 'divya@oaks.guru') {
       console.error('Role does not match');
       // Optionally, you can set a form error or show a message to the user here
       return;
@@ -51,7 +51,7 @@ export class LoginComponent {
                 : null, // optional if using Firebase
           };
           if (isPlatformBrowser(this.platformId)) {
-              localStorage.setItem('user', JSON.stringify(userData));
+            localStorage.setItem('user', JSON.stringify(userData));
           }
 
           // ✅ Navigate based on user type

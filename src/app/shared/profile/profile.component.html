@@ -30,7 +30,7 @@
         <!-- <mat-icon aria-hidden="false" aria-label="Add Person" fontIcon="calendar_month"></mat-icon> -->
         <span class="label">DOJ</span>
         <div class="designation">
-          {{ user?.doj }}
+          {{ user?.doj}}
         </div>
       </div>
       <div class="info-box">
@@ -112,7 +112,7 @@
 
       <div class="form-group">
         <label><i class="material-icons">call</i>Contact No</label>
-        <input type="text" [(ngModel)]="user.Contact" [readonly]="!isEditMode" />
+        <input type="text" [(ngModel)]="user.contactNo" [readonly]="!isEditMode" />
       </div>
 
       <div class="form-group date-picker-group">
@@ -121,8 +121,8 @@
           Date of Birth
         </label>
         <div class="date-input-wrapper">
-          <input matInput [matDatepicker]="picker" formControlName="date" [(ngModel)]="user.dateOfBirth"
-            [readonly]="!isEditMode" [disabled]="!isEditMode" placeholder="Select date" />
+          <input matInput [matDatepicker]="picker" [(ngModel)]="user.dob" [readonly]="!isEditMode"
+            [disabled]="!isEditMode" placeholder="Select date" />
           <mat-datepicker-toggle matSuffix [for]="picker" class="calendar-toggle"></mat-datepicker-toggle>
           <mat-datepicker #picker></mat-datepicker>
         </div>
@@ -133,12 +133,12 @@
         <input type="text" [(ngModel)]="user.bloodGroup" [readonly]="!isEditMode" />
       </div>
       <div class="form-group">
-        <label><i class="material-icons">topic</i>Addhaar card No</label>
-        <input type="text" [(ngModel)]="user.addhaar" [readonly]="!isEditMode" />
+        <label><i class="material-icons">topic</i>Aadhaar card No</label>
+        <input type="text" [(ngModel)]="user.aadhaarCardNo" [readonly]="!isEditMode" />
       </div>
       <div class="form-group">
         <label><i class="material-icons">topic</i>Pan card No</label>
-        <input type="text" [(ngModel)]="user.pan" [readonly]="!isEditMode" />
+        <input type="text" [(ngModel)]="user.panCardNo" [readonly]="!isEditMode" />
       </div>
       <div class="form-group">
         <label><i class="material-icons">interests</i>Hobbies</label>
