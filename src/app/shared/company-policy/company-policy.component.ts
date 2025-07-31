@@ -14,7 +14,7 @@ export class CompanyPolicyComponent {
   constructor(
     public authservice: AuthService,
     public utilityService: UtilityService
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.getDocs();
@@ -26,7 +26,7 @@ export class CompanyPolicyComponent {
         name: pdf.name,
         description: 'Company Policy Document',
         link: pdf.url,
-        size: (pdf.size / (1024 * 1024)).toFixed(1) + 'MB',
+        size: (parseInt(pdf.size, 10) / (1024 * 1024)).toFixed(2) + ' MB',
         createdDate: new Date(pdf.createdDate).toISOString().split('T')[0],
         updaedDate: new Date(pdf.updatedDate).toISOString().split('T')[0],
       }));
