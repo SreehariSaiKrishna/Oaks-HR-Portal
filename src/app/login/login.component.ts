@@ -1,7 +1,8 @@
-import { Component, signal } from '@angular/core';
+import { Component, Inject, PLATFORM_ID, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../service/auth.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +16,8 @@ export class LoginComponent {
   constructor(
     private authservice: AuthService,
     private router: Router,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    @Inject(PLATFORM_ID) private platformId: Object
   ) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -48,7 +50,9 @@ export class LoginComponent {
                 ? userCredential.user.uid
                 : null, // optional if using Firebase
           };
-          localStorage.setItem('user', JSON.stringify(userData));
+          if (isPlatformBrowser(this.platformId)) {
+              localStorage.setItem('user', JSON.stringify(userData));
+          }
 
           // ✅ Navigate based on user type
           if (userType === 'HR') {
