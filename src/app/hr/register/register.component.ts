@@ -40,7 +40,7 @@ export class RegisterComponent {
     if (this.employeeForm.valid) {
       this.authSvc
         .register(
-          this.employeeForm.value.email,
+          this.employeeForm.value.email.toLowerCase(),
           this.employeeForm.value.password
         )
         .then(() => {
@@ -59,6 +59,7 @@ export class RegisterComponent {
   saveEmployeData() {
     const employeeData = {
       ...this.employeeForm.value,
+      email: this.employeeForm.value.email.toLowerCase(),
       name:
         this.employeeForm.value.name.charAt(0).toUpperCase() +
         this.employeeForm.value.name.slice(1).toLowerCase(),
