@@ -13,11 +13,12 @@ export class ProfileComponent {
   months!: number;
   days!: number;
   isEditMode: boolean = false;
+  userBackup: any;
 
   constructor(
     public authService: AuthService,
     public utilityService: UtilityService
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.userData();
@@ -34,6 +35,7 @@ export class ProfileComponent {
       .then((data: any) => {
         if (data) {
           this.user = data;
+          this.userBackup = { ...this.user }; // Create a backup of the user data
           this.tenure();
         } else {
           this.utilityService.openSnackBar(
@@ -48,16 +50,17 @@ export class ProfileComponent {
   }
 
   toggleEdit() {
-    if (this.isEditMode) this.save();
+    if (this.isEditMode) this.saveChanges();
     this.isEditMode = !this.isEditMode;
   }
 
-  save() {
+  saveChanges() {
     this.authService
       .editEmployeDetails(this.user.email, this.user)
       .then(() => {
         this.utilityService.openSnackBar('Changes saved successfully');
         this.userData(); // Refresh user data after saving changes
+        this.isEditMode = false; // Exit edit mode after saving
       })
       .catch((error: any) => {
         console.error('Error saving changes:', error);
@@ -85,5 +88,9 @@ export class ProfileComponent {
       this.years--;
       this.months += 12;
     }
+  }
+  cancelEdit() {
+    this.user = { ...this.userBackup }; // restore data
+    this.isEditMode = false;
   }
 }

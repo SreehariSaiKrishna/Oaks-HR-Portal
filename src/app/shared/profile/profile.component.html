@@ -75,72 +75,66 @@
   <div class="work-info-card">
     <div class="work">
       Personal Information
-      <div>
-        <!-- Edit Button -->
-        <button class="edit-btn" (click)="toggleEdit()">
-          <mat-icon
-            aria-hidden="false"
-            aria-label="Edit"
-            fontIcon="edit"
-          ></mat-icon>
-          {{ isEditMode ? "Save" : "Edit" }}
+      <div class="button-group" *ngIf="isEditMode; else editButton">
+        <!-- Save Button -->
+        <button class="save-btn" (click)="saveChanges()">
+          <mat-icon fontIcon="check_circle"></mat-icon>
+          Save
+        </button>
+
+        <!-- Cancel Button -->
+        <button class="cancel-btn" (click)="cancelEdit()">
+          <mat-icon fontIcon="cancel"></mat-icon>
+          Cancel
         </button>
       </div>
+
+      <ng-template #editButton>
+        <!-- Edit Button -->
+        <button class="edit-btn" (click)="toggleEdit()">
+          <mat-icon fontIcon="edit"></mat-icon>
+          Edit
+        </button>
+      </ng-template>
     </div>
 
     <div class="form-grid" *ngIf="user">
       <div class="form-group">
-        <label
-          ><i class="material-icons">home</i>Present Address
-          <span class="required">*</span></label
-        >
-        <input
-          type="text"
-          [(ngModel)]="user.presentAddress"
-          [readonly]="!isEditMode"
-        />
+        <label><i class="material-icons">home</i>Present Address
+        </label>
+        <input type="text" [(ngModel)]="user.presentAddress" [readonly]="!isEditMode" />
       </div>
       <div class="form-group">
-        <label
-          ><i class="material-icons">house</i>Permanent Address
-          <span class="required">*</span></label
-        >
-        <input
-          type="text"
-          [(ngModel)]="user.permanentAddress"
-          [readonly]="!isEditMode"
-        />
+        <label><i class="material-icons">house</i>Permanent Address
+        </label>
+        <input type="text" [(ngModel)]="user.permanentAddress" [readonly]="!isEditMode" />
       </div>
+
       <div class="form-group">
         <label><i class="material-icons">call</i>Contact No</label>
-        <input
-          type="text"
-          [(ngModel)]="user.Contact"
-          [readonly]="!isEditMode"
-        />
+        <input type="text" [(ngModel)]="user.Contact" [readonly]="!isEditMode" />
       </div>
-      <div class="form-group">
-        <label
-          ><i class="material-icons">cake</i>Date of Birth
-          <span class="required">*</span></label
-        >
-        <input type="text" value="January 15th, 2020" readonly />
+
+      <div class="form-group date-picker-group">
+        <label>
+          <i class="material-icons">cake</i>
+          Date of Birth
+        </label>
+        <div class="date-input-wrapper">
+          <input matInput [matDatepicker]="picker" formControlName="date" [(ngModel)]="user.dateOfBirth"
+            [readonly]="!isEditMode" [disabled]="!isEditMode" placeholder="Select date" />
+          <mat-datepicker-toggle matSuffix [for]="picker" class="calendar-toggle"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </div>
       </div>
+
       <div class="form-group">
         <label><i class="material-icons">bloodtype</i>Blood Group</label>
-        <input
-          type="text"
-          [(ngModel)]="user.bloodGroup"
-          [readonly]="!isEditMode"
-        />
+        <input type="text" [(ngModel)]="user.bloodGroup" [readonly]="!isEditMode" />
       </div>
       <div class="form-group">
         <label><i class="material-icons">topic</i>Addhaar card No</label>
-        <input
-          type="text"
-          [(ngModel)]="user.addhaar"
-          [readonly]="!isEditMode"
-        />
+        <input type="text" [(ngModel)]="user.addhaar" [readonly]="!isEditMode" />
       </div>
       <div class="form-group">
         <label><i class="material-icons">topic</i>Pan card No</label>
@@ -148,22 +142,14 @@
       </div>
       <div class="form-group">
         <label><i class="material-icons">interests</i>Hobbies</label>
-        <input
-          type="text"
-          [(ngModel)]="user.hobbies"
-          [readonly]="!isEditMode"
-        />
+        <input type="text" [(ngModel)]="user.hobbies" [readonly]="!isEditMode" />
       </div>
     </div>
   </div>
 
   <div class="logout-section">
     <button class="edit-btn" (click)="logout()">
-      <mat-icon
-        aria-hidden="false"
-        aria-label="Add Person"
-        fontIcon="logout"
-      ></mat-icon>
+      <mat-icon aria-hidden="false" aria-label="Add Person" fontIcon="logout"></mat-icon>
       Logout
     </button>
   </div>

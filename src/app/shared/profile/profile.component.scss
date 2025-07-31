@@ -149,59 +149,59 @@
 
 }
 
-.work-info-card {
-  margin-top: 2rem;
-  background: #fff;
-  border-radius: 16px;
-  padding: 2rem;
-  box-shadow: 0 0 12px rgba(0, 0, 0, 0.05);
+// .work-info-card {
+//   margin-top: 2rem;
+//   background: #fff;
+//   border-radius: 16px;
+//   padding: 2rem;
+//   box-shadow: 0 0 12px rgba(0, 0, 0, 0.05);
 
-  .work {
-    margin-bottom: 30px;
-    font-size: 18px;
-    font-weight: 600;
-    color: #374955;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
+//   .work {
+//     margin-bottom: 30px;
+//     font-size: 18px;
+//     font-weight: 600;
+//     color: #374955;
+//     display: flex;
+//     justify-content: space-between;
+//     align-items: center;
+//   }
 
-  .form-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 1.2rem;
+//   .form-grid {
+//     display: grid;
+//     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+//     gap: 1.2rem;
 
-    .form-group {
-      display: flex;
-      flex-direction: column;
+//     .form-group {
+//       display: flex;
+//       flex-direction: column;
 
-      label {
-        font-size: 0.85rem;
-        margin-bottom: 0.4rem;
-        color: #6b7b8f;
+//       label {
+//         font-size: 0.85rem;
+//         margin-bottom: 0.4rem;
+//         color: #6b7b8f;
 
-        i {
-          font-size: 1rem;
-          margin-right: 4px;
-          vertical-align: middle;
-        }
+//         i {
+//           font-size: 1rem;
+//           margin-right: 4px;
+//           vertical-align: middle;
+//         }
 
-        .required {
-          color: red;
-        }
-      }
+//         .required {
+//           color: red;
+//         }
+//       }
 
-      input {
-        padding: 0.6rem;
-        border-radius: 10px;
-        border: 1px solid #cfd8dc;
-        background: #f7f9fc;
-        font-size: 0.95rem;
-        color: #374955;
-      }
-    }
-  }
-}
+//       input {
+//         padding: 0.6rem;
+//         border-radius: 10px;
+//         border: 1px solid #cfd8dc;
+//         background: #f7f9fc;
+//         font-size: 0.95rem;
+//         color: #374955;
+//       }
+//     }
+//   }
+// }
 
 @media (max-width: 768px) {
   .profile-header {
@@ -217,5 +217,204 @@
 
   .tabs {
     justify-content: flex-start;
+  }
+}
+
+.work-info-card {
+  background-color: #ffffff;
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  color: #374955;
+  margin-top: 24px;
+
+  .work {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 20px;
+
+    .edit-btn {
+      background-color: #0795c9;
+      color: #ffffff;
+      border: none;
+      padding: 6px 14px;
+      border-radius: 6px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 14px;
+      transition: background-color 0.3s;
+
+      mat-icon {
+        font-size: 18px;
+      }
+
+      &:hover {
+        background-color: #007bb0;
+      }
+    }
+  }
+
+  .form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+
+    label {
+      font-size: 14px;
+      font-weight: 500;
+      margin-bottom: 6px;
+      color: #5c6c7b;
+
+      .material-icons {
+        vertical-align: middle;
+        font-size: 18px;
+        margin-right: 4px;
+        color: #0795c9;
+      }
+
+      .required {
+        color: red;
+        margin-left: 2px;
+      }
+    }
+
+    input {
+      padding: 10px 12px;
+      border-radius: 10px;
+      background-color: #f7fafd;
+      border: 1px solid #e0e6ed;
+      font-size: 14px;
+      color: #2b3e4f;
+      transition: border-color 0.3s, background-color 0.3s;
+
+      &[readonly] {
+        background-color: #f7fafd;
+        border: 1px solid #e0e6ed;
+        color: #555;
+        cursor: default;
+      }
+
+      &:not([readonly]) {
+        background-color: #ffffff;
+        border: 1px solid #00a0f3;
+        box-shadow: 0 0 0 2px rgba(0, 160, 243, 0.1);
+      }
+    }
+  }
+}
+
+.date-picker-group {
+  .date-input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+
+    input[matInput] {
+      flex: 1;
+      padding-right: 40px; // leave space for icon
+      background-color: #f7fafd;
+      border-radius: 10px;
+      border: 1px solid #e0e6ed;
+      font-size: 14px;
+      color: #2b3e4f;
+      height: 16px;
+
+      &[readonly] {
+        background-color: #f7fafd;
+        border: 1px solid #e0e6ed;
+        color: #555;
+        cursor: default;
+      }
+
+      &:not([readonly]) {
+        background-color: #ffffff;
+        border: 1px solid #00a0f3;
+        box-shadow: 0 0 0 2px rgba(0, 160, 243, 0.1);
+      }
+    }
+
+    .calendar-toggle {
+      position: absolute;
+      right: 8px;
+      top: -4px;
+      pointer-events: auto;
+
+      button {
+        background: transparent;
+        padding: 0;
+        height: 24px;
+        width: 24px;
+      }
+    }
+  }
+
+}
+
+.work {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 20px;
+
+  .button-group {
+    display: flex;
+    gap: 10px;
+  }
+
+  .edit-btn,
+  .save-btn,
+  .cancel-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 14px;
+    padding: 6px 14px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+
+    mat-icon {
+      font-size: 18px;
+    }
+  }
+
+  .edit-btn {
+    background-color: #0795c9;
+    color: white;
+
+    &:hover {
+      background-color: #007bb0;
+    }
+  }
+
+  .save-btn {
+    background-color: #00c853; // Green
+    color: white;
+
+    &:hover {
+      background-color: #00b94c;
+    }
+  }
+
+  .cancel-btn {
+    background-color: #d32f2f; // Red
+    color: white;
+
+    &:hover {
+      background-color: #b71c1c;
+    }
   }
 }

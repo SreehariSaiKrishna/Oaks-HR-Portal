@@ -145,8 +145,7 @@
   width: 24px;
   height: 24px;
   padding: 2px;
-  background-color: #f44336;
-  color: white;
+  color: gray;
   border-radius: 50%;
   cursor: pointer;
   align-items: center;
@@ -157,8 +156,10 @@
   line-height: 24px;
   text-align: center;
 }
+
 .holiday-card {
-  position: relative; /* make sure it's relatively positioned */
+  position: relative;
+  /* make sure it's relatively positioned */
 }
 
 .holiday-card:hover {
