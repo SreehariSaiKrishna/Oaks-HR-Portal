@@ -29,15 +29,15 @@ export class HrComponent {
       link: '/hr/employees',
     },
     {
+      name: 'payslips',
+      icon: 'folder_open',
+      link: '/hr/payslips',
+    },
+    {
       name: 'Company Holidays',
       icon: 'calendar_today',
       link: '/hr/holidays',
     },
-    // {
-    //   name: 'Payslips',
-    //   icon: 'folder_open',
-    //   link: '/hr/payslips',
-    // },
     {
       name: 'Company Policy',
       icon: 'description',
@@ -59,7 +59,7 @@ export class HrComponent {
     public authService: AuthService,
     public router: Router,
     public dialog: MatDialog
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.userData();

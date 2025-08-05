@@ -23,7 +23,7 @@ export class AuthService {
     private firestore: AngularFirestore,
     private storage: Storage,
     public utilityService: UtilityService
-  ) {}
+  ) { }
 
   //login
   login(email: string, password: string) {
@@ -265,7 +265,6 @@ export class AuthService {
       return downloadURL;
     } catch (err) {
       this.utilityService.openSnackBar('Upload failed');
-      this.utilityService.openSnackBar('Upload failed');
       return null;
     }
   }
@@ -290,18 +289,23 @@ export class AuthService {
 
   async getStoredPdfs() {
     const pdfs: any[] = [];
-    const pdfsRef = ref(this.storage, 'companyDocuments');
-    const listResult = await listAll(pdfsRef);
-    for (const item of listResult.items) {
-      const url = await getDownloadURL(item);
-      const metadata = await getMetadata(item);
-      pdfs.push({
-        name: item.name,
-        url: url,
-        size: metadata.size,
-        createdDate: metadata.timeCreated,
-        updatedDate: metadata.updated,
-      });
+    try {
+      const path = 'companyDocuments';
+      const pdfsRef = ref(this.storage, path);
+      const listResult = await listAll(pdfsRef);
+      for (const item of listResult.items) {
+        const url = await getDownloadURL(item);
+        const metadata = await getMetadata(item);
+        pdfs.push({
+          name: item.name,
+          url: url,
+          size: metadata.size,
+          createdDate: metadata.timeCreated,
+          updatedDate: metadata.updated,
+        });
+      }
+    } catch (error) {
+      console.error('Error fetching PDFs:', error);
     }
     return pdfs;
   }
@@ -317,5 +321,21 @@ export class AuthService {
         console.error('Error deleting document:', error);
         this.utilityService.openSnackBar('Failed to delete document');
       });
+  }
+
+  async uploadPayslips(file: File, year: string, month: string) {
+    const employeeId = file.name.split('.')[0];
+    let empId = employeeId;
+    if (!employeeId && file && file.name) {
+      const match = file.name.match(/^(.+)\.pdf$/i);
+      if (match) {
+      empId = match[1];
+      } else {
+      this.utilityService.openSnackBar('Invalid file name format');
+      return;
+      }
+    }
+    const storageRef = ref(this.storage, `payslips/${empId}/${year}/${file.name}`);
+    await uploadBytes(storageRef, file);
   }
 }

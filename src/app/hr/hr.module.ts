@@ -19,6 +19,7 @@ import { HomeComponent } from './home/home.component';
 import { EmployeesComponent } from './employees/employees.component';
 import { MatTableModule } from '@angular/material/table';
 import { EmpMoreDetailsComponent } from './emp-more-details/emp-more-details.component';
+import { PayslipsComponent } from './payslips/payslips.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { EmpMoreDetailsComponent } from './emp-more-details/emp-more-details.com
     HomeComponent,
     EmployeesComponent,
     EmpMoreDetailsComponent,
+    PayslipsComponent,
   ],
   imports: [
     CommonModule,

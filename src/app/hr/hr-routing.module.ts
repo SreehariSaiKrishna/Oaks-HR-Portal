@@ -9,6 +9,7 @@ import { FaqsComponent } from '../shared/faqs/faqs.component';
 import { Form16Component } from '../shared/form16/form16.component';
 import { HomeComponent } from './home/home.component';
 import { EmployeesComponent } from './employees/employees.component';
+import { PayslipsComponent } from './payslips/payslips.component';
 
 const routes: Routes = [
   {
@@ -55,6 +56,11 @@ const routes: Routes = [
         component: Form16Component,
         canActivate: [authGuard],
       },
+      {
+        path: 'payslips',
+        component: PayslipsComponent,
+        canActivate: [authGuard],
+      },
     ],
   },
 ];
@@ -63,4 +69,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class HrRoutingModule {}
+export class HrRoutingModule { }
