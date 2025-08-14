@@ -1,8 +1,20 @@
 <p>payslips works!</p>
 <div>
-    <button class="addemp" (click)="triggerFileUpload()">
-        <mat-icon aria-hidden="false" aria-label="Add Person" fontIcon="add_notes"></mat-icon>
-        Add Document
-    </button>
-    <input type="file" #fileInput style="display: none" (change)="addDocument($event)" accept="application/pdf" />
+  <button class="addemp" (click)="triggerFileUpload()">
+    <mat-icon
+      aria-hidden="false"
+      aria-label="Add Person"
+      fontIcon="add_notes"
+    ></mat-icon>
+    Add Document
+  </button>
+  <input
+    type="file"
+    #fileInput
+    style="display: none"
+    (change)="addDocument($event)"
+    accept="application/pdf"
+    multiple
+    hidden
+  />
 </div>

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { AuthService } from '../service/auth.service';
@@ -58,8 +58,9 @@ export class HrComponent {
   constructor(
     public authService: AuthService,
     public router: Router,
-    public dialog: MatDialog
-  ) { }
+    public dialog: MatDialog,
+    private cd: ChangeDetectorRef
+  ) {}
 
   ngOnInit() {
     this.userData();
@@ -86,8 +87,10 @@ export class HrComponent {
   checkSidebarOnResize() {
     if (window.innerWidth < 768) {
       this.isSidebarClosed = false;
+      this.cd.detectChanges();
     } else {
       this.isSidebarClosed = true;
+      this.cd.detectChanges();
     }
   }
 
@@ -95,10 +98,12 @@ export class HrComponent {
     if (btnclick === 'sidebar' && window.innerWidth < 768) {
       console.log('Toggling sidebar', btnclick, this.isSidebarClosed);
       this.isSidebarClosed = false;
+      this.cd.detectChanges();
       return;
     } else if (btnclick === 'menu') {
       console.log('Toggling sidebar', this.isSidebarClosed);
       this.isSidebarClosed = !this.isSidebarClosed;
+      this.cd.detectChanges();
     }
   }
 

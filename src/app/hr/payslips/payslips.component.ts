@@ -5,7 +5,7 @@ import { UtilityService } from '../../service/utility.service';
 @Component({
   selector: 'app-payslips',
   templateUrl: './payslips.component.html',
-  styleUrl: './payslips.component.scss'
+  styleUrl: './payslips.component.scss',
 })
 export class PayslipsComponent {
   @ViewChild('fileInput') fileInput!: ElementRef;
@@ -15,65 +15,71 @@ export class PayslipsComponent {
 
   constructor(
     public authservice: AuthService,
-    public utilityService: UtilityService,
-  ) { }
+    public utilityService: UtilityService
+  ) {}
 
   ngOnInit() {
-    // this.getDocs();
+    this.getDocs();
   }
 
-  // getDocs() {
-  //   this.authservice.getStoredPdfs().then((pdfs) => {
-  //     this.docum = pdfs.map((pdf) => ({
-  //       name: pdf.name,
-  //       description: 'Company Policy Document',
-  //       link: pdf.url,
-  //       size: (parseInt(pdf.size, 10) / (1024 * 1024)).toFixed(2) + ' MB',
-  //       createdDate: new Date(pdf.createdDate).toISOString().split('T')[0],
-  //       updaedDate: new Date(pdf.updatedDate).toISOString().split('T')[0],
-  //     }));
-  //   });
-  // }
+  getDocs() {
+    this.authservice.getPaySlipsPdfs().then((pdfs) => {
+      this.docum = pdfs.map((pdf) => ({
+        name: pdf.name,
+        description: 'Payslips for ' + this.getpdfName(pdf.name),
+        link: pdf.url,
+        size: (parseInt(pdf.size, 10) / (1024 * 1024)).toFixed(2) + ' MB',
+        createdDate: new Date(pdf.createdDate).toISOString().split('T')[0],
+        updaedDate: new Date(pdf.updatedDate).toISOString().split('T')[0],
+      }));
+    });
+  }
 
   triggerFileUpload() {
     this.fileInput.nativeElement.click();
   }
 
   addDocument(event: Event) {
-    const file = (event.target as HTMLInputElement).files?.[0];
-    if (!file) return;
+    const files = (event.target as HTMLInputElement).files;
+    if (!files || files.length === 0) return;
 
     const MAX_SIZE_MB = 1;
     const maxSize = MAX_SIZE_MB * 1024 * 1024;
 
-    if (file.type !== 'application/pdf') {
-      this.utilityService.openSnackBar('Only PDF files are allowed.');
-      return;
-    }
+    const validFiles: File[] = [];
 
-    if (file.size > maxSize) {
-      this.utilityService.openSnackBar(
-        `File size should be less than ${MAX_SIZE_MB}MB`
-      );
-      return;
-    }
-    this.uploadPdf(file);
-  }
+    for (let i = 0; i < files.length; i++) {
+      const file = files[i];
 
-  async uploadPdf(selectedFile: File) {
-    if (selectedFile) {
-      try {
-        await this.authservice.uploadPayslips(
-          selectedFile,
-          this.year,
-          this.month
-        );
-        this.utilityService.openSnackBar('Uploaded PDF URL');
-        this.docum = []; // Clear the document list
-        // this.getDocs(); // Refresh the document list after upload
-      } catch (error) {
-        this.utilityService.openSnackBar('Upload failed');
+      if (file.type !== 'application/pdf') {
+        this.utilityService.openSnackBar(`"${file.name}" is not a PDF file.`);
+        continue;
       }
+
+      if (file.size > maxSize) {
+        this.utilityService.openSnackBar(
+          `"${file.name}" size should be less than ${MAX_SIZE_MB}MB`
+        );
+        continue;
+      }
+
+      validFiles.push(file);
+    }
+
+    if (validFiles.length > 0) {
+      this.uploadPdfs(validFiles);
+    }
+  }
+  async uploadPdfs(files: File[]) {
+    try {
+      for (const file of files) {
+        await this.authservice.uploadPayslips(file, this.year, this.month);
+      }
+      this.utilityService.openSnackBar('All valid PDFs uploaded successfully');
+      this.docum = [];
+      this.getDocs(); // Refresh list after upload
+    } catch (error) {
+      this.utilityService.openSnackBar('Some uploads failed');
     }
   }
 
@@ -115,5 +121,4 @@ export class PayslipsComponent {
         this.utilityService.openSnackBar('Failed to delete document');
       });
   }
-
 }

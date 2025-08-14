@@ -338,4 +338,28 @@ export class AuthService {
     const storageRef = ref(this.storage, `payslips/${empId}/${year}/${file.name}`);
     await uploadBytes(storageRef, file);
   }
+
+  async getPaySlipsPdfs() {
+    const pdfs: any[] = [];
+    try {
+      const path = 'payslips';
+      const pdfsRef = ref(this.storage, path);
+      const listResult = await listAll(pdfsRef);
+      for (const item of listResult.items) {
+        const url = await getDownloadURL(item);
+        const metadata = await getMetadata(item);
+        console.log('PDF Metadata:', metadata);
+        pdfs.push({
+          name: item.name,
+          url: url,
+          size: metadata.size,
+          createdDate: metadata.timeCreated,
+          updatedDate: metadata.updated,
+        });
+      }
+    } catch (error) {
+      console.error('Error fetching PDFs:', error);
+    }
+    return pdfs;
+  }
 }
