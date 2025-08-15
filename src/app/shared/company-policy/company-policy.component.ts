@@ -1,6 +1,7 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { AuthService } from '../../service/auth.service';
 import { UtilityService } from '../../service/utility.service';
+import { DocService } from '../../service/doc.service';
 
 @Component({
   selector: 'app-company-policy',
@@ -13,15 +14,16 @@ export class CompanyPolicyComponent {
 
   constructor(
     public authservice: AuthService,
+    public docservice: DocService,
     public utilityService: UtilityService
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.getDocs();
   }
 
   getDocs() {
-    this.authservice.getStoredPdfs().then((pdfs) => {
+    this.docservice.getPolicyPdfs().then((pdfs) => {
       this.docum = pdfs.map((pdf) => ({
         name: pdf.name,
         description: 'Company Policy Document',
@@ -55,13 +57,13 @@ export class CompanyPolicyComponent {
       );
       return;
     }
-    this.uploadPdf(file);
+    this.uploadComPolicyPdf(file);
   }
 
-  async uploadPdf(selectedFile: File) {
+  async uploadComPolicyPdf(selectedFile: File) {
     if (selectedFile) {
       try {
-        await this.authservice.uploadPdf(
+        await this.docservice.uploadComPolicyPdf(
           selectedFile,
           `companyDocuments/${selectedFile.name}`
         );
@@ -100,7 +102,7 @@ export class CompanyPolicyComponent {
   }
 
   delectDoc(fileName: string) {
-    this.authservice
+    this.docservice
       .delectPolicyDocument(fileName)
       .then(() => {
         this.utilityService.openSnackBar('Document deleted successfully');

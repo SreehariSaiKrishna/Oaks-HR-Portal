@@ -2,15 +2,6 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Router } from '@angular/router';
-import {
-  Storage,
-  ref,
-  uploadBytes,
-  getDownloadURL,
-  listAll,
-  getMetadata,
-  deleteObject,
-} from '@angular/fire/storage';
 import { UtilityService } from './utility.service';
 
 @Injectable({
@@ -21,9 +12,8 @@ export class AuthService {
     private fireauth: AngularFireAuth,
     private router: Router,
     private firestore: AngularFirestore,
-    private storage: Storage,
     public utilityService: UtilityService
-  ) { }
+  ) {}
 
   //login
   login(email: string, password: string) {
@@ -253,113 +243,5 @@ export class AuthService {
         console.error('Error deleting company holiday:', error);
         throw error;
       });
-  }
-
-  async uploadPdf(file: File, path: string) {
-    try {
-      this.checkIfPdfNameExists(file);
-      // Check if the file already exists in the storage
-      const fileRef = ref(this.storage, path);
-      const snapshot = await uploadBytes(fileRef, file);
-      const downloadURL = await getDownloadURL(snapshot.ref);
-      return downloadURL;
-    } catch (err) {
-      this.utilityService.openSnackBar('Upload failed');
-      return null;
-    }
-  }
-
-  async checkIfPdfNameExists(file: File) {
-    try {
-      const listResult = await listAll(ref(this.storage, 'companyDocuments'));
-      const duplicate = listResult.items.find(
-        (item) => item.name === file.name
-      );
-      if (duplicate) {
-        this.utilityService.openSnackBar(
-          `Duplicate file name found: ${file.name}`
-        );
-      }
-    } catch (err) {
-      this.utilityService.openSnackBar(
-        `Error checking for duplicates: ${file.name}`
-      );
-    }
-  }
-
-  async getStoredPdfs() {
-    const pdfs: any[] = [];
-    try {
-      const path = 'companyDocuments';
-      const pdfsRef = ref(this.storage, path);
-      const listResult = await listAll(pdfsRef);
-      for (const item of listResult.items) {
-        const url = await getDownloadURL(item);
-        const metadata = await getMetadata(item);
-        pdfs.push({
-          name: item.name,
-          url: url,
-          size: metadata.size,
-          createdDate: metadata.timeCreated,
-          updatedDate: metadata.updated,
-        });
-      }
-    } catch (error) {
-      console.error('Error fetching PDFs:', error);
-    }
-    return pdfs;
-  }
-
-  delectPolicyDocument(fileName: string) {
-    const filePath = `companyDocuments/${fileName}`;
-    const fileRef = ref(this.storage, filePath);
-    return deleteObject(fileRef)
-      .then(() => {
-        this.utilityService.openSnackBar('Document deleted successfully');
-      })
-      .catch((error) => {
-        console.error('Error deleting document:', error);
-        this.utilityService.openSnackBar('Failed to delete document');
-      });
-  }
-
-  async uploadPayslips(file: File, year: string, month: string) {
-    const employeeId = file.name.split('.')[0];
-    let empId = employeeId;
-    if (!employeeId && file && file.name) {
-      const match = file.name.match(/^(.+)\.pdf$/i);
-      if (match) {
-      empId = match[1];
-      } else {
-      this.utilityService.openSnackBar('Invalid file name format');
-      return;
-      }
-    }
-    const storageRef = ref(this.storage, `payslips/${empId}/${year}/${file.name}`);
-    await uploadBytes(storageRef, file);
-  }
-
-  async getPaySlipsPdfs() {
-    const pdfs: any[] = [];
-    try {
-      const path = 'payslips';
-      const pdfsRef = ref(this.storage, path);
-      const listResult = await listAll(pdfsRef);
-      for (const item of listResult.items) {
-        const url = await getDownloadURL(item);
-        const metadata = await getMetadata(item);
-        console.log('PDF Metadata:', metadata);
-        pdfs.push({
-          name: item.name,
-          url: url,
-          size: metadata.size,
-          createdDate: metadata.timeCreated,
-          updatedDate: metadata.updated,
-        });
-      }
-    } catch (error) {
-      console.error('Error fetching PDFs:', error);
-    }
-    return pdfs;
   }
 }

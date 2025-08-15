@@ -1,4 +1,7 @@
-<p>payslips works!</p>
+<div class="date-buttons">
+  <!-- Year Button -->
+  <input type="number" [(ngModel)]="year" class="btn" />
+</div>
 <div>
   <button class="addemp" (click)="triggerFileUpload()">
     <mat-icon
@@ -17,4 +20,9 @@
     multiple
     hidden
   />
+</div>
+<!-- filter div -->
+<div>
+  <input type="number" [(ngModel)]="filterYear" class="btn" />
+  <input type="text" [(ngModel)]="filterMonth" class="btn" />
 </div>

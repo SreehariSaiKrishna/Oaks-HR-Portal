@@ -1,6 +1,7 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { AuthService } from '../../service/auth.service';
 import { UtilityService } from '../../service/utility.service';
+import { DocService } from '../../service/doc.service';
 
 @Component({
   selector: 'app-payslips',
@@ -10,11 +11,13 @@ import { UtilityService } from '../../service/utility.service';
 export class PayslipsComponent {
   @ViewChild('fileInput') fileInput!: ElementRef;
   docum: any[] = [];
-  month: string = 'january';
-  year: string = '2025';
+  year: number = new Date().getFullYear();
+  filterYear: number = this.year;
+  filterMonth: string = '';
 
   constructor(
     public authservice: AuthService,
+    public docservice: DocService,
     public utilityService: UtilityService
   ) {}
 
@@ -23,7 +26,7 @@ export class PayslipsComponent {
   }
 
   getDocs() {
-    this.authservice.getPaySlipsPdfs().then((pdfs) => {
+    this.docservice.getPaySlipsPdfs().then((pdfs) => {
       this.docum = pdfs.map((pdf) => ({
         name: pdf.name,
         description: 'Payslips for ' + this.getpdfName(pdf.name),
@@ -33,6 +36,7 @@ export class PayslipsComponent {
         updaedDate: new Date(pdf.updatedDate).toISOString().split('T')[0],
       }));
     });
+    console.log('Documents:', this.docum);
   }
 
   triggerFileUpload() {
@@ -70,16 +74,18 @@ export class PayslipsComponent {
       this.uploadPdfs(validFiles);
     }
   }
+  
   async uploadPdfs(files: File[]) {
     try {
       for (const file of files) {
-        await this.authservice.uploadPayslips(file, this.year, this.month);
+        await this.docservice.uploadPayslips(file, this.year);
       }
+
       this.utilityService.openSnackBar('All valid PDFs uploaded successfully');
       this.docum = [];
       this.getDocs(); // Refresh list after upload
     } catch (error) {
-      this.utilityService.openSnackBar('Some uploads failed');
+      this.utilityService.openSnackBar('uploads failed');
     }
   }
 
@@ -109,7 +115,7 @@ export class PayslipsComponent {
   }
 
   delectDoc(fileName: string) {
-    this.authservice
+    this.docservice
       .delectPolicyDocument(fileName)
       .then(() => {
         this.utilityService.openSnackBar('Document deleted successfully');
