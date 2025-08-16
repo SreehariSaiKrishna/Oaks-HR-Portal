@@ -14,12 +14,13 @@ export class PayslipsComponent {
   year: number = new Date().getFullYear();
   filterYear: number = this.year;
   filterMonth: string = '';
+  filterEmpId: string = '';
 
   constructor(
     public authservice: AuthService,
     public docservice: DocService,
     public utilityService: UtilityService
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.getDocs();
@@ -74,7 +75,7 @@ export class PayslipsComponent {
       this.uploadPdfs(validFiles);
     }
   }
-  
+
   async uploadPdfs(files: File[]) {
     try {
       for (const file of files) {
@@ -126,5 +127,15 @@ export class PayslipsComponent {
         console.error('Error deleting document:', error);
         this.utilityService.openSnackBar('Failed to delete document');
       });
+  }
+
+  async getpayslipYear() {
+    const a = await this.docservice.getPayslipsByYearAndMonth(this.filterYear, this.filterMonth);
+    console.log('Payslips for year:', a);
+  }
+
+  async getpayslipEmpId() {
+    const a = await this.docservice.getPayslipsByEmployeeId(this.filterEmpId);
+    console.log('Payslips for employee ID:', a);
   }
 }
