@@ -1,0 +1,249 @@
+.payslips-container {
+    padding: 24px;
+    font-family: "Segoe UI", sans-serif;
+    color: #333;
+
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 24px;
+
+        .title-section {
+            h1 {
+                margin: 0;
+                font-size: 28px;
+                font-weight: bold;
+            }
+
+            p {
+                margin: 4px 0 0;
+                color: #6c757d;
+            }
+        }
+
+        .add-doc {
+            background-color: #4ea8ff;
+            color: white;
+
+            mat-icon {
+                margin-right: 6px;
+            }
+        }
+    }
+
+    .card-section {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+
+        .card {
+            padding: 20px;
+            border-radius: 12px;
+            background: #fff;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+            display: flex;
+            flex-direction: column;
+
+            .card-title {
+                display: flex;
+                align-items: center;
+                font-weight: 600;
+                font-size: 16px;
+                margin-bottom: 16px;
+                color: #212529;
+
+                mat-icon {
+                    margin-right: 8px;
+                    color: #007bff;
+                }
+            }
+
+            .form-group {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 16px;
+                align-items: center;
+
+                .full-width {
+                    flex: 1 1 100%;
+                }
+
+                mat-form-field {
+                    min-width: 180px;
+                    flex: 1;
+                }
+
+                button {
+                    display: flex;
+                    align-items: center;
+
+                    mat-icon {
+                        margin-right: 4px;
+                    }
+                }
+            }
+        }
+
+        .period-card {
+            border-left: 4px solid #007bff;
+        }
+
+        .employee-card {
+            border-left: 4px solid #28a745;
+
+            button {
+                background-color: #28a745;
+                color: #fff;
+            }
+        }
+    }
+}
+
+// Responsive
+@media screen and (max-width: 768px) {
+    .payslips-container {
+        .header {
+            flex-direction: column;
+            align-items: flex-start;
+
+            .add-doc {
+                margin-top: 12px;
+                width: 100%;
+            }
+        }
+
+        .card-section {
+            .card {
+                .form-group {
+                    flex-direction: column;
+                    align-items: stretch;
+
+                    mat-form-field,
+                    button {
+                        width: 100%;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.policy-panel {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+}
+
+.policy-panel {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+    margin: 24px;
+}
+
+// Responsive
+.policy-header {
+    display: flex;
+    align-items: center;
+    font-size: 20px;
+    font-weight: Bold;
+    color: #374955;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.policy-subtitle {
+    font-size: 16px;
+    color: #6b7280;
+    margin-bottom: 1.5rem;
+}
+
+input {
+    flex: 1 1 auto;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    color: #333;
+    transition: border-color 0.3s ease;
+
+    &:focus {
+        outline: none;
+        border-color: #0084ff;
+        box-shadow: 0 0 5px #0084ff44;
+    }
+}
+
+.policy-card {
+    background: #eef0f4;
+    border-radius: 12px;
+    padding: 1rem;
+    box-shadow: 0 0 12px #00000011;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: box-shadow 0.3s ease;
+    gap: 5px;
+    width: 240px;
+    height: 140px;
+
+    &:hover {
+        box-shadow: 0 0 15px #0084ff55;
+    }
+}
+
+.policy-grid {
+    column-gap: 24px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: center;
+    row-gap: 24px;
+}
+
+.actions {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: flex-end;
+
+    button {
+        background: linear-gradient(to right, #1b84da, #00a0f3);
+        border: none;
+        color: white;
+        padding: 5px 9px;
+        border-radius: 6px;
+        cursor: pointer;
+        justify-content: center;
+        transition: background-color 0.3s ease;
+        width: 40px;
+        height: 36px;
+
+        &:hover {
+            background: #096ad7;
+        }
+
+        &:focus {
+            outline: 2px solid #005ec9;
+            outline-offset: 2px;
+        }
+    }
+}
+
+.cp-title {
+    font-size: 16px;
+    color: #374955;
+    font-weight: 600;
+}
+
+.size {
+    font-size: 13px;
+    color: #6b7280;
+}
+
+.updated {
+    font-size: 13px;
+    color: #6b7280;
+}

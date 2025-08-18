@@ -12,9 +12,11 @@ export class PayslipsComponent {
   @ViewChild('fileInput') fileInput!: ElementRef;
   docum: any[] = [];
   year: number = new Date().getFullYear();
-  filterYear: number = this.year;
-  filterMonth: string = '';
-  filterEmpId: string = '';
+  selectedYear: number = this.year;
+  selectedMonth: string = '';
+  employeeSearch: string = '';
+  years = [2026, 2025, 2024, 2023, 2022];
+  months = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'];
 
   constructor(
     public authservice: AuthService,
@@ -129,13 +131,13 @@ export class PayslipsComponent {
       });
   }
 
-  async getpayslipYear() {
-    const a = await this.docservice.getPayslipsByYearAndMonth(this.filterYear, this.filterMonth);
-    console.log('Payslips for year:', a);
+  async getPayslipsByPeriod() {
+    this.docum = await this.docservice.getPayslipsByYearAndMonth(this.selectedYear, this.selectedMonth);
+    console.log('Payslips for year:', this.selectedYear, 'and month:', this.selectedMonth, this.docum);
   }
 
-  async getpayslipEmpId() {
-    const a = await this.docservice.getPayslipsByEmployeeId(this.filterEmpId);
-    console.log('Payslips for employee ID:', a);
+  async getEmployeePayslips() {
+    this.docum = await this.docservice.getPayslipsByEmployeeId(this.employeeSearch);
+    console.log('Payslips for employee ID:', this.docum);
   }
 }
