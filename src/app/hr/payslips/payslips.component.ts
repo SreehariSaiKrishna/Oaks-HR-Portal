@@ -16,27 +16,37 @@ export class PayslipsComponent {
   selectedMonth: string = '';
   employeeSearch: string = '';
   years = [2026, 2025, 2024, 2023, 2022];
-  months = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'];
+  months = [
+    '01',
+    '02',
+    '03',
+    '04',
+    '05',
+    '06',
+    '07',
+    '08',
+    '09',
+    '10',
+    '11',
+    '12',
+  ];
 
   constructor(
     public authservice: AuthService,
     public docservice: DocService,
     public utilityService: UtilityService
-  ) { }
-
-  ngOnInit() {
-    this.getDocs();
-  }
+  ) {}
 
   getDocs() {
     this.docservice.getPaySlipsPdfs().then((pdfs) => {
       this.docum = pdfs.map((pdf) => ({
-        name: pdf.name,
-        description: 'Payslips for ' + this.getpdfName(pdf.name),
-        link: pdf.url,
+        fileName: pdf.name,
+        description: 'Payslips for ' + pdf.name,
+        url: pdf.url,
+        year: pdf.year,
         size: (parseInt(pdf.size, 10) / (1024 * 1024)).toFixed(2) + ' MB',
         createdDate: new Date(pdf.createdDate).toISOString().split('T')[0],
-        updaedDate: new Date(pdf.updatedDate).toISOString().split('T')[0],
+        updatedDate: new Date(pdf.updatedDate).toISOString().split('T')[0],
       }));
     });
     console.log('Documents:', this.docum);
@@ -85,15 +95,12 @@ export class PayslipsComponent {
       }
 
       this.utilityService.openSnackBar('All valid PDFs uploaded successfully');
-      this.docum = [];
-      this.getDocs(); // Refresh list after upload
     } catch (error) {
       this.utilityService.openSnackBar('uploads failed');
     }
   }
 
   viewDocument(filePath: string) {
-    // Open the PDF in a new tab
     const newTab = window.open(filePath, '_blank');
     if (!newTab) {
       this.utilityService.openSnackBar(
@@ -102,28 +109,12 @@ export class PayslipsComponent {
     }
   }
 
-  downloadDocument(filePath: string) {
-    const link = document.createElement('a');
-    link.href = filePath;
-    link.download = filePath.split('/').pop() || 'document.pdf';
-    link.target = '_blank';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-    // this.utilityService.openSnackBar('Download started... ');
-  }
-
-  getpdfName(fileName: string) {
-    return fileName.endsWith('.pdf') ? fileName.replace('.pdf', '') : fileName;
-  }
-
-  delectDoc(fileName: string) {
+  delectDoc(employeeId: string, year: number, fileName: string) {
     this.docservice
-      .delectPolicyDocument(fileName)
+      .deletePayslip(employeeId, year, fileName)
       .then(() => {
         this.utilityService.openSnackBar('Document deleted successfully');
-        this.docum = []; // Clear the document list
-        // this.getDocs(); // Refresh the document list after deletion
+        this.docum = this.docum.filter((doc) => doc.fileName !== fileName);
       })
       .catch((error) => {
         console.error('Error deleting document:', error);
@@ -132,12 +123,25 @@ export class PayslipsComponent {
   }
 
   async getPayslipsByPeriod() {
-    this.docum = await this.docservice.getPayslipsByYearAndMonth(this.selectedYear, this.selectedMonth);
-    console.log('Payslips for year:', this.selectedYear, 'and month:', this.selectedMonth, this.docum);
+    this.docum = [];
+    this.docum = await this.docservice.getPayslipsByYearAndMonth(
+      this.selectedYear,
+      this.selectedMonth
+    );
+    console.log(
+      'Payslips for year:',
+      this.selectedYear,
+      'and month:',
+      this.selectedMonth,
+      this.docum
+    );
   }
 
   async getEmployeePayslips() {
-    this.docum = await this.docservice.getPayslipsByEmployeeId(this.employeeSearch);
+    this.docum = [];
+    this.docum = await this.docservice.getPayslipsByEmployeeId(
+      this.employeeSearch
+    );
     console.log('Payslips for employee ID:', this.docum);
   }
 }

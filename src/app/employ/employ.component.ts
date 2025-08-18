@@ -28,11 +28,11 @@ export class EmployComponent {
       icon: 'calendar_today',
       link: '/employ/holidays',
     },
-    // {
-    //   name: 'Payslips',
-    //   icon: 'folder_open',
-    //   link: '/employ/payslips',
-    // },
+    {
+      name: 'Payslips',
+      icon: 'folder_open',
+      link: '/employ/payslips',
+    },
     {
       name: 'Company Policy',
       icon: 'description',

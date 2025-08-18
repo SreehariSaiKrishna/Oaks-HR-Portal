@@ -211,11 +211,10 @@ export class DocService {
           const url = await getDownloadURL(itemRef);
           const metadata = await getMetadata(itemRef);
           return {
-            name: itemRef.name,
-            url: url,
-            size: metadata.size,
-            createdDate: metadata.timeCreated,
-            updatedDate: metadata.updated,
+            year: year,
+            employeeId,
+            fileName: itemRef.name,
+            url,
           };
         })
       );
@@ -238,6 +237,7 @@ export class DocService {
       // Step 1: Get all employee folders
       const employeesList = await listAll(rootRef);
       const allPayslips: {
+        year: number;
         employeeId: string;
         fileName: string;
         url: string;
@@ -260,6 +260,7 @@ export class DocService {
             if (item.name.endsWith(`-${month}.pdf`)) {
               const url = await getDownloadURL(item);
               allPayslips.push({
+                year: year,
                 employeeId,
                 fileName: item.name,
                 url,
@@ -286,7 +287,12 @@ export class DocService {
 
       // Step 1: Get all year folders for that employee
       const yearsList = await listAll(empRootRef);
-      const allPayslips: { year: string; fileName: string; url: string }[] = [];
+      const allPayslips: {
+        year: string;
+        fileName: string;
+        url: string;
+        employeeId: string;
+      }[] = [];
 
       for (const yearFolder of yearsList.prefixes) {
         const year = yearFolder.name; // folder name is year
@@ -304,6 +310,7 @@ export class DocService {
             year,
             fileName: fileRef.name,
             url,
+            employeeId: employeeId,
           });
         }
       }
@@ -313,6 +320,21 @@ export class DocService {
       console.error(`Error fetching payslips for employee ${employeeId}:`, err);
       this.utilityService.openSnackBar('Error fetching payslips');
       return [];
+    }
+  }
+
+  async deletePayslip(employeeId: string, year: number, fileName: string) {
+    try {
+      const fileRef = ref(
+        this.storage,
+        `payslips/${employeeId}/${year}/${fileName}`
+      );
+      await deleteObject(fileRef);
+      this.utilityService.openSnackBar('Payslip deleted successfully');
+    } catch (err) {
+      this.utilityService.openSnackBar('Failed to delete payslip');
+      console.error('Error deleting payslip:', err);
+      throw err;
     }
   }
 }

@@ -11,9 +11,11 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { SharedModule } from '../shared/shared.module';
 import { HomeComponent } from './home/home.component';
+import { EmpPayslipsComponent } from './payslips/emp-payslips/emp-payslips.component';
+import { MatOption } from "@angular/material/core";
 
 @NgModule({
-  declarations: [EmployComponent, HomeComponent],
+  declarations: [EmployComponent, HomeComponent, EmpPayslipsComponent],
   imports: [
     CommonModule,
     EmployRoutingModule,
@@ -25,6 +27,7 @@ import { HomeComponent } from './home/home.component';
     MatButtonModule,
     MatIconModule,
     SharedModule,
-  ],
+    MatOption
+],
 })
-export class EmployModule { }
+export class EmployModule {}

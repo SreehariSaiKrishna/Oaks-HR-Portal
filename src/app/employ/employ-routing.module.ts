@@ -8,6 +8,7 @@ import { FaqsComponent } from '../shared/faqs/faqs.component';
 import { CompanyPolicyComponent } from '../shared/company-policy/company-policy.component';
 import { CompanyHolidaysComponent } from '../shared/company-holidays/company-holidays.component';
 import { HomeComponent } from './home/home.component';
+import { EmpPayslipsComponent } from './payslips/emp-payslips/emp-payslips.component';
 
 const routes: Routes = [
   {
@@ -47,6 +48,11 @@ const routes: Routes = [
       {
         path: 'form16',
         component: Form16Component,
+        canActivate: [authGuard],
+      },
+      {
+        path: 'payslips',
+        component: EmpPayslipsComponent,
         canActivate: [authGuard],
       },
     ],
