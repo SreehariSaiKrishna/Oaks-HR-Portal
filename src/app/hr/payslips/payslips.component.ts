@@ -35,7 +35,7 @@ export class PayslipsComponent {
     public authservice: AuthService,
     public docservice: DocService,
     public utilityService: UtilityService
-  ) {}
+  ) { }
 
   getDocs() {
     this.docservice.getPaySlipsPdfs().then((pdfs) => {
@@ -144,4 +144,25 @@ export class PayslipsComponent {
     );
     console.log('Payslips for employee ID:', this.docum);
   }
+
+  getMonth(fileName: string): string {
+    const monthMap: { [key: string]: string } = {
+      '01': 'January',
+      '02': 'February',
+      '03': 'March',
+      '04': 'April',
+      '05': 'May',
+      '06': 'June',
+      '07': 'July',
+      '08': 'August',
+      '09': 'September',
+      '10': 'October',
+      '11': 'November',
+      '12': 'December',
+    };
+
+    const monthCode = fileName.split('-')[1]?.replace('.pdf', '') || '';
+    return monthMap[monthCode] || 'Unknown';
+  }
+
 }

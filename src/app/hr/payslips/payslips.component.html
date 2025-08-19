@@ -5,15 +5,12 @@
       <h1>Payslips</h1>
       <p>Manage and view employee payslips</p>
     </div>
-    <button
-      mat-raised-button
-      color="primary"
-      class="add-doc"
-      (click)="triggerFileUpload()"
-    >
+    <button mat-raised-button color="primary" class="add-doc" (click)="triggerFileUpload()">
       <mat-icon>description</mat-icon>
       Add Document
     </button>
+    <input type="file" #fileInput style="display: none" (change)="addDocument($event)" accept="application/pdf" multiple
+      hidden />
   </div>
 
   <div class="card-section">
@@ -28,7 +25,7 @@
           <mat-select [(ngModel)]="selectedYear">
             <mat-option *ngFor="let year of years" [value]="year">{{
               year
-            }}</mat-option>
+              }}</mat-option>
           </mat-select>
         </mat-form-field>
 
@@ -37,14 +34,10 @@
           <mat-select [(ngModel)]="selectedMonth">
             <mat-option *ngFor="let month of months" [value]="month">{{
               month
-            }}</mat-option>
+              }}</mat-option>
           </mat-select>
         </mat-form-field>
-        <button
-          mat-raised-button
-          color="primary"
-          (click)="getPayslipsByPeriod()"
-        >
+        <button mat-raised-button color="primary" (click)="getPayslipsByPeriod()">
           <mat-icon>cloud_download</mat-icon>
           Get Payslips
         </button>
@@ -59,18 +52,10 @@
       <div class="form-group">
         <mat-form-field appearance="fill" class="full-width">
           <mat-label>Employee ID or Name</mat-label>
-          <input
-            matInput
-            [(ngModel)]="employeeSearch"
-            placeholder="Enter employee ID or search by name"
-          />
+          <input matInput [(ngModel)]="employeeSearch" placeholder="Enter employee ID or search by name" />
         </mat-form-field>
 
-        <button
-          mat-raised-button
-          color="accent"
-          (click)="getEmployeePayslips()"
-        >
+        <button mat-raised-button color="accent" (click)="getEmployeePayslips()">
           <mat-icon>search</mat-icon>
           Get Employee Payslips
         </button>
@@ -89,25 +74,17 @@
 
   <div class="policy-grid">
     <div class="policy-card hr" *ngFor="let doc of docum">
-      <div class="cp-title">employeeId: {{ doc.employeeId }}</div>
-      <!-- <div class="size">File Size: {{ doc.size }}</div> -->
-      <div class="updated">File Name: {{ doc.fileName }}</div>
+      <div class="cp-title">{{ doc.employeeId }}</div>
+      <div class="updated">Month: {{ getMonth(doc.fileName) }}</div>
+      <div class="size">Year: {{ doc.year }}</div>
       <div class="actions">
         <button aria-label="View Joining Policy">
-          <mat-icon
-            aria-hidden="false"
-            aria-label="Add Person"
-            fontIcon="visibility"
-            (click)="viewDocument(doc.url)"
-          ></mat-icon>
+          <mat-icon aria-hidden="false" aria-label="Add Person" fontIcon="visibility"
+            (click)="viewDocument(doc.url)"></mat-icon>
         </button>
         <button aria-label="Download Joining Policy">
-          <mat-icon
-            aria-hidden="false"
-            aria-label="Add Person"
-            fontIcon="delete"
-            (click)="delectDoc(doc.employeeId, doc.year, doc.fileName)"
-          ></mat-icon>
+          <mat-icon aria-hidden="false" aria-label="Add Person" fontIcon="delete"
+            (click)="delectDoc(doc.employeeId, doc.year, doc.fileName)"></mat-icon>
         </button>
       </div>
     </div>
