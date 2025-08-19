@@ -13,7 +13,7 @@ export class AuthService {
     private router: Router,
     private firestore: AngularFirestore,
     public utilityService: UtilityService
-  ) {}
+  ) { }
 
   //login
   login(email: string, password: string) {
@@ -125,6 +125,27 @@ export class AuthService {
       .catch((error) => {
         this.utilityService.openSnackBar('Error fetching employee data');
         console.error('Error fetching employee data:', error);
+        throw error;
+      });
+  }
+
+  getAllHrIds() {
+    return this.firestore
+      .collection('hrIds')
+      .get()
+      .toPromise()
+      .then((querySnapshot) => {
+        const employees: any[] = [];
+        if (querySnapshot) {
+          querySnapshot.forEach((doc) => {
+            employees.push({ id: doc.id, ...(doc.data() as object) });
+          });
+        }
+        return employees;
+      })
+      .catch((error) => {
+        this.utilityService.openSnackBar('Error fetching HR IDs');
+        console.error('Error fetching HR IDs:', error);
         throw error;
       });
   }

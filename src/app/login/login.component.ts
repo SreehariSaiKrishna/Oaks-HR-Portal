@@ -14,6 +14,7 @@ export class LoginComponent {
   loginForm: FormGroup;
   selectedTabIndex = 0;
   hide = signal(true);
+  hrids: any[] = [];
   constructor(
     private authservice: AuthService,
     private router: Router,
@@ -28,13 +29,24 @@ export class LoginComponent {
   }
   selectedTab = 0;
 
+  async ngOnInit() {
+    this.hrids = await this.authservice.getAllHrIds();
+  }
+
   async onLogin() {
     if (this.loginForm.invalid) return;
+    const userEmail = this.loginForm.value.email.toLowerCase();
     const userType = this.selectedTabIndex === 0 ? 'HR' : 'Employee';
 
-    if (userType === 'HR' && this.loginForm.value.email.toLowerCase() !== 'divya@oaks.guru') {
-      this.utilityService.openSnackBar('Role does not match');
-      return;
+    if (userType === 'HR') {
+      // Check if userEmail exists in the hrids list
+      const isHrEmailValid = this.hrids.some(hr => hr.email.toLowerCase() === userEmail);
+      console.log('HR Email validation:', this.hrids.map(hr => hr.email.toLowerCase()), userEmail);
+
+      if (!isHrEmailValid) {
+        this.utilityService.openSnackBar('Unauthorized HR Email');
+        return;
+      }
     }
 
     this.authservice
