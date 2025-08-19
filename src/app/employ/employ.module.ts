@@ -13,6 +13,7 @@ import { SharedModule } from '../shared/shared.module';
 import { HomeComponent } from './home/home.component';
 import { EmpPayslipsComponent } from './payslips/emp-payslips/emp-payslips.component';
 import { MatOption } from "@angular/material/core";
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [EmployComponent, HomeComponent, EmpPayslipsComponent],
@@ -27,7 +28,8 @@ import { MatOption } from "@angular/material/core";
     MatButtonModule,
     MatIconModule,
     SharedModule,
-    MatOption
-],
+    MatOption,
+    MatSelectModule
+  ],
 })
-export class EmployModule {}
+export class EmployModule { }

@@ -75,7 +75,7 @@
   <div class="policy-grid">
     <div class="policy-card hr" *ngFor="let doc of docum">
       <div class="cp-title">{{ doc.employeeId }}</div>
-      <div class="updated">Month: {{ getMonth(doc.fileName) }}</div>
+      <div class="updated">Month: {{ utilityService.getMonth(doc.fileName) }}</div>
       <div class="size">Year: {{ doc.year }}</div>
       <div class="actions">
         <button aria-label="View Joining Policy">

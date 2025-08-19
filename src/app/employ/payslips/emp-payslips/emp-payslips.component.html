@@ -18,14 +18,10 @@
           <mat-select [(ngModel)]="selectedYear">
             <mat-option *ngFor="let year of years" [value]="year">{{
               year
-            }}</mat-option>
+              }}</mat-option>
           </mat-select>
         </mat-form-field>
-        <button
-          mat-raised-button
-          color="primary"
-          (click)="getPayslipsByEmployeeIdAndYear()"
-        >
+        <button mat-raised-button color="primary" (click)="getPayslipsByEmployeeIdAndYear()">
           <mat-icon>cloud_download</mat-icon>
           Get Payslips
         </button>
@@ -44,25 +40,17 @@
 
   <div class="policy-grid">
     <div class="policy-card hr" *ngFor="let doc of docum">
-      <div class="cp-title">employeeId: {{ doc.employeeId }}</div>
-      <!-- <div class="size">File Size: {{ doc.size }}</div> -->
-      <div class="updated">File Name: {{ doc.fileName }}</div>
+      <div class="cp-title">{{ doc.employeeId }}</div>
+      <div class="updated">Month: {{ utilityService.getMonth(doc.fileName) }}</div>
+      <div class="size">Year: {{ doc.year }}</div>
       <div class="actions">
         <button aria-label="View Joining Policy">
-          <mat-icon
-            aria-hidden="false"
-            aria-label="Add Person"
-            fontIcon="visibility"
-            (click)="viewDocument(doc.url)"
-          ></mat-icon>
+          <mat-icon aria-hidden="false" aria-label="Add Person" fontIcon="visibility"
+            (click)="viewDocument(doc.url)"></mat-icon>
         </button>
         <button aria-label="Download Joining Policy">
-          <mat-icon
-            aria-hidden="false"
-            aria-label="Add Person"
-            fontIcon="delete"
-            (click)="delectDoc(doc.employeeId, doc.year, doc.fileName)"
-          ></mat-icon>
+          <mat-icon aria-hidden="false" aria-label="Add Person" fontIcon="delete"
+            (click)="delectDoc(doc.employeeId, doc.year, doc.fileName)"></mat-icon>
         </button>
       </div>
     </div>

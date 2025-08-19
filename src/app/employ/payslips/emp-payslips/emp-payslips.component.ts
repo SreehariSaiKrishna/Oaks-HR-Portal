@@ -19,18 +19,18 @@ export class EmpPayslipsComponent {
     public authservice: AuthService,
     public docservice: DocService,
     public utilityService: UtilityService
-  ) {}
+  ) { }
 
   async ngOnInit() {
     const email = this.authservice.getUserEmail();
     this.employeeData = await this.authservice.getEmployeeByEmail(email);
+    this.getPayslipsByEmployeeIdAndYear();
   }
 
   async getPayslipsByEmployeeIdAndYear() {
     this.docum = [];
     this.docum = await this.docservice.getPayslipsByEmployeeIdAndYear(
-      //this.employeeData.employeeId
-      'OAK001',
+      this.employeeData.employeeId,
       this.selectedYear
     );
     console.log('Payslips for year:', this.selectedYear, this.docum);
