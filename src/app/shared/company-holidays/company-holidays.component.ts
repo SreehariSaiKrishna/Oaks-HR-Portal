@@ -77,11 +77,11 @@ export class CompanyHolidaysComponent {
 
   deleteHoliday(docId: string) {
     this.authService
-      .delectCompanyHoliday(docId)
+      .deleteCompanyHoliday(docId)
       .then(() => {
         this.getHolidays();
       })
-      .catch((error) => {
+      .catch((error: any) => {
         this.utilityService.openSnackBar('Failed to delete company holiday');
         console.error('Error deleting company holiday:', error);
         throw error;

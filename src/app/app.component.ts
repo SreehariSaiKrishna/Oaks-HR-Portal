@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { AuthService } from './service/auth.service';
 import { Router } from '@angular/router';
+import { LoaderService } from './service/loader.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -8,8 +10,11 @@ import { Router } from '@angular/router';
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
-  title = 'oaks-hr';
-  constructor(public authSvc: AuthService, public router: Router) {}
+  loading: Observable<boolean>;
+  constructor(public authSvc: AuthService, public router: Router, public loaderSvc: LoaderService) {
+    this.loading = this.loaderSvc.isLoading;
+    console.log('AppComponent initialized', this.loading);
+  }
 
   ngOnInit() {
     if (this.authSvc.isLoggedIn()) {

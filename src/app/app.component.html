@@ -1,2 +1,4 @@
-<!-- <h1>Haii Sai..</h1> -->
 <router-outlet></router-outlet>
+<div *ngIf="loading | async" class="overlay">
+    <mat-spinner></mat-spinner>
+</div>

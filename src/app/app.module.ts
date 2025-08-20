@@ -16,7 +16,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { MatIconModule } from '@angular/material/icon';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-// import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
 import { provideStorage, getStorage } from '@angular/fire/storage';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
@@ -37,6 +37,7 @@ import { provideFirestore, getFirestore } from '@angular/fire/firestore';
     MatIconModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
+    MatProgressSpinnerModule,
   ],
   bootstrap: [AppComponent],
   providers: [
@@ -46,4 +47,4 @@ import { provideFirestore, getFirestore } from '@angular/fire/firestore';
     provideFirebaseApp(() => initializeApp(environment.firebase)),
   ],
 })
-export class AppModule {}
+export class AppModule { }
