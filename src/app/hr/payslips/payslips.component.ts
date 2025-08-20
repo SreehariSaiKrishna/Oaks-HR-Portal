@@ -109,7 +109,7 @@ export class PayslipsComponent {
     }
   }
 
-  delectDoc(employeeId: string, year: number, fileName: string) {
+  deleteDoc(employeeId: string, year: number, fileName: string) {
     this.docservice
       .deletePayslip(employeeId, year, fileName)
       .then(() => {

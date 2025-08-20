@@ -101,15 +101,15 @@ export class CompanyPolicyComponent {
     return fileName.endsWith('.pdf') ? fileName.replace('.pdf', '') : fileName;
   }
 
-  delectDoc(fileName: string) {
+  deleteDoc(fileName: string) {
     this.docservice
-      .delectPolicyDocument(fileName)
+      .deletePolicyDocument(fileName)
       .then(() => {
         this.utilityService.openSnackBar('Document deleted successfully');
         this.docum = []; // Clear the document list
         this.getDocs(); // Refresh the document list after deletion
       })
-      .catch((error) => {
+      .catch((error: any) => {
         console.error('Error deleting document:', error);
         this.utilityService.openSnackBar('Failed to delete document');
       });

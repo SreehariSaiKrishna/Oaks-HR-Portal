@@ -12,6 +12,6 @@
     z-index: 1000;
 }
 
-::ng-deep mat-spinner {
-    stroke: #0079bf; // your custom blue
+::ng-deep mat-spinner circle {
+    stroke: #1b84da !important;
 }

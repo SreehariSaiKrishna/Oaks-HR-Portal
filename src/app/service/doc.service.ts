@@ -9,6 +9,7 @@ import {
   deleteObject,
 } from '@angular/fire/storage';
 import { UtilityService } from './utility.service';
+import { LoaderService } from './loader.service';
 
 @Injectable({
   providedIn: 'root',
@@ -16,19 +17,23 @@ import { UtilityService } from './utility.service';
 export class DocService {
   constructor(
     private storage: Storage,
-    public utilityService: UtilityService
-  ) {}
+    public utilityService: UtilityService,
+    public loaderSvc: LoaderService
+  ) { }
 
   async uploadComPolicyPdf(file: File, path: string) {
+    this.loaderSvc.show();
     try {
       this.checkComPolicyPdfNameExists(file);
       // Check if the file already exists in the storage
       const fileRef = ref(this.storage, path);
       const snapshot = await uploadBytes(fileRef, file);
       const downloadURL = await getDownloadURL(snapshot.ref);
+      this.loaderSvc.hide();
       return downloadURL;
     } catch (err) {
       this.utilityService.openSnackBar('Upload failed');
+      this.loaderSvc.hide();
       return null;
     }
   }
@@ -52,6 +57,7 @@ export class DocService {
   }
 
   async getPolicyPdfs() {
+    this.loaderSvc.show();
     const pdfs: any[] = [];
     try {
       const path = 'companyDocuments';
@@ -71,23 +77,28 @@ export class DocService {
     } catch (error) {
       console.error('Error fetching PDFs:', error);
     }
+    this.loaderSvc.hide();
     return pdfs;
   }
 
-  delectPolicyDocument(fileName: string) {
+  deletePolicyDocument(fileName: string) {
+    this.loaderSvc.show();
     const filePath = `companyDocuments/${fileName}`;
     const fileRef = ref(this.storage, filePath);
     return deleteObject(fileRef)
       .then(() => {
         this.utilityService.openSnackBar('Document deleted successfully');
+        this.loaderSvc.hide();
       })
       .catch((error) => {
         console.error('Error deleting document:', error);
         this.utilityService.openSnackBar('Failed to delete document');
+        this.loaderSvc.hide();
       });
   }
 
   async uploadPayslips(file: File, year: number) {
+    this.loaderSvc.show();
     try {
       if (!file || !file.name) {
         this.utilityService.openSnackBar('Invalid file');
@@ -133,9 +144,11 @@ export class DocService {
       console.error('Error uploading payslip:', err);
       throw err;
     }
+    this.loaderSvc.hide();
   }
 
   async checkPayslipNameExists(file: File, year: number) {
+    this.loaderSvc.show();
     try {
       const nameWithoutExt = file.name.replace(/\.pdf$/i, '');
       const lastDashIndex = nameWithoutExt.lastIndexOf('-');
@@ -154,6 +167,7 @@ export class DocService {
         const existingMonth = existingName.substring(
           existingName.lastIndexOf('-') + 1
         );
+        this.loaderSvc.hide();
         return parseInt(existingMonth, 10) === monthNum;
       });
 
@@ -161,19 +175,23 @@ export class DocService {
         this.utilityService.openSnackBar(
           `Payslip for month ${monthStr} already exists for ${empId} in ${year}`
         );
+        this.loaderSvc.hide();
         return true;
       }
 
+      this.loaderSvc.hide();
       return false;
     } catch (err) {
       this.utilityService.openSnackBar(
         `Error checking for duplicates: ${file.name}`
       );
+      this.loaderSvc.hide();
       return false;
     }
   }
 
   async getPaySlipsPdfs() {
+    this.loaderSvc.show();
     const pdfs: any[] = [];
     try {
       const path = 'payslips';
@@ -191,13 +209,16 @@ export class DocService {
           updatedDate: metadata.updated,
         });
       }
+      this.loaderSvc.hide();
     } catch (error) {
       console.error('Error fetching PDFs:', error);
     }
+    this.loaderSvc.hide();
     return pdfs;
   }
 
   async getPayslipsByEmployeeIdAndYear(employeeId: string, year: number) {
+    this.loaderSvc.show();
     try {
       // Reference to the employee's year folder
       const folderRef = ref(this.storage, `payslips/${employeeId}/${year}`);
@@ -219,6 +240,7 @@ export class DocService {
         })
       );
 
+      this.loaderSvc.hide();
       return payslips;
     } catch (err) {
       console.error(
@@ -226,11 +248,13 @@ export class DocService {
         err
       );
       this.utilityService.openSnackBar(`Error fetching payslips`);
+      this.loaderSvc.hide();
       return [];
     }
   }
 
   async getPayslipsByYearAndMonth(year: number, month: string) {
+    this.loaderSvc.show();
     try {
       const rootRef = ref(this.storage, 'payslips');
 
@@ -273,10 +297,12 @@ export class DocService {
         }
       }
 
+      this.loaderSvc.hide();
       return allPayslips;
     } catch (err) {
       console.error(`Error fetching payslips for ${year}-${month}:`, err);
       this.utilityService.openSnackBar('Error fetching payslips');
+      this.loaderSvc.hide();
       return [];
     }
   }
@@ -315,25 +341,30 @@ export class DocService {
         }
       }
 
+      this.loaderSvc.hide();
       return allPayslips;
     } catch (err) {
       console.error(`Error fetching payslips for employee ${employeeId}:`, err);
       this.utilityService.openSnackBar('Error fetching payslips');
+      this.loaderSvc.hide();
       return [];
     }
   }
 
   async deletePayslip(employeeId: string, year: number, fileName: string) {
+    this.loaderSvc.show();
     try {
       const fileRef = ref(
         this.storage,
         `payslips/${employeeId}/${year}/${fileName}`
       );
       await deleteObject(fileRef);
+      this.loaderSvc.hide();
       this.utilityService.openSnackBar('Payslip deleted successfully');
     } catch (err) {
       this.utilityService.openSnackBar('Failed to delete payslip');
       console.error('Error deleting payslip:', err);
+      this.loaderSvc.hide();
       throw err;
     }
   }
